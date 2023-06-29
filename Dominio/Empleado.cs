@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Empleado : Persona
     {
-        public int Id { get; set; }
+        public int IdEmpleado { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime FechaEgreso { get; set; }
     }
