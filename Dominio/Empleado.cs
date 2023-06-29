@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Permisos
+    public class Empleado : Persona
     {
         public int Id { get; set; }
-        public string Descripcion { get; set; }
-
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaEgreso { get; set; }
     }
 }

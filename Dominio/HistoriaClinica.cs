@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Permisos
+    public class HistoriaClinica
     {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-
+        public int IdTurnoAsignado { get; set; }
+        public string Diagnostico { get; set; }
     }
 }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Permisos
+    public class Credencial
     {
-        public int Id { get; set; }
-        public string Descripcion { get; set; }
-
+        public string NombreUsuario { get; set; }
+        public string Password { get; set; }
     }
 }
