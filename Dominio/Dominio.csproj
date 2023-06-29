@@ -48,7 +48,7 @@
     <Compile Include="HistoriaClinica.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="Paciente.cs" />
-    <Compile Include="Permisos.cs" />
+    <Compile Include="Permiso.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Profesional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
