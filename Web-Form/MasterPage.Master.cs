@@ -13,5 +13,16 @@ namespace Web_Form
         {
 
         }
+
+        protected void btnCrearCuenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaUsuario.aspx");
+        }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+
+        }
     }
 }
