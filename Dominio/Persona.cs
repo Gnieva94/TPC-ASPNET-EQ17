@@ -18,5 +18,12 @@ namespace Dominio
         public DatosContacto DatosContacto { get; set; }
         public Credencial Credencial { get; set; }
         public Permiso Permiso { get; set; }
+
+        public Persona()
+        {
+            Credencial = new Credencial();
+            Permiso = new Permiso();
+            DatosContacto = new DatosContacto();
+        }
     }
 }

@@ -15,6 +15,10 @@
                 <asp:TextBox ID="txbMail" runat="server" class="form-control" placeholder="nombre@mail.com"></asp:TextBox>
             </div>
             <div class="mb-3">
+                 <label for="txbFechaNacimiento" class="form-label">Fecha de nacimiento:</label>
+                <asp:TextBox ID="txbFechaNacimiento" TextMode="Date" runat="server" class="form-control" placeholder=""></asp:TextBox>
+            </div>
+            <div class="mb-3">
                 <label for="txbPass" class="form-label">Contraseña</label>
                 <asp:TextBox ID="txbPass" runat="server" class="form-control" placeholder="" type="password"></asp:TextBox>
             </div>
@@ -25,13 +29,17 @@
                 </asp:DropDownList>
             </div>
             <div>
-                <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" />
+                <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" OnClick="btnCrear_Click" />
             </div>
         </div>
         <div class="col-3">
             <div class="mb-3">
                 <label for="txbApellido" class="form-label">Apellido:</label>
                 <asp:TextBox ID="txbApellido" runat="server" class="form-control" placeholder="Apellido..."></asp:TextBox>
+            </div>
+            <div class="mb-3">
+                <label for="txbDNI" class="form-label">DNI:</label>
+                <asp:TextBox ID="txbDNI" runat="server" class="form-control" placeholder="DNI"></asp:TextBox>
             </div>
             <div class="mb-3">
                 <label for="txbCelu" class="form-label">Celular:</label>

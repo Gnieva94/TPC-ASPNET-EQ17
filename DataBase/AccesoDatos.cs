@@ -54,13 +54,13 @@ namespace DataBase
                 throw ex;
             }
         }
-        public object ejecturarScalar()
+        public int ejecturarAccionScalar()
         {
             comando.Connection = conexion;
             try
             {
                 conexion.Open();
-                return comando.ExecuteScalar();
+                return int.Parse(comando.ExecuteScalar().ToString());
             }
             catch (Exception ex)
             {

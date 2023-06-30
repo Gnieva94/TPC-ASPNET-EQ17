@@ -45,7 +45,6 @@
     <Compile Include="DatosContacto.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Especialidad.cs" />
-    <Compile Include="HistoriaClinica.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Permiso.cs" />

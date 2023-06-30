@@ -11,7 +11,8 @@ namespace Dominio
         public DateTime Fecha { get; set; }
         public DateTime Horario { get; set; }
         public string Observacion { get; set; }
-        public int IdProfesional { get; set; }
+        //
+        public int IdProfesional { get; set; } //objeto
         public int IdPaciente { get; set; }
     }
 }
