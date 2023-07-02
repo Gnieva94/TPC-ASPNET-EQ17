@@ -43,7 +43,7 @@ namespace Web_Form
                 nuevoUsuario.DatosContacto.Email = txbMail.Text;
                 nuevoUsuario.DatosContacto.Celular = txbCelu.Text;
                 nuevoUsuario.Credencial.Password = txbPass.Text;
-                nuevoUsuario.Permiso.Id = ddlTipoUsuario.SelectedIndex;
+                nuevoUsuario.Permiso.Id = ddlTipoUsuario.SelectedIndex+1;
                 nuevoUsuario.FechaNacimiento = DateTime.Parse(txbFechaNacimiento.Text);
                 pacienteNegocio.AgregarPaciente(nuevoUsuario);
             }
