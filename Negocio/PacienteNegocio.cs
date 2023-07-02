@@ -58,57 +58,45 @@ namespace Negocio
             try
             {
                 //Tabla DatosContacto
-                datos.setearConsulta("INSERT INTO Datos_Contacto (Telefono,Celular,Email,Direccion)Values(@Telefono,@Celular,@Email,@Direccion)");
+                datos.setearConsulta("EXEC insertDatosContacto @Telefono,@Celular,@Email,@Direccion;EXEC insertCredenciales @Nombre_Usuario,@Contrasenia;");
                 datos.setearParametro("@Telefono", (object)nuevo.DatosContacto.Telefono ?? DBNull.Value);
                 datos.setearParametro("@Celular", nuevo.DatosContacto.Celular);
                 datos.setearParametro("@Email", nuevo.DatosContacto.Email);
                 datos.setearParametro("@Direccion", (object)nuevo.DatosContacto.Direccion ?? DBNull.Value);
                 //Tabla Credencial
-                datos.setearConsulta("INSERT INTO Credenciales (Nombre_Usuario,Contrasenia)VALUES(@Nombre_Usuario,@Contrasenia)");
                 datos.setearParametro("@Nombre_Usuario", nuevo.Credencial.NombreUsuario);
                 datos.setearParametro("@Contrasenia", nuevo.Credencial.Password);
                 datos.ejecutarAccion();
-                //Tabla Permisos
-                //datos.setearConsulta("INSERT INTO Permisos (Nombre)VALUES(@Nombre)");
-                //datos.setearParametro("@Nombre", nuevo.Permiso.Descripcion);
-                //datos.ejecutarAccion();
+                datos.cerrarConexion();
 
                 //Tabla Persona
-                datos.cerrarConexion();
-                //datos = new AccesoDatos();
-                //datos.setearConsulta("SELECT TOP 1 Id FROM Credenciales ORDER BY Id DESC");
-                //datos.ejecutarAccion();
-                //nuevo.Credencial.IdCredencial = (int)datos.Lector["Id"];
-                nuevo.Credencial.IdCredencial = traerid("SELECT TOP 1 Id Credenciales ORDER BY Id DESC");
-                //datos.cerrarConexion();
-                //datos.setearConsulta("SELECT TOP 1 Id FROM Datos_Contacto ORDER BY Id DESC");
-                //datos.ejecutarLectura();
-                nuevo.DatosContacto.IdDatosContacto = traerid("SELECT TOP 1 Id FROM Datos_Contacto ORDER BY Id DESC");
-                //datos.cerrarConexion();
+                nuevo.Credencial.IdCredencial = Traerid("SELECT TOP 1 Id FROM Credenciales ORDER BY Id DESC");
+                nuevo.DatosContacto.IdDatosContacto = Traerid("SELECT TOP 1 Id FROM Datos_Contacto ORDER BY Id DESC");
                 datos = new AccesoDatos();
-                datos.setearConsulta("INSERT INTO PERSONAS (Nombre,Apellido,Fecha_Nacimiento,Dni, Id_Permiso, Id_Credencial, Id_Datos_Contacto)VALUES(@Nombre,@Apellido,@Fecha_Nacimiento,@Dni,@Id_Permiso,@Id_Credencial,@Id_Datos_Contacto)");
-                //datos.setearParametro("@Id", nuevo.Id);
+                datos.setearConsulta("EXEC insertPersona @Nombre,@Apellido,@Dni,@Fecha_Nacimiento,@Nacionalidad,@EstadoCivil,@Id_Datos_Contacto,@Id_Credencial,@Id_Permiso;");
                 datos.setearParametro("@Nombre",nuevo.Nombre);
                 datos.setearParametro("@Apellido",nuevo.Apellido);
-                datos.setearParametro("@Fecha_Nacimiento", nuevo.FechaNacimiento);
-                datos.setearParametro("@Id_Permiso", nuevo.Permiso.Id);
-                datos.setearParametro("@Id_Credencial", nuevo.Credencial.IdCredencial);
-                datos.setearParametro("@Id_Datos_Contacto", nuevo.DatosContacto.IdDatosContacto);
-                //datos.setearParametro("Estado",nuevo.EstadoCivil);
                 datos.setearParametro("@Dni",nuevo.Dni);
+                datos.setearParametro("@Fecha_Nacimiento", nuevo.FechaNacimiento);
+                nuevo.Nacionalidad = "Argentina";
+                datos.setearParametro("@Nacionalidad", nuevo.Nacionalidad);
+                datos.setearParametro("@EstadoCivil",(object)nuevo.EstadoCivil??DBNull.Value);
+                datos.setearParametro("@Id_Datos_Contacto", nuevo.DatosContacto.IdDatosContacto);
+                datos.setearParametro("@Id_Credencial", nuevo.Credencial.IdCredencial);
+                datos.setearParametro("@Id_Permiso",nuevo.Permiso.Id);
                 datos.ejecutarAccion();
+                datos.cerrarConexion();
 
                 //Tabla Paciente
-                datos.cerrarConexion();
                 datos = new AccesoDatos();
-                datos.setearConsulta("SELECT TOP 1 (Id) FROM Personas ORDER BY ASC");
-                nuevo.Id = (int)datos.Lector["Id"];
-                datos.setearConsulta("INSERT INTO PACIENTES (Id_Persona,Fecha_Ingreso,Id_Obra_Social)VALUES(@Id_Persona,@Fecha_Ingreso,@Id_Obra_Social)");
+                nuevo.Id = Traerid("SELECT TOP 1 Id FROM Personas ORDER BY Id DESC");
+                datos.setearConsulta("EXEC insertPaciente @Id_Persona,@Fecha_Ingreso,@Id_Obra_Social");
                 datos.setearParametro("@Id_Persona", nuevo.Id);
                 nuevo.FechaIngreso = DateTime.Now;
                 datos.setearParametro("@Fecha_Ingreso", nuevo.FechaIngreso);
                 datos.setearParametro("@Id_Obra_Social", (object)nuevo.ObraSocial?? DBNull.Value);
                 datos.ejecutarAccion();
+                datos.cerrarConexion();
             }
             catch (Exception ex)
             {
@@ -129,27 +117,28 @@ namespace Negocio
 
         }
 
-        public int traerid(string consulta)
+        public int Traerid(string consulta)
         {
-            int dato = -1;
+            int dato=0;
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                AccesoDatos datos = new AccesoDatos();
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     dato = (int)datos.Lector["Id"];
                 }
-                datos.cerrarConexion();
                 return dato;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
 
