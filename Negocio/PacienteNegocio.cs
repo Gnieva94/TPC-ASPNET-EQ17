@@ -15,29 +15,33 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("");
+                datos.setearSP("SP_LISTAR_PACIENTE");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
+
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Dni = (string)datos.Lector["Dni"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
-                    aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
-                    aux.EstadoCivil = (string)datos.Lector["Estado"];
+                    aux.Persona = new Persona();
+                    aux.Persona.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Persona.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Persona.Dni = (string)datos.Lector["Dni"];
+                    aux.Persona.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                   // aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
+                   // aux.EstadoCivil = (string)datos.Lector["Estado"];
                     aux.DatosContacto = new DatosContacto();
-                    aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
-                    aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    //aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
                     aux.DatosContacto.Email = (string)datos.Lector["Email"];
+                    aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
                     aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    aux.Credencial = new Credencial();
-                    aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
-                    aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
-                    aux.Permiso = new Permiso();
-                    aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
-                    aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
+                    aux.ObraSocial = new ObraSocial();
+                    aux.ObraSocial.Nombre = (string)datos.Lector["Obra_Social"];
+                   // aux.Credencial = new Credencial();
+                    //aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
+                    //aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
+                    //aux.Permiso = new Permiso();
+                    //aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
+                    //aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
                     pacientes.Add(aux);
                 }
                 return pacientes;

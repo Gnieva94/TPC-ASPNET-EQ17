@@ -8,9 +8,11 @@ namespace Dominio
 {
     public class Paciente : Persona
     {
-        public int IdPaciente { get; set; }
+        public int Id { get; set; }
+        public Persona Persona { get; set; }
         public DateTime FechaIngreso { get; set; }
-        public string ObraSocial { get; set; }
+        public ObraSocial ObraSocial { get; set; }
+
         //public HistoriaClinica HistoriaClinica { get; set; }
 
     }

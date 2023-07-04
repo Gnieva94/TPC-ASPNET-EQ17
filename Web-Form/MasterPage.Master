@@ -24,6 +24,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="Default.aspx">Home</a>
                                 <a class="nav-link" href="Contacto.aspx">Contacto</a>
+                                <a class="nav-link" href="Panel.aspx">Panel</a>
                             </div>
 
                         </div>

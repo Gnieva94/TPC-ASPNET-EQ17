@@ -25,7 +25,21 @@
             <div>
             <%--Seccion Grilla de pacientes/profesionales--%>
                  <h4>Grilla</h4>
-                <asp:GridView ID="dgvPacientes" runat="server"></asp:GridView>
+                <asp:GridView ID="dgvPacientes" CssClass="table" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="Persona.Dni" HeaderText="DNI" />
+                        <asp:BoundField DataField="Persona.FechaNacimiento" HeaderText="Fecha de Nacimiento" />
+                        <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
+                        <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
+                        <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
+                        <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+
+
+                    </Columns>
+
+                </asp:GridView>
             </div>
 
         </div>
