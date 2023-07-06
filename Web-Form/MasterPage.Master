@@ -21,16 +21,16 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="Default.aspx">Home</a>
-                                <a class="nav-link" href="Contacto.aspx">Contacto</a>
-                                <a class="nav-link" href="Panel.aspx">Panel</a>
-                            </div>
-
                         </div>
                         <div class="d-flex">
-                            <asp:Button ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" class="btn btn-outline-info me-2" OnClick="btnCrearCuenta_Click" />
-                            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-sm btn-outline-info" OnClick="btnIngresar_Click" />
+                            <div class="navbar-nav">
+                                <a class="nav-link" href="Contacto.aspx">Contacto</a>
+                                <a class="nav-link" href="PanelAdmin.aspx">Panel</a>
+                            </div>
+                            <div>
+                                <asp:Button ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" class="btn btn-outline-info me-2" OnClick="btnCrearCuenta_Click" />
+                                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-sm btn-outline-info" OnClick="btnIngresar_Click" />
+                            </div>
                         </div>
                     </div>
                 </nav>

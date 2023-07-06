@@ -1,27 +1,33 @@
-﻿using Dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataBase;
+using Dominio;
+
 
 namespace Negocio
 {
     public class PacienteNegocio
     {
         public List<Paciente> ListaPacientes() {
+
             List<Paciente> pacientes = new List<Paciente>();
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
                 datos.setearSP("SP_LISTAR_PACIENTE");
                 datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
 
                     aux.IdPaciente = (int)datos.Lector["Id"];
+                    aux.NumeroAfiliado = (string)datos.Lector["Numero_Afiliado"];
+                    aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
                     aux.Persona = new Persona();
                     aux.Persona.Nombre = (string)datos.Lector["Nombre"];
                     aux.Persona.Apellido = (string)datos.Lector["Apellido"];
@@ -42,6 +48,7 @@ namespace Negocio
                     //aux.Permiso = new Permiso();
                     //aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
                     //aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
+                    
                     pacientes.Add(aux);
                 }
                 return pacientes;
