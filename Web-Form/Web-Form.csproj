@@ -73,7 +73,10 @@
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
-    <Content Include="Panel.aspx" />
+    <Content Include="PanelAdmin.aspx" />
+    <Content Include="PanelPaciente.aspx" />
+    <Content Include="PanelProfesional.aspx" />
+    <Content Include="PanelRecepcionista.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -122,12 +125,33 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="Panel.aspx.cs">
-      <DependentUpon>Panel.aspx</DependentUpon>
+    <Compile Include="PanelAdmin.aspx.cs">
+      <DependentUpon>PanelAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Panel.aspx.designer.cs">
-      <DependentUpon>Panel.aspx</DependentUpon>
+    <Compile Include="PanelAdmin.aspx.designer.cs">
+      <DependentUpon>PanelAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelPaciente.aspx.cs">
+      <DependentUpon>PanelPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelPaciente.aspx.designer.cs">
+      <DependentUpon>PanelPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelProfesional.aspx.cs">
+      <DependentUpon>PanelProfesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelProfesional.aspx.designer.cs">
+      <DependentUpon>PanelProfesional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelRecepcionista.aspx.cs">
+      <DependentUpon>PanelRecepcionista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelRecepcionista.aspx.designer.cs">
+      <DependentUpon>PanelRecepcionista.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

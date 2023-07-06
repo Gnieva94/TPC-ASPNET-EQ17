@@ -35,12 +35,12 @@
                     </div>
                 </nav>
             </div>
-            <div class="container">
+            <div class="container-fluid vh-100">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
             <div>
-                <footer class="text-bg-dark p-3 text-center fw-medium">Cucurullo - Dinarte - Nieva | Programación III 2023</footer>
+                <footer class="text-bg-dark p-3 text-center fw-medium fixed-bottom">Cucurullo - Dinarte - Nieva | Programación III 2023</footer>
             </div>
         </div>
     </form>

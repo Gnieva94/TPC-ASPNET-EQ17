@@ -1,22 +1,23 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Panel.aspx.cs" Inherits="Web_Form.Panel" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PanelRecepcionista.aspx.cs" Inherits="Web_Form.PanelRecepcionista" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
-        <div class="col-3">
+     <div class="row">
+        <div class="col-2">
             <div>
                 <h3>Bienvenido</h3>
 
             </div>
             <div>
                 <%--Seccion de botones de navegacion--%>
-                <h4>Aca van los botones</h4>
+                <h4>Aca van los links a las difentes listas</h4>
+
+                
 
 
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <div>
                 <%--Seccion Buscador y filtro--%>
                  <h4>Pacientes</h4>
@@ -35,6 +36,8 @@
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+                        <%-- <asp:BoundField DataField="ObraSocial.NroAfiliado" HeaderText="Nro Afiliado" />--%>
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
 
 
                     </Columns>
@@ -44,6 +47,4 @@
 
         </div>
     </div>
-
-
 </asp:Content>
