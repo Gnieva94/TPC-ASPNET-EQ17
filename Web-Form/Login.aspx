@@ -13,8 +13,8 @@
                 <label class="form-label">Contraseña</label>
                 <asp:TextBox runat="server" cssclass="form-control" ID="txbPass" TextMode="Password"/>
             </div>
-            <asp:Button Text="Ingresar" cssclass="btn btn-primary" ID="btnLogin" runat="server" />
-            <a href="/">Cancelar</a>
+            <asp:Button Text="Ingresar" cssclass="btn btn-primary" ID="btnLogin" runat="server" OnClick="btnLogin_Click"/>
+            <asp:Button Text="Regresar" cssclass="btn btn-danger" ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" />
         </div>
     </div>
 </asp:Content>
