@@ -9,10 +9,18 @@ namespace Dominio
     public class Horario
     {
         public int Id { get; set; }
+        public Dias Dia { get; set; }
         public DateTime HorarioInicio { get; set; } //int
         public DateTime HorarioFin { get; set; }
 
-
+        public enum Dias { 
+            Lunes, 
+            Martes, 
+            Miercoles, 
+            Jueves, 
+            Viernes, 
+            Sabado, 
+            Domingo }
         //Agregar dia enum 1 : lunes
     }
 }

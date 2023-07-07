@@ -13,6 +13,7 @@ namespace Dominio
         public DateTime FechaIngreso { get; set; }
         public ObraSocial ObraSocial { get; set; }
         public string NumeroAfiliado { get; set; }
+        public List<TurnoAsignado> TurnosAsignados { get; set; }
 
         //public HistoriaClinica HistoriaClinica { get; set; }
 

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DataBase;
 using Dominio;
 
-
 namespace Negocio
 {
     public class PacienteNegocio
@@ -26,8 +25,8 @@ namespace Negocio
                     Paciente aux = new Paciente();
 
                     aux.IdPaciente = (int)datos.Lector["Id"];
-                    aux.NumeroAfiliado = (string)datos.Lector["Numero_Afiliado"];
-                    aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
+                    //aux.NumeroAfiliado = (string)datos.Lector["Numero_Afiliado"];
+                    //aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
                     aux.Persona = new Persona();
                     aux.Persona.Nombre = (string)datos.Lector["Nombre"];
                     aux.Persona.Apellido = (string)datos.Lector["Apellido"];

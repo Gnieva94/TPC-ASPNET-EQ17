@@ -12,8 +12,9 @@ namespace Dominio
         public Persona Persona { get; set; }
         public DateTime FechaIngreso { get; set; } //alta
         public DateTime FechaEgreso { get; set; } //baja
-        public Especialidad Especialidad { get; set; } //Lista
-        public Horario Horario { get; set; } //Lista - dia / horainicio horafin
+        public List<Especialidad> Especialidad { get; set; } //Lista
+        public List<Horario> Horarios { get; set; } //Lista - dia / horainicio horafin
+        public List<TurnoAsignado> TurnosAsignados { get; set; } //Lista - fecha / horario / observacion
         public string Matricula { get; set; }
     }
 }

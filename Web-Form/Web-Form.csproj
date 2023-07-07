@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaTurno.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="Contacto.aspx" />
     <Content Include="Default.aspx" />
@@ -80,6 +81,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaTurno.aspx.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaTurno.aspx.designer.cs">
+      <DependentUpon>AltaTurno.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaUsuario.aspx.cs">
       <DependentUpon>AltaUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

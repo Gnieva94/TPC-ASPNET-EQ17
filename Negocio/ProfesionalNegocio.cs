@@ -37,8 +37,8 @@ namespace Negocio
                     aux.DatosContacto.Email = (string)datos.Lector["Email"];
                     aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
                     aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    aux.Especialidad = new Especialidad();
-                    aux.Especialidad.Nombre = (string)datos.Lector["Especialidad"];
+                    aux.Especialidad = new List<Especialidad>();
+                    //aux.Especialidad.Nombre = (string)datos.Lector["Especialidad"];
                     aux.Matricula = (string)datos.Lector["Matricula"];
                     //aux.Horario = new Horario();
                     //aux.Horario.Dia = (string)datos.Lector["Dia"];

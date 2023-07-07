@@ -9,9 +9,8 @@ namespace Dominio
     public class TurnoAsignado
     {
         public DateTime Fecha { get; set; }
-        public DateTime Horario { get; set; }
         public string Observacion { get; set; }
-        //
+        public string Diagnostico { get; set; }
         public int IdProfesional { get; set; } //objeto
         public int IdPaciente { get; set; }
     }
