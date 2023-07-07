@@ -16,6 +16,9 @@ namespace Dominio
         public List<TurnoAsignado> TurnosAsignados { get; set; }
 
         //public HistoriaClinica HistoriaClinica { get; set; }
-
+        public Paciente()
+        {
+            ObraSocial = new ObraSocial();
+        }
     }
 }
