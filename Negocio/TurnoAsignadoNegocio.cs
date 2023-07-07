@@ -20,7 +20,7 @@ namespace Negocio
                 datos.setearConsulta("EXEC SP_insertar_turno @FECHA, @ID_PROFESIONAL, @Id_Paciente, @OBSERVACION, @DIAGNOSTICO");
                 datos.setearParametro("@FECHA", turno.Fecha);
                 datos.setearParametro("@id_profesional", turno.IdProfesional);
-                datos.setearParametro("@id_profesional", turno.IdPaciente);
+                datos.setearParametro("@id_paciente", turno.IdPaciente);
                 datos.setearParametro("@observacion", turno.Observacion);
                 datos.setearParametro("@diagnostico", turno.Diagnostico);
                 datos.ejecutarAccion();

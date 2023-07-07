@@ -57,6 +57,44 @@ namespace Negocio
             }   
         }
 
+        public void AgregarEmpleado(Empleado nuevo)
+        {
+            try
+            {
+                DatosContactoNegocio datosContactoNegocio = new DatosContactoNegocio();
+                nuevo.DatosContacto.IdDatosContacto = datosContactoNegocio.InsertarTablaDatosContacto(nuevo.DatosContacto);
+                CredencialNegocio credencialNegocio = new CredencialNegocio();
+                nuevo.Credencial.IdCredencial = credencialNegocio.InsertarTablaCredencial(nuevo.Credencial);
+                PersonaNegocio personaNegocio = new PersonaNegocio();
+                nuevo.Id = personaNegocio.InsertarTablaPersona(nuevo);
+                nuevo.IdEmpleado = InsertarTablaEmpleado(nuevo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public int InsertarTablaEmpleado(Empleado nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("EXEC insertEmpleado @Id_Persona,@Fecha_Alta,@Fecha_Baja");
+                datos.setearParametro("Id_Persona", nuevo.Id);
+                nuevo.FechaIngreso = DateTime.Now;
+                datos.setearParametro("Fecha_Alta", nuevo.FechaIngreso);
+                datos.setearParametro("Fecha_Baja", DBNull.Value);
+                return datos.ejecturarAccionScalar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

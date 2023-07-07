@@ -45,5 +45,33 @@ namespace Negocio
             }   
         }
 
+        public List<ObraSocial> ListarObraSocial()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<ObraSocial> listaObraSocial = new List<ObraSocial>();
+            try
+            {
+                datos.setearConsulta("Select Id,Nombre,Id_Estado FROM Obras_Sociales");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    ObraSocial aux = new ObraSocial();
+                    aux.IdObraSocial = (int)datos.Lector["Id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Estado = (int)datos.Lector["Id_Estado"];
+                    listaObraSocial.Add(aux);
+                }
+                return listaObraSocial;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

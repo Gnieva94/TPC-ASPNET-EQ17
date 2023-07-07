@@ -10,17 +10,17 @@ namespace Negocio
 {
     public class DatosContactoNegocio
     {
-        public void InsertarTablaDatosContacto(Paciente nuevo)
+        public int InsertarTablaDatosContacto(DatosContacto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO Datos_Contacto (Telefono,Celular,Email,Direccion)Values(@Telefono,@Celular,@Email,@Direccion)");
-                datos.setearParametro("@Telefono", (object)nuevo.DatosContacto.Telefono ?? DBNull.Value);
-                datos.setearParametro("@Celular", nuevo.DatosContacto.Celular);
-                datos.setearParametro("@Email", nuevo.DatosContacto.Email);
-                datos.setearParametro("@Direccion", (object)nuevo.DatosContacto.Direccion ?? DBNull.Value);
-                datos.ejecutarAccion();
+                datos.setearConsulta("EXEC insertDatosContacto @Telefono,@Celular,@Email,@Direccion");
+                datos.setearParametro("@Telefono", (object)nuevo.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Celular", nuevo.Celular);
+                datos.setearParametro("@Email", nuevo.Email);
+                datos.setearParametro("@Direccion", (object)nuevo.Direccion ?? DBNull.Value);
+                return datos.ejecturarAccionScalar();
             }
             catch (Exception ex)
             {

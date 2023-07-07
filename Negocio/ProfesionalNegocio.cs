@@ -64,5 +64,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }   
         }
+
+        public void AgregarProfesional(Profesional nuevo)
+        {
+            try
+            {
+                DatosContactoNegocio datosContactoNegocio = new DatosContactoNegocio();
+                nuevo.DatosContacto.IdDatosContacto = datosContactoNegocio.InsertarTablaDatosContacto(nuevo.DatosContacto);
+                CredencialNegocio credencialNegocio = new CredencialNegocio();
+                nuevo.Credencial.IdCredencial = credencialNegocio.InsertarTablaCredencial(nuevo.Credencial);
+                PersonaNegocio personaNegocio = new PersonaNegocio();
+                nuevo.Id = personaNegocio.InsertarTablaPersona(nuevo);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        //public int InsertarTablaProfesional(Profesional nuevo)
+        //{
+
+        //}
     }
 }
