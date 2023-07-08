@@ -9,8 +9,9 @@ namespace Dominio
     public class Horario
     {
         public int Id { get; set; }
+        public int IdProfesional { get; set; }
         public Dias Dia { get; set; }
-        public DateTime HorarioInicio { get; set; } //int
+        public DateTime HorarioInicio { get; set; }
         public DateTime HorarioFin { get; set; }
 
         public enum Dias { 

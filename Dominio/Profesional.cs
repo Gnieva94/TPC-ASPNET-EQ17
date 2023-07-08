@@ -10,11 +10,12 @@ namespace Dominio
     {
         public int IdProfesional { get; set; }
         public Persona Persona { get; set; }
-        public DateTime FechaIngreso { get; set; } //alta
-        public DateTime FechaEgreso { get; set; } //baja
-        public List<Especialidad> Especialidad { get; set; } //Lista
-        public List<Horario> Horarios { get; set; } //Lista - dia / horainicio horafin
-        public List<TurnoAsignado> TurnosAsignados { get; set; } //Lista - fecha / horario / observacion
+        public DateTime FechaAlta { get; set; }
+        public DateTime FechaBaja { get; set; }
         public string Matricula { get; set; }
+        public List<Especialidad> Especialidad { get; set; }
+        public List<Horario> Horarios { get; set; }
+        public List<TurnoAsignado> TurnosAsignados { get; set; }
+        
     }
 }

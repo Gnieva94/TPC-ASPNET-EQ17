@@ -10,12 +10,11 @@ namespace Dominio
     {
         public int IdPaciente { get; set; }
         public Persona Persona { get; set; }
-        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaAlta { get; set; }
         public ObraSocial ObraSocial { get; set; }
         public string NumeroAfiliado { get; set; }
         public List<TurnoAsignado> TurnosAsignados { get; set; }
-
-        //public HistoriaClinica HistoriaClinica { get; set; }
+        
         public Paciente()
         {
             ObraSocial = new ObraSocial();

@@ -38,19 +38,8 @@
                     </ul>
                     <hr>
                     <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong>mdo</strong>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
+                       <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-secondary" type="button" aria-expanded="false" />
+                  
                     </div>
                 </div>
 
@@ -77,8 +66,6 @@
                         <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
                         <%-- <asp:BoundField DataField="ObraSocial.NroAfiliado" HeaderText="Nro Afiliado" />--%>
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
-
-
                     </Columns>
 
                 </asp:GridView>

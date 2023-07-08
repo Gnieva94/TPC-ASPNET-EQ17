@@ -25,8 +25,8 @@ namespace Negocio
                     Profesional aux = new Profesional();
 
                     aux.IdProfesional = (int)datos.Lector["Id"];
-                    aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
-                    aux.FechaEgreso = (DateTime)datos.Lector["Fecha_Egreso"];
+                    aux.FechaAlta = (DateTime)datos.Lector["Fecha_Alta"];
+                    aux.FechaBaja = (DateTime)datos.Lector["Fecha_Baja"];
                     aux.Matricula = (string)datos.Lector["Matricula"];
                     aux.Persona = new Persona();
                     aux.Persona.Nombre = (string)datos.Lector["Nombre"];

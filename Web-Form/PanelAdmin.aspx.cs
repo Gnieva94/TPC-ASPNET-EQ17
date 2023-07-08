@@ -19,10 +19,14 @@ namespace Web_Form
                 {
                     //if (Seguridad.SesionActiva(Session["Persona"]))
                     //{
-                    //    PacienteNegocio negocio = new PacienteNegocio();
-                    //    dgvPacientes.DataSource = negocio.ListaPacientes();
-                    //    dgvPacientes.DataBind();
+                        PacienteNegocio negocio = new PacienteNegocio();
+                        dgvPacientes.DataSource = negocio.ListaPacientes();
+                        dgvPacientes.DataBind();
                     //}
+
+                    ProfesionalNegocio negocio = new ProfesionalNegocio();
+                    dgvProfesionales.DataSource = negocio.ListaProfesionales();
+                    dgvProfesionales.DataBind();
                 }
             }
             catch (Exception ex)

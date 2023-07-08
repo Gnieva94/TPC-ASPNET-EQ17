@@ -8,10 +8,13 @@ namespace Dominio
 {
     public class TurnoAsignado
     {
+        public int Id { get; set; }
         public DateTime Fecha { get; set; }
+        public int IdProfesional { get; set; }
+        public int IdPaciente { get; set; }
         public string Observacion { get; set; }
         public string Diagnostico { get; set; }
-        public int IdProfesional { get; set; } //objeto
-        public int IdPaciente { get; set; }
+        public int IdEstado { get; set; }
+       
     }
 }
