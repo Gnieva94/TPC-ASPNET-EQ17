@@ -22,7 +22,6 @@ namespace Negocio
                 datos.setearParametro("@Fecha_Nacimiento", nuevo.FechaNacimiento);
                 nuevo.Nacionalidad = "Argentina";
                 datos.setearParametro("@Nacionalidad", nuevo.Nacionalidad);
-                datos.setearParametro("@EstadoCivil", (object)nuevo.EstadoCivil ?? DBNull.Value);
                 datos.setearParametro("@Id_Datos_Contacto", nuevo.DatosContacto.IdDatosContacto);
                 datos.setearParametro("@Id_Credencial", nuevo.Credencial.IdCredencial);
                 datos.setearParametro("@Id_Permiso", nuevo.Permiso.Id);

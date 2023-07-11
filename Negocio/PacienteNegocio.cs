@@ -17,40 +17,49 @@ namespace Negocio
 
             try
             {
-                datos.setearSP("SP_LISTAR_PACIENTE");
+                datos.setearSP("SP_LISTAR_PACIENTES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
 
-                    aux.IdPaciente = (int)datos.Lector["Id"];
-                    //aux.NumeroAfiliado = (string)datos.Lector["Numero_Afiliado"];
-                    //aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
-                    aux.Persona = new Persona();
-                    aux.Persona.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Persona.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Persona.Dni = (string)datos.Lector["Dni"];
-                    aux.Persona.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
-                   // aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
-                   // aux.EstadoCivil = (string)datos.Lector["Estado"];
+                    aux.IdPaciente = (int)datos.Lector["Id_Paciente"];
+                    
+                    //aux.Persona = new Persona();
+                    aux.Id = (int)datos.Lector["Id_Persona"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
                     aux.DatosContacto = new DatosContacto();
-                    //aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
                     aux.DatosContacto.Email = (string)datos.Lector["Email"];
-                    aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
                     if (!(datos.Lector["Direccion"] is DBNull))
                         aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        aux.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        aux.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    if (!(datos.Lector["Codigo_Postal"] is DBNull))
+                        aux.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    aux.Credencial = new Credencial();
+                    aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
+                    aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
                     aux.ObraSocial = new ObraSocial();
                     aux.ObraSocial.Nombre = (string)datos.Lector["Obra_Social"];
-                   // aux.Credencial = new Credencial();
-                    //aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
-                    //aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
-                    //aux.Permiso = new Permiso();
-                    //aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
-                    //aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
-                    
+                    if (!(datos.Lector["Nro_Afiliado"] is DBNull))
+                        aux.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
+                    aux.FechaAlta = (DateTime)datos.Lector["Fecha_Alta"];
+
+
                     pacientes.Add(aux);
                 }
+
                 return pacientes;
             }
             catch (Exception ex)
@@ -92,8 +101,8 @@ namespace Negocio
             {
                 datos.setearConsulta("EXEC insertPaciente @Id_Persona,@Fecha_Ingreso,@Id_Obra_Social");
                 datos.setearParametro("@Id_Persona", nuevo.Id);
-                nuevo.FechaIngreso = DateTime.Now;
-                datos.setearParametro("@Fecha_Ingreso", nuevo.FechaIngreso);
+                nuevo.FechaAlta = DateTime.Now;
+                datos.setearParametro("@Fecha_Ingreso", nuevo.FechaAlta);
                 if (nuevo.ObraSocial.IdObraSocial == 0)
                     datos.setearParametro("@Id_Obra_Social", DBNull.Value);
                 else

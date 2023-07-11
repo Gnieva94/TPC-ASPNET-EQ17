@@ -10,14 +10,14 @@ namespace Negocio
 {
     public class ObraSocialNegocio
     {
-        public List<ObraSocial> ListaObraSociales()
+        public List<ObraSocial> ListaObrasSociales()
         {
             List<ObraSocial> obrasSociales = new List<ObraSocial>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearSP("SP_LISTAR_OBRASOCIAL");
+                datos.setearSP("SP_LISTAR_OBRAS_SOCIALES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,10 +26,6 @@ namespace Negocio
 
                     aux.IdObraSocial = (int)datos.Lector["Id"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Estado = (int)datos.Lector["Estado"];
-                    aux.DatosContacto = new DatosContacto();
-                    aux.DatosContacto.Email = (string)datos.Lector["Email"];
-                    aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
 
                     obrasSociales.Add(aux);
                 }
@@ -58,7 +54,6 @@ namespace Negocio
                     ObraSocial aux = new ObraSocial();
                     aux.IdObraSocial = (int)datos.Lector["Id"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Estado = (int)datos.Lector["Id_Estado"];
                     listaObraSocial.Add(aux);
                 }
                 return listaObraSocial;

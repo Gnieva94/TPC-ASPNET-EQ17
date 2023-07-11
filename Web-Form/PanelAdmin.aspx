@@ -53,8 +53,27 @@
 
             </div>
             <div>
+                <asp:GridView ID="Prueba" CssClass="table" runat="server">
+                    </asp:GridView>
                 <%--Seccion Grilla de pacientes--%>
                 <asp:GridView ID="dgvPacientes" CssClass="table" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="Dni" HeaderText="DNI" />
+                        <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
+                        <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
+                        <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
+                        <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
+                        <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+                        <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+             <div>
+                <%--Seccion Grilla de profesionales--%>
+                <asp:GridView ID="dgvProfesionales" CssClass="table" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
@@ -63,11 +82,10 @@
                         <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
-                        <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+                        <%-- <asp:BoundField DataField="Especialidades" HeaderText="Obra Social" />--%>
                         <%-- <asp:BoundField DataField="ObraSocial.NroAfiliado" HeaderText="Nro Afiliado" />--%>
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
                     </Columns>
-
                 </asp:GridView>
             </div>
 
