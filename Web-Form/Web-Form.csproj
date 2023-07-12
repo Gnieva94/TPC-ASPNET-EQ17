@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaEstadoTurno.aspx" />
+    <Content Include="AltaObraSocial.aspx" />
     <Content Include="AltaTurno.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="Contacto.aspx" />
@@ -79,8 +81,23 @@
     <Content Include="PanelProfesional.aspx" />
     <Content Include="PanelRecepcionista.aspx" />
     <Content Include="Web.config" />
+    <Content Include="AltaEspecialidad.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaEstadoTurno.aspx.cs">
+      <DependentUpon>AltaEstadoTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaEstadoTurno.aspx.designer.cs">
+      <DependentUpon>AltaEstadoTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaObraSocial.aspx.cs">
+      <DependentUpon>AltaObraSocial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaObraSocial.aspx.designer.cs">
+      <DependentUpon>AltaObraSocial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaTurno.aspx.cs">
       <DependentUpon>AltaTurno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -162,6 +179,13 @@
       <DependentUpon>PanelRecepcionista.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AltaEspecialidad.aspx.cs">
+      <DependentUpon>AltaEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaEspecialidad.aspx.designer.cs">
+      <DependentUpon>AltaEspecialidad.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />

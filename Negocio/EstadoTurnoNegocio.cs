@@ -1,35 +1,36 @@
-﻿using System;
+﻿using DataBase;
+using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataBase;
-using Dominio;
 
 namespace Negocio
 {
-    public class EspecialidadNegocio
+    public class EstadoTurnoNegocio
     {
-        public List<Especialidad> ListaEspecialidades()
-        {
-            List<Especialidad> especialidades = new List<Especialidad>();
-            AccesoDatos datos = new AccesoDatos();
 
+        public List<EstadoTurno> Listar()
+        {
+            List<EstadoTurno> turno = new List<EstadoTurno>();
+            AccesoDatos datos = new AccesoDatos();
+            
             try
             {
-                datos.setearSP("SP_LISTAR_ESPECIALIDAD");
+                datos.setearSP("SP_LISTAR_ESTADOTURNO");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Especialidad aux = new Especialidad();
+                    EstadoTurno aux = new EstadoTurno();
 
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
 
-                    especialidades.Add(aux);
+                    turno.Add(aux);
                 }
-                return especialidades;
+                return turno;
             }
             catch (Exception ex)
             {
@@ -38,17 +39,17 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
-            }   
+            }
         }
 
-        public bool AgregarEspecialidad(Especialidad especialidad)
+        public bool AgregarEstadoTurno(EstadoTurno estadoTurno)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearSP("SP_AGREGAR_ESPECIALIDAD");
-                datos.setearParametro("@Nombre", especialidad.Nombre);
+                datos.setearSP("SP_AGREGAR_ESTADOTURNO");
+                datos.setearParametro("@Nombre", estadoTurno.Nombre);
                 datos.ejecutarAccion();
                 return true;
             }
@@ -59,7 +60,8 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
-            }   
-        }   
+            }
+
+        }
     }
 }

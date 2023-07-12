@@ -3,5 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>HUBO UN ERROR!</h2>
+    <p>Te pedimos disculpas, vuelve a intentar mas tarde</p>
     <asp:Label runat="server" ID="lblError"></asp:Label>
 </asp:Content>

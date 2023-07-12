@@ -73,5 +73,25 @@ namespace Negocio
             }
         }
 
+        public bool AgregarObraSocial(ObraSocial obraSocial)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_AGREGAR_OBRA_SOCIAL");
+                datos.setearParametro("@Nombre", obraSocial.Nombre);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }   
+        }
+
     }
 }
