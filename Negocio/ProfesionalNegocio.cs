@@ -24,32 +24,35 @@ namespace Negocio
                 {
                     Profesional aux = new Profesional();
 
-                    aux.IdProfesional = (int)datos.Lector["Id"];
+                    aux.IdProfesional = (int)datos.Lector["Id_Profesional"];
+                    aux.Id = (int)datos.Lector["Id_Persona"];
                     aux.FechaAlta = (DateTime)datos.Lector["Fecha_Alta"];
-                    aux.FechaBaja = (DateTime)datos.Lector["Fecha_Baja"];
+                    if (!(datos.Lector["Fecha_Baja"] is DBNull))
+                        aux.FechaBaja = (DateTime)datos.Lector["Fecha_Baja"];
                     aux.Matricula = (string)datos.Lector["Matricula"];
-                    aux.Persona = new Persona();
-                    aux.Persona.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Persona.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Persona.Dni = (string)datos.Lector["Dni"];
-                    aux.Persona.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
                     aux.DatosContacto = new DatosContacto();
                     aux.DatosContacto.Email = (string)datos.Lector["Email"];
-                    aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
-                    aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    aux.Especialidad = new List<Especialidad>();
-                    //aux.Especialidad.Nombre = (string)datos.Lector["Especialidad"];
-                    aux.Matricula = (string)datos.Lector["Matricula"];
-                    //aux.Horario = new Horario();
-                    //aux.Horario.Dia = (string)datos.Lector["Dia"];
-                    //aux.Horario.HoraInicio = (DateTime)datos.Lector["Hora_Inicio"];
-                    //aux.Horario.HoraFin = (DateTime)datos.Lector["Hora_Fin"];
-                    //aux.Credencial = new Credencial();
-                    //aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
-                    //aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
-                    //aux.Permiso = new Permiso();
-                    //aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
-                    //aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    if (!(datos.Lector["Direccion"] is DBNull))
+                        aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        aux.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        aux.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    if (!(datos.Lector["Codigo_Postal"] is DBNull))
+                        aux.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    aux.Credencial = new Credencial();
+                    aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
+                    aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
+
 
                     profesionales.Add(aux);
                 }

@@ -25,8 +25,6 @@ namespace Negocio
                     Paciente aux = new Paciente();
 
                     aux.IdPaciente = (int)datos.Lector["Id_Paciente"];
-                    
-                    //aux.Persona = new Persona();
                     aux.Id = (int)datos.Lector["Id_Persona"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];

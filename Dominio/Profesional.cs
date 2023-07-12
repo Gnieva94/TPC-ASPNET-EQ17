@@ -9,7 +9,6 @@ namespace Dominio
     public class Profesional : Persona
     {
         public int IdProfesional { get; set; }
-        public Persona Persona { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
         public string Matricula { get; set; }
