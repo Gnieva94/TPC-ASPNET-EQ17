@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.setearSP("SP_LISTAR_EMPLEADO");
+                datos.setearSP("SP_LISTAR_EMPLEADOS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -25,20 +25,20 @@ namespace Negocio
                     Empleado aux = new Empleado();
 
                     aux.IdEmpleado = (int)datos.Lector["Id"];
-                    aux.FechaIngreso = (DateTime)datos.Lector["Fecha_Ingreso"];
-                    aux.FechaEgreso = (DateTime)datos.Lector["Fecha_Egreso"];
-                    aux.Persona = new Persona();
+                    aux.FechaAlta = (DateTime)datos.Lector["Fecha_Ingreso"];
+                    aux.FechaBaja = (DateTime)datos.Lector["Fecha_Egreso"];
+                    //aux.Persona = new Persona();
                     aux.Persona.Nombre = (string)datos.Lector["Nombre"];
                     aux.Persona.Apellido = (string)datos.Lector["Apellido"];
                     aux.Persona.Dni = (string)datos.Lector["Dni"];
                     aux.Persona.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
-                    aux.DatosContacto = new DatosContacto();
+                    //aux.DatosContacto = new DatosContacto();
                     aux.DatosContacto.Email = (string)datos.Lector["Email"];
                     aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
                     aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
                     //aux.Credencial = new Credencial();
-                    //aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
-                    //aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
+                    aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
+                    aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
                     //aux.Permiso = new Permiso();
                     //aux.Permiso.Id = (int)datos.Lector["Permiso.Id"];
                     //aux.Permiso.Descripcion = (string)datos.Lector["Permiso.Nombre"];
@@ -82,8 +82,8 @@ namespace Negocio
             {
                 datos.setearConsulta("EXEC insertEmpleado @Id_Persona,@Fecha_Alta,@Fecha_Baja");
                 datos.setearParametro("Id_Persona", nuevo.Id);
-                nuevo.FechaIngreso = DateTime.Now;
-                datos.setearParametro("Fecha_Alta", nuevo.FechaIngreso);
+                nuevo.FechaAlta = DateTime.Now;
+                datos.setearParametro("Fecha_Alta", nuevo.FechaAlta);
                 datos.setearParametro("Fecha_Baja", DBNull.Value);
                 return datos.ejecturarAccionScalar();
             }

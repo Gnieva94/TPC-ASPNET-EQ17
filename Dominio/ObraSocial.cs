@@ -10,7 +10,5 @@ namespace Dominio
     {
         public int IdObraSocial { get; set; }
         public string Nombre { get; set; }
-        public DatosContacto DatosContacto { get; set; }
-        public int Estado { get; set; }
     }
 }

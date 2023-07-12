@@ -38,19 +38,8 @@
                     </ul>
                     <hr>
                     <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong>mdo</strong>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
+                       <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-secondary" type="button" aria-expanded="false" />
+                  
                     </div>
                 </div>
 
@@ -64,8 +53,27 @@
 
             </div>
             <div>
+                <asp:GridView ID="Prueba" CssClass="table" runat="server">
+                    </asp:GridView>
                 <%--Seccion Grilla de pacientes--%>
                 <asp:GridView ID="dgvPacientes" CssClass="table" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                        <asp:BoundField DataField="Dni" HeaderText="DNI" />
+                        <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
+                        <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
+                        <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
+                        <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
+                        <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+                        <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+             <div>
+                <%--Seccion Grilla de profesionales--%>
+                <asp:GridView ID="dgvProfesionales" CssClass="table" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Persona.Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Persona.Apellido" HeaderText="Apellido" />
@@ -74,13 +82,10 @@
                         <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
-                        <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
+                        <%-- <asp:BoundField DataField="Especialidades" HeaderText="Obra Social" />--%>
                         <%-- <asp:BoundField DataField="ObraSocial.NroAfiliado" HeaderText="Nro Afiliado" />--%>
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
-
-
                     </Columns>
-
                 </asp:GridView>
             </div>
 

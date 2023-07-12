@@ -15,6 +15,24 @@ namespace Web_Form
     {
 
         /// <summary>
+        /// Control btnLogout.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogout;
+
+        /// <summary>
+        /// Control Prueba.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Prueba;
+
+        /// <summary>
         /// Control dgvPacientes.
         /// </summary>
         /// <remarks>
@@ -22,5 +40,14 @@ namespace Web_Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvPacientes;
+
+        /// <summary>
+        /// Control dgvProfesionales.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvProfesionales;
     }
 }
