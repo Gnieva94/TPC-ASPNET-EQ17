@@ -42,7 +42,23 @@ namespace Web_Form
                     else
                     {
                         Session.Add("Persona", persona);
-                        Response.Redirect("Default.aspx", false);
+                        switch (persona.Permiso.Id)
+                        {
+                            case 1:
+                                Response.Redirect("PanelAdmin.aspx", false);
+                                break;
+                            case 2:
+                                Response.Redirect("PanelRecepcionista.aspx", false);
+                                break;
+                            case 3:
+                                Response.Redirect("PanelProfesional.aspx", false);
+                                break;
+                            case 4:
+                                Response.Redirect("PanelPaciente.aspx", false);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }

@@ -25,11 +25,23 @@
                         <div class="d-flex">
                             <div class="navbar-nav">
                                 <a class="nav-link" href="Contacto.aspx">Contacto</a>
-                                <a class="nav-link" href="PanelAdmin.aspx">Panel</a>
+                                <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))
+                                    {
+                                %>
+                                <asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />
+                                <%}%>
                             </div>
-                            <div>
-                                <asp:Button ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" class="btn btn-outline-info me-2" OnClick="btnCrearCuenta_Click" />
+                            <div class="navbar-nav">
+                                <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))
+                                    {  %>
+                                <asp:Button ID="btnSalirCuenta" class="btn btn-sm btn-outline-info me-2" Text="Salir" runat="server" OnClick="btnSalirCuenta_Click" />
+                                <%}
+                                    else
+                                    {
+                                %>
+                                <asp:Button ID="btnCrearCuenta" runat="server" Text="Crear Cuenta" class="btn btn-sm btn-outline-info me-2" OnClick="btnCrearCuenta_Click" />
                                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" class="btn btn-sm btn-outline-info" OnClick="btnIngresar_Click" />
+                                <%} %>
                             </div>
                         </div>
                     </div>
