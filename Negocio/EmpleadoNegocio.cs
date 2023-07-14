@@ -70,33 +70,25 @@ namespace Negocio
 
         public void AgregarEmpleado(Empleado nuevo)
         {
-            try
-            {
-                DatosContactoNegocio datosContactoNegocio = new DatosContactoNegocio();
-                nuevo.DatosContacto.IdDatosContacto = datosContactoNegocio.InsertarTablaDatosContacto(nuevo.DatosContacto);
-                CredencialNegocio credencialNegocio = new CredencialNegocio();
-                nuevo.Credencial.IdCredencial = credencialNegocio.InsertarTablaCredencial(nuevo.Credencial);
-                PersonaNegocio personaNegocio = new PersonaNegocio();
-                nuevo.Id = personaNegocio.InsertarTablaPersona(nuevo);
-                nuevo.IdEmpleado = InsertarTablaEmpleado(nuevo);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public int InsertarTablaEmpleado(Empleado nuevo)
-        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("EXEC insertEmpleado @Id_Persona,@Fecha_Alta,@Fecha_Baja");
-                datos.setearParametro("Id_Persona", nuevo.Id);
-                nuevo.FechaAlta = DateTime.Now;
-                datos.setearParametro("Fecha_Alta", nuevo.FechaAlta);
-                datos.setearParametro("Fecha_Baja", DBNull.Value);
-                return datos.ejecutarAccionScalar();
+                datos.setearSP("SP_ALTA_EMPLEADO");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Apellido", nuevo.Apellido);
+                datos.setearParametro("@Dni", nuevo.Dni);
+                datos.setearParametro("@Fecha_Nacimiento", nuevo.FechaNacimiento);
+                datos.setearParametro("@Nacionalidad", nuevo.Nacionalidad);
+                datos.setearParametro("@Email", nuevo.DatosContacto.Email);
+                datos.setearParametro("@Celular", (object)nuevo.DatosContacto.Celular ?? DBNull.Value);
+                datos.setearParametro("@Telefono", (object)nuevo.DatosContacto.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Direccion", (object)nuevo.DatosContacto.Direccion ?? DBNull.Value);
+                datos.setearParametro("@Localidad", (object)nuevo.DatosContacto.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia", (object)nuevo.DatosContacto.Provincia ?? DBNull.Value);
+                datos.setearParametro("@Codigo_Postal", (object)nuevo.DatosContacto.CodigoPostal ?? DBNull.Value);
+                datos.setearParametro("@Nombre_Usuario", nuevo.Credencial.NombreUsuario);
+                datos.setearParametro("@Contrasenia", nuevo.Credencial.Password);
+                nuevo.IdEmpleado = datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {
