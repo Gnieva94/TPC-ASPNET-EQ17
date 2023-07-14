@@ -12,11 +12,11 @@ namespace Web_Form
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!(Page is Login || Page is Default || Page is AltaUsuario || Page is Contacto))
-            //{
-            //    if (!(Seguridad.SesionActiva(Session["Persona"])))
-            //        Response.Redirect("Login.aspx", false);
-            //}
+            if (!(Page is Login || Page is Default || Page is AltaUsuario || Page is Contacto ))
+            {
+                if (!(Seguridad.SesionActiva(Session["Persona"])))
+                    Response.Redirect("Login.aspx", false);
+            }
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
@@ -29,10 +29,15 @@ namespace Web_Form
             Response.Redirect("Login.aspx");
         }
 
-        //protected void btnSalir_Click(object sender, EventArgs e)
-        //{
-        //    Session.Clear();
-        //    Response.Redirect("Default.aspx", false);
-        //}
+        protected void btnSalirCuenta_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx", false);
+        }
+
+        protected void btnPanel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]),false);
+        }
     }
 }

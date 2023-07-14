@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.setearSP("SP_LISTAR_ESPECIALIDAD");
+                datos.setearSP("SP_LISTAR_ESPECIALIDADES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

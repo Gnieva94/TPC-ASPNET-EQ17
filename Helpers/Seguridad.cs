@@ -31,5 +31,30 @@ namespace Helpers
                 return true;
             return false;
         }
+
+        public static string DirigirPanel(object obj)
+        {
+            string url = "";
+            switch (((Persona)obj).Permiso.Id)
+            {
+                case 1:
+                    url ="PanelAdmin.aspx";
+                break;
+                case 2:
+                    url = "PanelRecepcionista.aspx";
+                    break;
+                case 3:
+                    url = "PanelProfesional.aspx";
+                    break;
+                case 4:
+                    url = "PanelPaciente.aspx";
+                    break;
+                default:
+                    break;
+            }
+            return url;
+        }
+
+
     }
 }

@@ -9,19 +9,17 @@ namespace Dominio
     public class Horario
     {
         public int Id { get; set; }
-        public int IdProfesional { get; set; }
-        public Dias Dia { get; set; }
-        public DateTime HorarioInicio { get; set; }
-        public DateTime HorarioFin { get; set; }
+        public Profesional Profesional { get; set; }
+        public Especialidad Especialidad { get; set; }
+        public string Dia { get; set; }
+        public int IdDia { get; set; }
+        public int HorarioInicio { get; set; }
+        public int HorarioFin { get; set; }
 
-        public enum Dias { 
-            Lunes, 
-            Martes, 
-            Miercoles, 
-            Jueves, 
-            Viernes, 
-            Sabado, 
-            Domingo }
-        //Agregar dia enum 1 : lunes
+        public Horario()
+        {
+            Profesional = new Profesional();
+            Especialidad = new Especialidad();
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Negocio
                 datos.setearParametro("@Celular", nuevo.Celular);
                 datos.setearParametro("@Email", nuevo.Email);
                 datos.setearParametro("@Direccion", (object)nuevo.Direccion ?? DBNull.Value);
-                return datos.ejecturarAccionScalar();
+                return datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {

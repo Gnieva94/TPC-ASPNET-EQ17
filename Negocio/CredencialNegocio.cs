@@ -18,7 +18,7 @@ namespace Negocio
                 datos.setearConsulta("EXEC insertCredenciales @Nombre_Usuario,@Contrasenia");
                 datos.setearParametro("@Nombre_Usuario", nuevo.NombreUsuario);
                 datos.setearParametro("@Contrasenia", nuevo.Password);
-                return datos.ejecturarAccionScalar();
+                return datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {
