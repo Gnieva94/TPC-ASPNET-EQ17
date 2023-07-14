@@ -80,7 +80,7 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover table-sm" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -113,9 +113,9 @@
                 </div>
 
             </div>
-            <div>
+            <div class="row mt-5">
                 <%--Seccion Grilla de profesionales--%>
-                <asp:GridView ID="dgvProfesionales" CssClass="table" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvProfesionales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -148,9 +148,9 @@
 
             </div>
 
-            <div>
+            <div class="row mt-5">
                 <%--Seccion Grilla de empleados--%>
-                <asp:GridView ID="dgvEmpleados" CssClass="table" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvEmpleados" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -185,9 +185,9 @@
 
             </div>
 
-            <div>
+            <div class="row mt-5">
                 <%--Seccion Grilla de especialidades--%>
-                <asp:GridView ID="dgvEspecialidades" CssClass="table" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvEspecialidades" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Especialidad" />
@@ -215,9 +215,9 @@
 
             </div>
 
-            <div>
+            <div class="row mt-5">
                 <%--Seccion Grilla de obras sociales--%>
-                <asp:GridView ID="dgvObrasSociales" CssClass="table" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvObrasSociales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="IdObraSocial" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Obra Social" />
@@ -245,9 +245,9 @@
 
             </div>
     
-            <div>
+            <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
-                <asp:GridView ID="dgvHorarios" CssClass="table" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID Horario" />
                         <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
