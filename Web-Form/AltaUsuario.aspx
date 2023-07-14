@@ -6,13 +6,6 @@
     <asp:ScriptManager runat="server" />
     <div class="row">
         <h2>Crear cuenta de usuario</h2>
-        <%//if (Helpers.Seguridad.EsEmpleado(Session["Persona"]) || Helpers.Seguridad.EsAdmin(Session["Persona"])) { %>
-        <div class="mb-3">
-            <label for="ddlTipoUsuario" class="form-label">Tipo de usuario</label>
-            <asp:DropDownList runat="server" ID="ddlTipoUsuario" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoUsuario_SelectedIndexChanged" placeholder="Selecciona el tipo de usuario">
-            </asp:DropDownList>
-        </div>
-        <%//}  %>
         <div class="col-3">
             <div class="mb-3">
                 <label for="txbNombre" class="form-label">Nombre:</label>
@@ -81,8 +74,8 @@
         <div class="col-6">
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <%//if(Session["Persona"] == null || TipoUser == 4) {
-                        if (TipoUser == 4)
+                    <%if (Session["Persona"] == null || TipoUser == 4)
+                        //if (TipoUser == 4)
                         {
                     %>
                     <div class="col-3 d-flex flex-column">

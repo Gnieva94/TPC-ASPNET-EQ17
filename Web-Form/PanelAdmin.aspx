@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PanelAdmin.aspx.cs" Inherits="Web_Form.Panel" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PanelAdmin.aspx.cs" Inherits="Web_Form.PanelAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <style>
@@ -29,7 +29,7 @@
 
                     <span class="fs-4">Bienvenido!</span>
                     <%--Label con el nombre del usuario logueado--%>
-                    <asp:Label ID="lblUsuarioLogueado" runat="server"></asp:Label>
+                    <asp:Label Text="" ID="lblUsuarioLogueado" runat="server" />
 
                     <hr>
                     <div class="d-grid gap-3">
@@ -109,7 +109,7 @@
                     <asp:TextBox ID="txtFiltroRapidoProfesionales" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoProfesionales_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
-                    <a href="AltaUsuario.aspx" class="btn btn-dark ">Nuevo Profesional</a>
+                    <a href="AltaUsuario.aspx?Per=3" class="btn btn-dark ">Nuevo Profesional</a>
                 </div>
 
             </div>
@@ -142,8 +142,9 @@
                     <asp:Label ID="lblFiltroEmp" runat="server" Text="Filtrar: "></asp:Label>
                     <asp:TextBox ID="txtFiltroRapidoEmpleados" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoEmpleados_TextChanged"></asp:TextBox>
                 </div>
-                <div class=" col-2">
-                    <a href="AltaUsuario.aspx" class="btn btn-dark ">Nuevo Empleado</a>
+                <div class=" col-2" >
+                    <a href="AltaUsuario.aspx?Per=2" class="btn btn-dark ">Nuevo Empleado</a>
+                    <a href="AltaUsuario.aspx?Per=1" class="btn btn-dark mt-2">Nuevo Admin</a>
                 </div>
 
             </div>

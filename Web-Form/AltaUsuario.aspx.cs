@@ -18,25 +18,13 @@ namespace Web_Form
         {
             if (Request.QueryString["Per"] != null)
             {
-                TipoUser= int.Parse(Request.QueryString["Per"]);
+                TipoUser = int.Parse(Request.QueryString["Per"]);
             }
-               
-
             if (!IsPostBack)
             {
-                //if (Seguridad.EsEmpleado(Session["Persona"]) || Seguridad.EsAdmin(Session["Persona"]))
-                //{
-                PermisoNegocio permisoNegocio = new PermisoNegocio();
-                ddlTipoUsuario.DataSource = permisoNegocio.ListarPermisos();
-                ddlTipoUsuario.DataTextField = "Descripcion";
-                ddlTipoUsuario.DataValueField = "Id";
-                ddlTipoUsuario.DataBind();
                 List<Horario> listaHorarios = new List<Horario>();
                 Session.Add("ListaHorarios", listaHorarios);
-                //}
             }
-            //if (Seguridad.SesionActiva(Session["Persona"]))
-            TipoUser = int.Parse(ddlTipoUsuario.SelectedItem.Value);  
         }
         private void cargarPersona(Persona nuevoUsuario)
         {
@@ -109,8 +97,7 @@ namespace Web_Form
         {
             try
             {
-                //if (!(Seguridad.SesionActiva(Session["Persona"])) || TipoUser == 4)
-                if (TipoUser==4)
+                if (TipoUser == 4 || TipoUser == 0)
                 {
                     PacienteNegocio pacienteNegocio = new PacienteNegocio();
                     Paciente nuevoUsuario = new Paciente();
@@ -142,7 +129,7 @@ namespace Web_Form
                     EmpleadoNegocio empleadoNegocio = new EmpleadoNegocio();
                     Empleado nuevoUsuario = new Empleado();
                     cargarPersona(nuevoUsuario);
-                    nuevoUsuario.Permiso.Id = ddlTipoUsuario.SelectedIndex + 1;
+                    nuevoUsuario.Permiso.Id = TipoUser;
                     empleadoNegocio.AgregarEmpleado(nuevoUsuario);
                 }
             }

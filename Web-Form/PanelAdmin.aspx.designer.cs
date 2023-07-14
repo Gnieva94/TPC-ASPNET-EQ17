@@ -11,7 +11,7 @@ namespace Web_Form
 {
 
 
-    public partial class Panel
+    public partial class PanelAdmin
     {
 
         /// <summary>

@@ -10,7 +10,7 @@ using Negocio;
 
 namespace Web_Form
 {
-    public partial class Panel : System.Web.UI.Page
+    public partial class PanelAdmin : System.Web.UI.Page
     {
         public bool checkPacientes { get; set; }
         public bool checkProfesionales { get; set; }
@@ -38,39 +38,43 @@ namespace Web_Form
 
                     if (Seguridad.SesionActiva(Session["Persona"]) && Seguridad.EsAdmin(Session["Persona"]))
                     {
-                    PacienteNegocio negocioPas = new PacienteNegocio();
-                    Session.Add("Pacientes", negocioPas.ListaPacientes());
-                    dgvPacientes.DataSource = Session["Pacientes"];
-                    dgvPacientes.DataBind();
+                        PacienteNegocio negocioPas = new PacienteNegocio();
+                        Session.Add("Pacientes", negocioPas.ListaPacientes());
+                        dgvPacientes.DataSource = Session["Pacientes"];
+                        dgvPacientes.DataBind();
                     
 
-                    ProfesionalNegocio negocioProf = new ProfesionalNegocio();
-                    Session.Add("Profesionales", negocioProf.ListaProfesionales());
-                    dgvProfesionales.DataSource = Session["Profesionales"];
-                    dgvProfesionales.DataBind();
+                        ProfesionalNegocio negocioProf = new ProfesionalNegocio();
+                        Session.Add("Profesionales", negocioProf.ListaProfesionales());
+                        dgvProfesionales.DataSource = Session["Profesionales"];
+                        dgvProfesionales.DataBind();
 
-                    EmpleadoNegocio negocioEmp = new EmpleadoNegocio();
-                    Session.Add("Empleados", negocioEmp.ListaEmpleados());
-                    dgvEmpleados.DataSource = Session["Empleados"];
-                    dgvEmpleados.DataBind();
+                        EmpleadoNegocio negocioEmp = new EmpleadoNegocio();
+                        Session.Add("Empleados", negocioEmp.ListaEmpleados());
+                        dgvEmpleados.DataSource = Session["Empleados"];
+                        dgvEmpleados.DataBind();
 
-                    EspecialidadNegocio negocioEsp = new EspecialidadNegocio();
-                    Session.Add("Especialidades", negocioEsp.ListaEspecialidades());
-                    dgvEspecialidades.DataSource = Session["Especialidades"];
-                    dgvEspecialidades.DataBind();
+                        EspecialidadNegocio negocioEsp = new EspecialidadNegocio();
+                        Session.Add("Especialidades", negocioEsp.ListaEspecialidades());
+                        dgvEspecialidades.DataSource = Session["Especialidades"];
+                        dgvEspecialidades.DataBind();
 
-                    ObraSocialNegocio negocioObra = new ObraSocialNegocio();
-                    Session.Add("ObrasSociales", negocioObra.ListaObrasSociales());
-                    dgvObrasSociales.DataSource = Session["ObrasSociales"];
-                    dgvObrasSociales.DataBind();
+                        ObraSocialNegocio negocioObra = new ObraSocialNegocio();
+                        Session.Add("ObrasSociales", negocioObra.ListaObrasSociales());
+                        dgvObrasSociales.DataSource = Session["ObrasSociales"];
+                        dgvObrasSociales.DataBind();
 
-                    HorarioNegocio negocioHor = new HorarioNegocio();
-                    Session.Add("Horarios", negocioHor.ListaHorarios());
-                    dgvHorarios.DataSource = Session["Horarios"];
-                    dgvHorarios.DataBind();
-
+                        HorarioNegocio negocioHor = new HorarioNegocio();
+                        Session.Add("Horarios", negocioHor.ListaHorarios());
+                        dgvHorarios.DataSource = Session["Horarios"];
+                        dgvHorarios.DataBind();
+                        lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
                     }
-                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
+                    else
+                    {
+                        Session.Add("Error", "No puedes ingresar.");
+                        Response.Redirect("Error.aspx", false);
+                    }
 
                 }
             }
