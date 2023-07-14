@@ -78,15 +78,6 @@ namespace Web_Form
         protected global::System.Web.UI.WebControls.TextBox txbPassConf;
 
         /// <summary>
-        /// Control btnCrear.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCrear;
-
-        /// <summary>
         /// Control txbApellido.
         /// </summary>
         /// <remarks>
@@ -141,13 +132,22 @@ namespace Web_Form
         protected global::System.Web.UI.WebControls.TextBox txbPass;
 
         /// <summary>
-        /// Control chkObraSocial.
+        /// Control lblPassValidacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkObraSocial;
+        protected global::System.Web.UI.WebControls.Label lblPassValidacion;
+
+        /// <summary>
+        /// Control btnCrear.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCrear;
 
         /// <summary>
         /// Control ddlObraSocial.
@@ -157,6 +157,15 @@ namespace Web_Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlObraSocial;
+
+        /// <summary>
+        /// Control lblNroAfiliado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNroAfiliado;
 
         /// <summary>
         /// Control txbNumeroAfiliado.

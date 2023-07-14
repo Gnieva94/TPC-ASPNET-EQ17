@@ -8,6 +8,7 @@ using Negocio;
 using Dominio;
 using DataBase;
 using Helpers;
+using System.Drawing;
 
 namespace Web_Form
 {
@@ -24,6 +25,18 @@ namespace Web_Form
             {
                 List<Horario> listaHorarios = new List<Horario>();
                 Session.Add("ListaHorarios", listaHorarios);
+                ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
+                ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
+                ddlObraSocial.DataTextField = "Nombre";
+                ddlObraSocial.DataValueField = "IdObraSocial";
+                ddlObraSocial.DataBind();
+                btnCrear.Width = 75;
+                btnCrear.Enabled = false;
+            }
+            if (ddlObraSocial.SelectedIndex == 0)
+            {
+                txbNumeroAfiliado.Visible = false;
+                lblNroAfiliado.Visible = false;
             }
         }
         private void cargarPersona(Persona nuevoUsuario)
@@ -43,6 +56,7 @@ namespace Web_Form
                 nuevoUsuario.DatosContacto.CodigoPostal = txbCodigoPostal.Text;
                 nuevoUsuario.Credencial.NombreUsuario = txbMail.Text;
                 nuevoUsuario.Credencial.Password = txbPass.Text;
+                
             }
             catch (Exception ex)
             {
@@ -103,8 +117,7 @@ namespace Web_Form
                     Paciente nuevoUsuario = new Paciente();
                     cargarPersona(nuevoUsuario);
                     nuevoUsuario.Permiso.Id = 4;
-                    if (chkObraSocial.Checked)
-                        nuevoUsuario.ObraSocial.IdObraSocial = ddlObraSocial.SelectedIndex + 1;
+                    nuevoUsuario.ObraSocial.IdObraSocial = ddlObraSocial.SelectedIndex + 1;
                     nuevoUsuario.NumeroAfiliado = int.Parse(txbNumeroAfiliado.Text);
                     pacienteNegocio.AgregarPaciente(nuevoUsuario);
                 }
@@ -116,7 +129,6 @@ namespace Web_Form
                     nuevoUsuario.Permiso.Id = 3;
                     nuevoUsuario.Matricula = txbMatricula.Text;
                     HorarioNegocio horarioNegocio = new HorarioNegocio();
-
                     nuevoUsuario.Horarios = (List<Horario>)Session["ListaHorarios"];
                     nuevoUsuario.IdProfesional = profesionalNegocio.AgregarProfesional(nuevoUsuario);
                     foreach (Horario h in nuevoUsuario.Horarios)
@@ -162,18 +174,15 @@ namespace Web_Form
 
         protected void ddlObraSocial_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        protected void chkObraSocial_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkObraSocial.Checked)
+            if (ddlObraSocial.SelectedIndex == 0)
             {
-                ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
-                ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
-                ddlObraSocial.DataTextField = "Nombre";
-                ddlObraSocial.DataValueField = "IdObraSocial";
-                ddlObraSocial.DataBind();
+                txbNumeroAfiliado.Visible = false;
+                lblNroAfiliado.Visible = false;
+            }
+            else
+            {
+                txbNumeroAfiliado.Visible = true;
+                lblNroAfiliado.Visible = true;
             }
         }
 
@@ -196,6 +205,24 @@ namespace Web_Form
             ((List<Horario>)Session["ListaHorarios"]).Remove(((List<Horario>)Session["ListaHorarios"]).Find(x => x.Id == int.Parse(dgvListaHorarios.SelectedDataKey.Value.ToString())));
             dgvListaHorarios.DataSource = (List<Horario>)Session["ListaHorarios"];
             dgvListaHorarios.DataBind();
+        }
+
+        protected void txbPassConf_TextChanged(object sender, EventArgs e)
+        {
+            if (txbPass.Text == txbPassConf.Text)
+            {
+                lblPassValidacion.ForeColor = Color.Green;
+                lblPassValidacion.Text = "Contraseñas iguales.";
+                btnCrear.Enabled = true;
+                btnCrear.Width = 75;
+            }
+            else
+            {
+                lblPassValidacion.ForeColor = Color.Red;
+                lblPassValidacion.Text = "Las contraseñas no son iguales.";
+                btnCrear.Enabled = false;
+                btnCrear.Width = 75;
+            }
         }
     }
 }

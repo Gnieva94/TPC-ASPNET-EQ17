@@ -41,7 +41,7 @@ namespace Web_Form
                     dgvHorarios.DataBind();
 
 
-
+                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
 
 
 

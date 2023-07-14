@@ -90,8 +90,11 @@ namespace Negocio
                 datos.setearParametro("@Codigo_Postal", (object)nuevo.DatosContacto.CodigoPostal ?? DBNull.Value);
                 datos.setearParametro("@Nombre_Usuario", nuevo.Credencial.NombreUsuario);
                 datos.setearParametro("@Contrasenia", nuevo.Credencial.Password);
-                datos.setearParametro("@Id_Obra_Social", (object)nuevo.ObraSocial.IdObraSocial ?? DBNull.Value);
-                datos.setearParametro("@Nro_Afiliado", nuevo.NumeroAfiliado);
+                datos.setearParametro("@Id_Obra_Social", nuevo.ObraSocial.IdObraSocial);
+                if (nuevo.NumeroAfiliado == 0)
+                    datos.setearParametro("@Nro_Afiliado", DBNull.Value);
+                else
+                    datos.setearParametro("@Nro_Afiliado", (object)nuevo.NumeroAfiliado ?? DBNull.Value);
                 nuevo.IdPaciente = datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
@@ -111,6 +114,36 @@ namespace Negocio
         public void EliminarPaciente(int Id)
         {
 
+        }
+
+        public Paciente traerRegistroPorId(int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Paciente paciente;
+            try
+            {
+                datos.setearSP("");
+                datos.setearParametro("@Id", Id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    paciente = new Paciente();
+                    //Todos los datos
+
+                    return paciente;
+                }
+                paciente = null;
+                return paciente;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
        
