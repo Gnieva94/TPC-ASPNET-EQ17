@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using DataBase;
@@ -68,28 +69,38 @@ namespace Negocio
             }   
         }
 
-        public void AgregarProfesional(Profesional nuevo)
+        public int AgregarProfesional(Profesional nuevo)
         {
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                DatosContactoNegocio datosContactoNegocio = new DatosContactoNegocio();
-                nuevo.DatosContacto.IdDatosContacto = datosContactoNegocio.InsertarTablaDatosContacto(nuevo.DatosContacto);
-                CredencialNegocio credencialNegocio = new CredencialNegocio();
-                nuevo.Credencial.IdCredencial = credencialNegocio.InsertarTablaCredencial(nuevo.Credencial);
-                PersonaNegocio personaNegocio = new PersonaNegocio();
-                nuevo.Id = personaNegocio.InsertarTablaPersona(nuevo);
+                datos.setearSP("SP_ALTA_PROFESIONAL");
+                datos.setearParametro("@Nombre",nuevo.Nombre);
+                datos.setearParametro("@Apellido",nuevo.Apellido);
+                datos.setearParametro("@Dni",nuevo.Dni);
+                datos.setearParametro("@Fecha_Nacimiento",nuevo.FechaNacimiento);
+                datos.setearParametro("@Nacionalidad",nuevo.Nacionalidad);
+                datos.setearParametro("@Email",nuevo.DatosContacto.Email);
+                datos.setearParametro("@Celular",(object)nuevo.DatosContacto.Celular ?? DBNull.Value);
+                datos.setearParametro("@Telefono",(object)nuevo.DatosContacto.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Direccion",(object)nuevo.DatosContacto.Direccion ?? DBNull.Value);
+                datos.setearParametro("@Localidad",(object)nuevo.DatosContacto.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia",(object)nuevo.DatosContacto.Provincia ?? DBNull.Value);
+                datos.setearParametro("@Codigo_Postal",(object)nuevo.DatosContacto.CodigoPostal ?? DBNull.Value);
+                datos.setearParametro("@Nombre_Usuario",nuevo.Credencial.NombreUsuario);
+                datos.setearParametro("@Contrasenia",nuevo.Credencial.Password);
+                datos.setearParametro("@Matricula",nuevo.Matricula);
+                return datos.ejecutarAccionScalar();
 
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
-
-        //public int InsertarTablaProfesional(Profesional nuevo)
-        //{
-
-        //}
     }
 }

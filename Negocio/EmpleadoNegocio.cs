@@ -96,7 +96,7 @@ namespace Negocio
                 nuevo.FechaAlta = DateTime.Now;
                 datos.setearParametro("Fecha_Alta", nuevo.FechaAlta);
                 datos.setearParametro("Fecha_Baja", DBNull.Value);
-                return datos.ejecturarAccionScalar();
+                return datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {

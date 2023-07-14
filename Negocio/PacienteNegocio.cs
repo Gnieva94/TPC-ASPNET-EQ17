@@ -72,40 +72,27 @@ namespace Negocio
 
         public void AgregarPaciente(Paciente nuevo)
         {
-            try
-            {
-                //Tabla DatosContacto
-                DatosContactoNegocio datosContactoNegocio = new DatosContactoNegocio();
-                nuevo.DatosContacto.IdDatosContacto = datosContactoNegocio.InsertarTablaDatosContacto(nuevo.DatosContacto);
-                //Tabla Credencial
-                CredencialNegocio credencialNegocio = new CredencialNegocio();
-                nuevo.Credencial.IdCredencial = credencialNegocio.InsertarTablaCredencial(nuevo.Credencial);
-                //Tabla Persona
-                PersonaNegocio personaNegocio = new PersonaNegocio();
-                nuevo.Id = personaNegocio.InsertarTablaPersona(nuevo);
-                //Tabla Paciente
-                nuevo.IdPaciente = InsertarTablaPaciente(nuevo);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public int InsertarTablaPaciente(Paciente nuevo)
-        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("EXEC insertPaciente @Id_Persona,@Fecha_Ingreso,@Id_Obra_Social");
-                datos.setearParametro("@Id_Persona", nuevo.Id);
-                nuevo.FechaAlta = DateTime.Now;
-                datos.setearParametro("@Fecha_Ingreso", nuevo.FechaAlta);
-                if (nuevo.ObraSocial.IdObraSocial == 0)
-                    datos.setearParametro("@Id_Obra_Social", DBNull.Value);
-                else
-                    datos.setearParametro("@Id_Obra_Social", nuevo.ObraSocial.IdObraSocial);
-                return datos.ejecturarAccionScalar();
+                datos.setearSP("SP_ALTA_TODO_PACIENTE");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Apellido", nuevo.Apellido);
+                datos.setearParametro("@Dni", nuevo.Dni);
+                datos.setearParametro("@Fecha_Nacimiento", nuevo.FechaNacimiento);
+                datos.setearParametro("@Nacionalidad", nuevo.Nacionalidad);
+                datos.setearParametro("@Email", nuevo.DatosContacto.Email);
+                datos.setearParametro("@Celular", (object)nuevo.DatosContacto.Celular ?? DBNull.Value);
+                datos.setearParametro("@Telefono", (object)nuevo.DatosContacto.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Direccion", (object)nuevo.DatosContacto.Direccion ?? DBNull.Value);
+                datos.setearParametro("@Localidad", (object)nuevo.DatosContacto.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia", (object)nuevo.DatosContacto.Provincia ?? DBNull.Value);
+                datos.setearParametro("@Codigo_Postal", (object)nuevo.DatosContacto.CodigoPostal ?? DBNull.Value);
+                datos.setearParametro("@Nombre_Usuario", nuevo.Credencial.NombreUsuario);
+                datos.setearParametro("@Contrasenia", nuevo.Credencial.Password);
+                datos.setearParametro("@Id_Obra_Social", (object)nuevo.ObraSocial.IdObraSocial ?? DBNull.Value);
+                datos.setearParametro("@Nro_Afiliado", nuevo.NumeroAfiliado);
+                nuevo.IdPaciente = datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {
@@ -126,31 +113,6 @@ namespace Negocio
 
         }
 
-        public int Traerid(string consulta)
-        {
-            int dato=0;
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta(consulta);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    dato = (int)datos.Lector["Id"];
-                }
-                return dato;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-
-
+       
     }
 }

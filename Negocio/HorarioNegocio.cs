@@ -52,5 +52,29 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void AgregarHorarios(Horario horario, int idProfesional)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_ALTA_HORARIO_PROFESIONAL");
+                datos.setearParametro("@Id_Profesional",idProfesional);
+                datos.setearParametro("@Id_Dia",horario.IdDia);
+                datos.setearParametro("@HorarioInicio",horario.HorarioInicio);
+                datos.setearParametro("@HorarioFin",horario.HorarioFin);
+                datos.setearParametro("@Id_Especialidad",horario.Especialidad.Id);
+                datos.ejecutarLectura();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

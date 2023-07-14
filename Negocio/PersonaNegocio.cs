@@ -25,7 +25,7 @@ namespace Negocio
                 datos.setearParametro("@Id_Datos_Contacto", nuevo.DatosContacto.IdDatosContacto);
                 datos.setearParametro("@Id_Credencial", nuevo.Credencial.IdCredencial);
                 datos.setearParametro("@Id_Permiso", nuevo.Permiso.Id);
-                return datos.ejecturarAccionScalar();
+                return datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {
