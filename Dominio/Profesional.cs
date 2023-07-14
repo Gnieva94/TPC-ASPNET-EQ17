@@ -12,8 +12,8 @@ namespace Dominio
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
         public string Matricula { get; set; }
-        public List<Especialidad> Especialidad { get; set; }
-        public List<Horario> Horarios { get; set; }
+        //public List<Especialidad> Especialidad { get; set; }
+        public List<Horario> Horarios = new List<Horario>();
         public List<TurnoAsignado> TurnosAsignados { get; set; }
         
     }

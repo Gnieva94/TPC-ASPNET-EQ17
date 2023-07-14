@@ -12,6 +12,7 @@ namespace Dominio
         public Profesional Profesional { get; set; }
         public Especialidad Especialidad { get; set; }
         public string Dia { get; set; }
+        public int IdDia { get; set; }
         public int HorarioInicio { get; set; }
         public int HorarioFin { get; set; }
 

@@ -60,7 +60,7 @@ namespace DataBase
                 throw ex;
             }
         }
-        public int ejecturarAccionScalar()
+        public int ejecutarAccionScalar()
         {
             comando.Connection = conexion;
             try
