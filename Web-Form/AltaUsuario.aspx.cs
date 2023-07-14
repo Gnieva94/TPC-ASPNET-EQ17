@@ -16,6 +16,11 @@ namespace Web_Form
         public int TipoUser { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["Per"] != null)
+            {
+                TipoUser= int.Parse(Request.QueryString["Per"]);
+            }
+               
 
             if (!IsPostBack)
             {

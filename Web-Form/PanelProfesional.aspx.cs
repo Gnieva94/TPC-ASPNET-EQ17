@@ -27,7 +27,7 @@ namespace Web_Form
    
                     chkHorarios.Visible = false;
                     chkTurnos.Visible = false;
-                    //if (Seguridad.SesionActiva(Session["Persona"]))
+                    //if (Seguridad.SesionActiva(Session["Persona."]))
                     //{
                     PacienteNegocio negocioPas = new PacienteNegocio();
                     Session.Add("Pacientes", negocioPas.ListaPacientes());

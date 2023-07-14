@@ -29,7 +29,7 @@
 
                     <span class="fs-4">Bienvenido!</span>
                     <%--Label con el nombre del usuario logueado--%>
-                    <asp:Label ID="Label3" runat="server" Text="Admin"></asp:Label>
+                    <asp:Label ID="lblUsuarioLogueado" runat="server"></asp:Label>
 
                     <hr>
                     <div class="d-grid gap-3">
@@ -75,7 +75,7 @@
                     <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
-                    <a href="AltaUsuario.aspx" class="btn btn-dark ">Nuevo Paciente</a>
+                    <a href="AltaUsuario.aspx?Per=4" class="btn btn-dark ">Nuevo Paciente</a>
                 </div>
             </div>
             <div class="row mt-5">

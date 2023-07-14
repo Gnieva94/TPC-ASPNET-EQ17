@@ -34,13 +34,15 @@ namespace Web_Form
                     chkObrasSociales.Visible = false;
                     chkHorarios.Visible = false;
                     chkTurnos.Visible = false;
-                    //if (Seguridad.SesionActiva(Session["Persona"]))
-                    //{
+
+
+                    if (Seguridad.SesionActiva(Session["Persona"]) && Seguridad.EsAdmin(Session["Persona"]))
+                    {
                     PacienteNegocio negocioPas = new PacienteNegocio();
                     Session.Add("Pacientes", negocioPas.ListaPacientes());
                     dgvPacientes.DataSource = Session["Pacientes"];
                     dgvPacientes.DataBind();
-                    //}
+                    
 
                     ProfesionalNegocio negocioProf = new ProfesionalNegocio();
                     Session.Add("Profesionales", negocioProf.ListaProfesionales());
@@ -67,10 +69,8 @@ namespace Web_Form
                     dgvHorarios.DataSource = Session["Horarios"];
                     dgvHorarios.DataBind();
 
-
-
-
-
+                    }
+                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
 
                 }
             }
