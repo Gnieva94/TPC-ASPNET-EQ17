@@ -25,9 +25,6 @@ namespace Negocio
                 datos.setearParametro("@diagnostico", turno.Diagnostico);
                 datos.ejecutarAccion();
                 datos.cerrarConexion();
-             
-
-                
             }
             catch (Exception ex)
             {
@@ -37,11 +34,41 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-
-
-            
-            
-
         }
+
+        public List<TurnoAsignado> turnoAsignados(int dia, int especialidad, int profesional)
+        {
+            List<TurnoAsignado> lista = new List<TurnoAsignado>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("EXEC SP_LISTAR_TURNO_ASIGNADO @Dia, @Especialidad, @Profesional");
+                datos.setearParametro("@dia", dia);
+                datos.setearParametro("@especialidad", especialidad);
+                datos.setearParametro("@profesional", profesional);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    TurnoAsignado aux = new TurnoAsignado();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.IdProfesional = (int)datos.Lector["Id_Profesional"];
+                    aux.IdPaciente = (int)datos.Lector["Id_Paciente"];
+                    aux.Observacion = (string)datos.Lector["Observacion"];
+                    aux.Diagnostico = (string)datos.Lector["Diagnostico"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }   
+        }   
     }
 }
