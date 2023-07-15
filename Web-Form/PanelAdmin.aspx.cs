@@ -333,5 +333,12 @@ namespace Web_Form
             dgvHorarios.DataSource = listaFiltrada;
             dgvHorarios.DataBind();
         }
+
+        protected void dgvPacientes_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            string IdPaciente = dgvPacientes.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente);
+        }
+    
     }
 }
