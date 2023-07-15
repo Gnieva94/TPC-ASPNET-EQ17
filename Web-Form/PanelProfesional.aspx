@@ -29,7 +29,7 @@
 
                     <span class="fs-4">Bienvenido!</span>
                     <%--Label con el nombre del usuario logueado--%>
-                    <asp:Label ID="Label3" runat="server" Text="Admin"></asp:Label>
+                    <asp:Label Text="" ID="lblUsuarioLogueado" runat="server" />
 
                     <hr>
                     <div class="d-grid gap-3">
