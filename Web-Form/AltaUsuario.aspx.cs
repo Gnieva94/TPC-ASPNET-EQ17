@@ -25,11 +25,22 @@ namespace Web_Form
             {
                 List<Horario> listaHorarios = new List<Horario>();
                 Session.Add("ListaHorarios", listaHorarios);
-                ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
-                ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
-                ddlObraSocial.DataTextField = "Nombre";
-                ddlObraSocial.DataValueField = "IdObraSocial";
-                ddlObraSocial.DataBind();
+                if (TipoUser == 4 || TipoUser == 0)
+                {
+                    ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
+                    ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
+                    ddlObraSocial.DataTextField = "Nombre";
+                    ddlObraSocial.DataValueField = "IdObraSocial";
+                    ddlObraSocial.DataBind();
+                }
+                if (TipoUser == 3)
+                {
+                    EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+                    ddlEspecialidad.DataSource = especialidadNegocio.ListaEspecialidades();
+                    ddlEspecialidad.DataTextField = "Nombre";
+                    ddlEspecialidad.DataValueField = "Nombre";
+                    ddlEspecialidad.DataBind();
+                }
                 btnCrear.Width = 75;
                 btnCrear.Enabled = false;
             }
@@ -151,26 +162,26 @@ namespace Web_Form
             }
         }
 
-        protected void ddlTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (TipoUser == 4)
-            {
-                ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
-                ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
-                ddlObraSocial.DataTextField = "Nombre";
-                ddlObraSocial.DataValueField = "IdObraSocial";
-                ddlObraSocial.DataBind();
-            }
-            if (TipoUser == 3)
-            {
-                EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-                ddlEspecialidad.DataSource = especialidadNegocio.ListaEspecialidades();
-                ddlEspecialidad.DataTextField = "Nombre";
-                ddlEspecialidad.DataValueField = "Nombre";
-                ddlEspecialidad.DataBind();
-            }
+        //protected void ddlTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (TipoUser == 4)
+        //    {
+        //        ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
+        //        ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
+        //        ddlObraSocial.DataTextField = "Nombre";
+        //        ddlObraSocial.DataValueField = "IdObraSocial";
+        //        ddlObraSocial.DataBind();
+        //    }
+        //    if (TipoUser == 3)
+        //    {
+        //        EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+        //        ddlEspecialidad.DataSource = especialidadNegocio.ListaEspecialidades();
+        //        ddlEspecialidad.DataTextField = "Nombre";
+        //        ddlEspecialidad.DataValueField = "Nombre";
+        //        ddlEspecialidad.DataBind();
+        //    }
 
-        }
+        //}
 
         protected void ddlObraSocial_SelectedIndexChanged(object sender, EventArgs e)
         {

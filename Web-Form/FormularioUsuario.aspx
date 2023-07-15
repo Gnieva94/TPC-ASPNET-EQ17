@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="FormularioUsuario.aspx.cs" Inherits="Web_Form.FormularioUsuario" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div class="row">
+    <div class="row">
         <h2>Modificar cuenta</h2>
         <div class="col-3">
             <div class="mb-3">
@@ -32,7 +33,7 @@
                 <asp:TextBox runat="server" ID="txbProvincia" class="form-control" placeholder="Burzaco" />
             </div>
             <div>
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" class="btn btn-primary"  OnClick="btnModificar_Click"/>
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" class="btn btn-primary" OnClick="btnModificar_Click" />
             </div>
         </div>
         <div class="col-3">
@@ -70,4 +71,5 @@
 
             </div>
         </div>
+    </div>
 </asp:Content>

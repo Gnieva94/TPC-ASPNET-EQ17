@@ -20,7 +20,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="row h-100">
         <div class="col-2 h-100">
             <div class="h-100">
@@ -87,21 +87,21 @@
 
             <%if (chkHorarios.Checked)
                 { %>
-                      <div class="row mb-4 mt-4">
+            <div class="row mb-4 mt-4">
                 <%--Seccion Buscador y filtro--%>
                 <div class="col-2">
                     <h4>Horarios</h4>
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroHorarios" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged" ></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
                     <a href="#" class="btn btn-dark ">Nuevo Horario</a>
                 </div>
 
             </div>
-    
+
             <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
                 <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">

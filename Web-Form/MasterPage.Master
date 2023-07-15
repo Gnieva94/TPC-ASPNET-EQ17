@@ -29,7 +29,8 @@
                                     {
                                 %>
                                 <asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />
-                                <%}%>
+                                <%}
+%>
                             </div>
                             <div class="navbar-nav">
                                 <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))

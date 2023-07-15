@@ -308,12 +308,12 @@ namespace Web_Form
             chkObrasSociales.Checked = false;
             chkHorarios.Checked = false;
 
-
+            Response.Redirect("AltaTurno.aspx", false);
         }
 
         protected void chkTurnos_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void txtFiltroRapidoObrasSociales_TextChanged(object sender, EventArgs e)
