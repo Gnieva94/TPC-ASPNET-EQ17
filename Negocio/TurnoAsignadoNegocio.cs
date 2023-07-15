@@ -8,7 +8,7 @@ using Dominio;
 
 namespace Negocio
 {
-    internal class TurnoAsignadoNegocio
+    public class TurnoAsignadoNegocio
     {
         public void AltaTurno(TurnoAsignado turno)
         {

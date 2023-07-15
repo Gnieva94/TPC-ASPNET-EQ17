@@ -42,6 +42,24 @@ namespace Web_Form
         protected global::System.Web.UI.WebControls.DropDownList ddlDias;
 
         /// <summary>
+        /// Control Ddlhoras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Ddlhoras;
+
+        /// <summary>
+        /// Control buscaTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buscaTurno;
+
+        /// <summary>
         /// Control Calendar1.
         /// </summary>
         /// <remarks>

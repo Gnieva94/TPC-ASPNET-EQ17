@@ -11,22 +11,38 @@
 
                     <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
 
-                    <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged"></asp:DropDownList>
-
+                    <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged" ></asp:DropDownList>
                 </div>
                 <div class="mb-3">
 
                     <label for="txbProfesional" class="form-label">Elegir profesional:</label>
-                    <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
+                    
                 
                 </div>
-                <div class="mb-3">
-                    <label for="txbProfesional" class="form-label">Elegir día:</label>
-                    <asp:DropDownList runat="server" ID="ddlDias" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged"></asp:DropDownList>
 
-                    <% if (ddlProfesional.SelectedIndex != 0 && ddlEsp.SelectedIndex != 0 && ddlDias.SelectedIndex != 0 ) {  %>
+                <div class="mb-3">
+
+                    <label for="txbProfesional" class="form-label">Elegir día:</label>
+                    <asp:DropDownList runat="server" ID="ddlDias" AutoPostBack="true"  OnSelectedIndexChanged="ddlDias_SelectedIndexChanged"></asp:DropDownList>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="txbProfesional" class="form-label">Elegir Horas:</label>
+                    <asp:DropDownList runat="server" ID="Ddlhoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="Ddlhoras_SelectedIndexChanged" ></asp:DropDownList>
+                   
+                    <% if (ddlProfesional.SelectedIndex != 0 && ddlEsp.SelectedIndex != 0 && ddlDias.SelectedIndex != 0)
+                        {  %>
                         
-                    <asp:Button Text="text" runat="server" />
+                    <asp:Button Text="Consultar" runat="server" ID="buscaTurno" OnClick="buscaTurno_Click" />
+
+                    <div class="mb4">
+
+                          <%-- <%for() %>--%>
+
+                    </div>
                         
                     <% } %>
                 </div>
