@@ -12,11 +12,11 @@ namespace Web_Form
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Login || Page is Default || Page is AltaUsuario || Page is Contacto))
-            {
-                if (!(Seguridad.SesionActiva(Session["Persona"])))
-                    Response.Redirect("Login.aspx", false);
-            }
+            //if (!(Page is Login || Page is Default || Page is AltaUsuario || Page is Contacto))
+            //{
+            //    if (!(Seguridad.SesionActiva(Session["Persona"])))
+            //        Response.Redirect("Login.aspx", false);
+            //}
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)

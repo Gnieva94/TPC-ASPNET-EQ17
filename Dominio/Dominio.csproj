@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Credencial.cs" />
     <Compile Include="DatosContacto.cs" />
+    <Compile Include="DiasSemana.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="EspecialidadProfesional.cs" />

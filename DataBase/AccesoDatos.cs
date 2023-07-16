@@ -18,7 +18,7 @@ namespace DataBase
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CLINICA_TP; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CLINICA_TP_2; integrated security=true");
             comando = new SqlCommand();
         }
         public void setearConsulta(string consulta)

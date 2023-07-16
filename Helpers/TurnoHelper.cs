@@ -19,14 +19,17 @@ namespace Helpers
             return horariosDisponibles;
         }
 
-        public static List<Profesional> obtenerProfesionales(List<Horario> listaHorarios, int idEspecialidad)
+        public static List<Profesional> obtenerProfesionales(List<Horario> listaHorarios, List<Profesional> profesional)
         {
             List<Profesional> listaProfesionales = new List<Profesional>();
             foreach (var item in listaHorarios)
             {
-                if (item.Especialidad.Id == idEspecialidad)
+                foreach(var item2 in profesional)
                 {
-                    listaProfesionales.Add(item.Profesional);
+                    if (item.Profesional.IdProfesional == item2.IdProfesional)
+                    {
+                        listaProfesionales.Add(item2);
+                    }
                 }
             }
             return listaProfesionales;
@@ -64,6 +67,24 @@ namespace Helpers
 
             DateTime fechaHora = new DateTime(hoy.Year, hoy.Month, hoy.Day, hora, 0, 0);
             return fechaHora;
+        }
+
+        public static List<DiasSemana> devolverDiasDeAtencion(List<DiasSemana> dias, List<Horario> horarios)
+        {
+            List<DiasSemana> aux = new List<DiasSemana>();
+
+            foreach (var item in dias)
+            {
+                foreach (var item2 in horarios)
+                {
+                    if (item.Id == item2.IdDia)
+                    {
+                        aux.Add(item);
+                    }
+                }
+            }
+
+            return aux;
         }
     }
 }

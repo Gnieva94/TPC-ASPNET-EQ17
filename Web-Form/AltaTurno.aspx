@@ -3,78 +3,43 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
+<asp:ScriptManager runat="server" />
+    
         <div class="row">
             <h2>Alta turno</h2>
             <div class="col-3">
-                <div class="mb-3">
-
+                <div>
+                    <asp:UpdatePanel runat="server" >
+                    <ContentTemplate>
                     <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
-
-                    <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged" ></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"  ></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged" ></asp:DropDownList>
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
-                <div class="mb-3">
+                <div class="col-3 d-flex flex-column">
 
                     <label for="txbProfesional" class="form-label">Elegir profesional:</label>
-                    <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
-                    
                 
                 </div>
+                <div class="col-3 d-flex flex-column">
 
-                <div class="mb-3">
-
-                    <label for="txbProfesional" class="form-label">Elegir día:</label>
-                    <asp:DropDownList runat="server" ID="ddlDias" AutoPostBack="true"  OnSelectedIndexChanged="ddlDias_SelectedIndexChanged"></asp:DropDownList>
 
                 </div>
 
-                <div class="mb-3">
+                <%--<div class="col-3 d-flex flex-column">
 
                     <label for="txbProfesional" class="form-label">Elegir Horas:</label>
-                    <asp:DropDownList runat="server" ID="Ddlhoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="Ddlhoras_SelectedIndexChanged" ></asp:DropDownList>
-                   
-                    <% if (ddlProfesional.SelectedIndex != 0 && ddlEsp.SelectedIndex != 0 && ddlDias.SelectedIndex != 0)
-                        {  %>
-                        
-                    <asp:Button Text="Consultar" runat="server" ID="buscaTurno" OnClick="buscaTurno_Click" />
+                    <asp:DropDownList runat="server" ID="ddlHoras2" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras2_SelectedIndexChanged" ></asp:DropDownList>  
 
-                    <div class="mb4">
+                    <div class="mb-3">
 
-                          <%-- <%for() %>--%>
-
+                        <label for="txbProfesional" class="form-label">Elegir Horas:</label>
+                        <asp:DropDownList runat="server" ID="Ddlhoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="Ddlhoras_SelectedIndexChanged" ></asp:DropDownList>
                     </div>
-                        
-                    <% } %>
-                </div>
-                <div class="mb-3">
-                    <label for="txbProfesional" class="form-label">Elegir Horario:</label>
-                    <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
-
-                </div>
-                <div class="mb-3">
-                </div>
-                <div>
-                    <asp:Button ID="btnAsignar" runat="server" Text="Aceptar" class="btn btn-primary" />
-                </div>
+                </div>--%>
             </div>
-            <div class="col-3">
-
-                <div class="mb-3">
-                   
-                </div>
-                <div class="mb-3">
-                    
-                </div>
-                <div class="mb-3">
-                    
-                </div>
-                <div class="mb-3">
-                </div>
-
-            </div>
-
         </div>
-        <div class="row">
-        </div>
-    </div>
+
 </asp:Content>

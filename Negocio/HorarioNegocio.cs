@@ -18,24 +18,30 @@ namespace Negocio
 
             try
             {
-                datos.setearSP("SP_LISTAR_ESPACIALIDADES_PROFESIONAL_HORARIO");
+                datos.setearSP("SP_LISTAR_ESPACIALIDADES_PROFESIONAL_HORARIO_2");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Horario aux = new Horario();
 
-                    aux.Id = (int)datos.Lector["Id_Horario"];
-                    aux.Profesional.Id = (int)datos.Lector["Id_Profesional"];
-                    aux.Profesional.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Profesional.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Profesional.Matricula = (string)datos.Lector["Matricula"];
-                    aux.Especialidad.Id = (int)datos.Lector["Id_Especialidad"];
-                    aux.Especialidad.Nombre = (string)datos.Lector["Especialidad"];
-                    aux.Dia = (string)datos.Lector["Dia"];
+                    //aux.Id = (int)datos.Lector["Id_Horario"];
+                    //aux.Profesional.Id = (int)datos.Lector["Id_Profesional"];
+                    //aux.Profesional.Nombre = (string)datos.Lector["Nombre"];
+                    //aux.Profesional.Apellido = (string)datos.Lector["Apellido"];
+                    //aux.Profesional.Matricula = (string)datos.Lector["Matricula"];
+                    //aux.Especialidad.Id = (int)datos.Lector["Id_Especialidad"];
+                    //aux.Especialidad.Nombre = (string)datos.Lector["Especialidad"];
+                    //aux.Dia = (string)datos.Lector["Dia"];
+                    //aux.HorarioInicio = (int)datos.Lector["Horario_Inicio"];
+                    //aux.HorarioFin = (int)datos.Lector["Horario_Fin"];
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Profesional.IdProfesional = (int)datos.Lector["Id_Profesional"];
+                    aux.IdDia = (int)datos.Lector["Id_Dia"];
                     aux.HorarioInicio = (int)datos.Lector["Horario_Inicio"];
                     aux.HorarioFin = (int)datos.Lector["Horario_Fin"];
-
+                    aux.Especialidad.Id = (int)datos.Lector["Id_Especialidad"];
                     horarios.Add(aux);
 
                 }

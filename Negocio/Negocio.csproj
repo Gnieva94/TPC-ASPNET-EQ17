@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CredencialNegocio.cs" />
     <Compile Include="DatosContactoNegocio.cs" />
+    <Compile Include="DiaSemanaNegocio.cs" />
     <Compile Include="EmpleadoNegocio.cs" />
     <Compile Include="EspecialidadNegocio.cs" />
     <Compile Include="EstadoTurnoNegocio.cs" />
