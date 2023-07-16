@@ -102,5 +102,88 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void ModificarProfesional(Profesional modificar)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearSP("SP_MODIFICAR_PROFESIONAL");
+                datos.setearParametro("@Id_Profesional",modificar.IdProfesional);
+                datos.setearParametro("@Id_Persona",modificar.Id);
+                datos.setearParametro("@Id_Datos_Contacto", modificar.DatosContacto.IdDatosContacto);
+                datos.setearParametro("@Nombre",modificar.Nombre);
+                datos.setearParametro("@Apellido",modificar.Apellido);
+                datos.setearParametro("@Dni",modificar.Dni);
+                datos.setearParametro("@Fecha_Nacimiento",modificar.FechaNacimiento);
+                datos.setearParametro("@Nacionalidad",modificar.Nacionalidad);
+                datos.setearParametro("@Email",modificar.DatosContacto.Email);
+                datos.setearParametro("@Celular",(object)modificar.DatosContacto.Celular ?? DBNull.Value);
+                datos.setearParametro("@Telefono",(object)modificar.DatosContacto.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Direccion",(object)modificar.DatosContacto.Direccion ?? DBNull.Value);
+                datos.setearParametro("@Localidad",(object)modificar.DatosContacto.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia",(object)modificar.DatosContacto.Provincia ?? DBNull.Value);
+                datos.setearParametro("@Codigo_Postal",(object)modificar.DatosContacto.CodigoPostal ?? DBNull.Value);
+                datos.setearParametro("@Matricula",modificar.Matricula);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+                       {
+                throw ex;
+            }
+            finally
+                       {
+                datos.cerrarConexion();
+            }   
+        }
+
+        public Profesional traerRegistroPorId(int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Profesional profesional;
+            try
+            {
+                datos.setearSP("SP_BUSCAR_PROFESIONAL_POR_ID");
+                datos.setearParametro("@Id_Profesional", Id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    profesional = new Profesional();
+                    //profesional.IdProfesional = (int)datos.Lector["Id_Profesional"];
+                    profesional.Id = (int)datos.Lector["Id_Persona"];
+                    profesional.Nombre = (string)datos.Lector["Nombre"];
+                    profesional.Apellido = (string)datos.Lector["Apellido"];
+                    profesional.Dni = (string)datos.Lector["Dni"];
+                    profesional.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    profesional.Nacionalidad = (string)datos.Lector["Nacionalidad"];
+                    profesional.DatosContacto = new DatosContacto();
+                    profesional.DatosContacto.IdDatosContacto = (int)datos.Lector["Id_Datos_Contacto"];
+                    profesional.DatosContacto.Email = (string)datos.Lector["Email"];
+                    profesional.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    profesional.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    profesional.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    profesional.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    profesional.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    profesional.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    profesional.Matricula = (string)datos.Lector["Matricula"];
+
+                    return profesional;
+                }
+                profesional = null;
+                return profesional;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
+
+        }
     }
 }

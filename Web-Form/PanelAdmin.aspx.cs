@@ -88,18 +88,18 @@ namespace Web_Form
         protected void chkPacientes_CheckedChanged(object sender, EventArgs e)
         {
 
-            //checkPacientes = chkPacientes.Checked;
+            
 
         }
 
         protected void chkProfesionales_CheckedChanged(object sender, EventArgs e)
         {
-            //checkProfesionales = chkProfesionales.Checked;
+            
         }
 
         protected void chkEmpleados_CheckedChanged(object sender, EventArgs e)
         {
-            //checkEmpleados = chkEmpleados.Checked;
+       
         }
 
         protected void txtFiltroRapidoPacientes_TextChanged(object sender, EventArgs e)
@@ -334,11 +334,22 @@ namespace Web_Form
             dgvHorarios.DataBind();
         }
 
-        protected void dgvPacientes_SelectedIndexChanged1(object sender, EventArgs e)
+        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdPaciente = dgvPacientes.SelectedDataKey.Value.ToString();
             Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente);
         }
-    
+
+        protected void dgvProfesionales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdProfesional = dgvProfesionales.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdProfesional);
+        }
+
+        protected void dgvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdEmpleado = dgvEmpleados.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdEmpleado);
+        }
     }
 }
