@@ -80,7 +80,7 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged1"
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
                     >
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -116,7 +116,7 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de profesionales--%>
-                <asp:GridView ID="dgvProfesionales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvProfesionales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdProfesional" OnSelectedIndexChanged="dgvProfesionales_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -152,7 +152,7 @@
 
             <div class="row mt-5">
                 <%--Seccion Grilla de empleados--%>
-                <asp:GridView ID="dgvEmpleados" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvEmpleados" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdEmpleado" OnSelectedIndexChanged="dgvEmpleados_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -194,6 +194,7 @@
                         <asp:BoundField DataField="Id" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Especialidad" />
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Eliminar" />
                     </Columns>
                 </asp:GridView>
 
@@ -224,6 +225,7 @@
                         <asp:BoundField DataField="IdObraSocial" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Obra Social" />
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Eliminar" />
                     </Columns>
                 </asp:GridView>
 

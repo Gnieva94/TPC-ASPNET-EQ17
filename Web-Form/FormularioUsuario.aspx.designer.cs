@@ -123,6 +123,15 @@ namespace Web_Form
         protected global::System.Web.UI.WebControls.DropDownList ddlObraSocial;
 
         /// <summary>
+        /// Control lblNroAfiliado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNroAfiliado;
+
+        /// <summary>
         /// Control txbNumeroAfiliado.
         /// </summary>
         /// <remarks>
@@ -130,5 +139,23 @@ namespace Web_Form
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txbNumeroAfiliado;
+
+        /// <summary>
+        /// Control txbMatricula.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txbMatricula;
+
+        /// <summary>
+        /// Control txtPermiso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPermiso;
     }
 }

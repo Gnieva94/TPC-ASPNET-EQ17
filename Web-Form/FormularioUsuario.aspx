@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ 
     <div class="row">
         <h2>Modificar cuenta</h2>
         <div class="col-3">
@@ -57,19 +58,43 @@
                 <label for="txbCodigoPostal" class="form-label">Codigo Postal:</label>
                 <asp:TextBox runat="server" ID="txbCodigoPostal" class="form-control" placeholder="B2055" />
             </div>
-            <div class="col-3 d-flex flex-column">
-                <div>
-                    <label for="ddlObraSocial" class="form-label">Obra Social:</label>
-                </div>
-
-                <asp:DropDownList runat="server" ID="ddlObraSocial" class="btn btn-secondary dropdown-toggle">
-                </asp:DropDownList>
-                <div>
-                    <label for="txbNumeroAfiliado" class="form-label mt-3">Numero de Afiliado:</label>
-                    <asp:TextBox runat="server" ID="txbNumeroAfiliado" TextMode="Number" class="form-control" placeholder="Nº XXXXXXX" />
-                </div>
-
-            </div>
+        </div>
+        <div class="col-6">
+      
+                    <%if (Session["Persona"] == null || TipoUser == 4)
+                        {
+                    %>
+                    <div class="col-3 d-flex flex-column">
+                        <div>
+                            <label for="ddlObraSocial" class="form-label">Obra Social:</label>
+                        </div>
+                        <asp:DropDownList runat="server" ID="ddlObraSocial" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged ="ddlObraSocial_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <div class="mt-3">
+                            <asp:Label ID="lblNroAfiliado" Text="Numero de Afiliado:" CssClass="form-label mt-3" runat="server" />
+                            <asp:TextBox runat="server" ID="txbNumeroAfiliado" TextMode="Number" class="form-control mt-2" placeholder="Nº XXXXXXX"/>
+                        </div>
+                    </div>
+                    <%} %>
+                    <%if (TipoUser == 3)
+                        {  %>
+                    <div class="d-flex">
+                        <div class="col-3 d-flex flex-column me-4">
+                            <label for="" class="form-label">Matricula:</label>
+                            <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXXX"/>
+                        </div>
+                    </div>
+                    <%} %>
+                    <%if (TipoUser == 1 || TipoUser == 2)
+                        {  %>
+                    <div class="d-flex">
+                        <div class="col-3 d-flex flex-column me-4">
+                            <label for="txtPermiso" class="form-label">ID Permiso:</label>
+                            <asp:TextBox runat="server" ID="txtPermiso" CssClass="form-control" placeholder="XX-XXXXXXX" />
+                        </div>
+                    </div>
+                    <%} %>
+       
         </div>
     </div>
 </asp:Content>

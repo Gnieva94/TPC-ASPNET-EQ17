@@ -99,5 +99,86 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void ModificarEmpleado(Empleado modificar)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_MODIFICAR_EMPLEADO");
+                datos.setearParametro("@Id_Empleado", modificar.IdEmpleado);
+                datos.setearParametro("@Id_Persona", modificar.Id);
+                datos.setearParametro("@Nombre", modificar.Nombre);
+                datos.setearParametro("@Apellido", modificar.Apellido);
+                datos.setearParametro("@Dni", modificar.Dni);
+                datos.setearParametro("@Fecha_Nacimiento", modificar.FechaNacimiento);
+                datos.setearParametro("@Nacionalidad", modificar.Nacionalidad);
+                datos.setearParametro("@Email", modificar.DatosContacto.Email);
+                datos.setearParametro("@Celular", (object)modificar.DatosContacto.Celular ?? DBNull.Value);
+                datos.setearParametro("@Telefono", (object)modificar.DatosContacto.Telefono ?? DBNull.Value);
+                datos.setearParametro("@Direccion", (object)modificar.DatosContacto.Direccion ?? DBNull.Value);
+                datos.setearParametro("@Localidad", (object)modificar.DatosContacto.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia", (object)modificar.DatosContacto.Provincia ?? DBNull.Value);
+                datos.setearParametro("@Codigo_Postal", (object)modificar.DatosContacto.CodigoPostal ?? DBNull.Value);
+                datos.setearParametro("@Id_Permiso", modificar.Permiso.Id);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Empleado traerRegistroPorId (int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Empleado empleado;
+            try
+            {
+                datos.setearSP("SP_BUSCAR_EMPLEADO_POR_ID");
+                datos.setearParametro("@Id_Empleado", Id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    empleado = new Empleado();
+                    //empleado.IdEmpleado = (int)datos.Lector["Id_Empleado"];
+                    empleado.Id = (int)datos.Lector["Id_Persona"];
+                    empleado.Nombre = (string)datos.Lector["Nombre"];
+                    empleado.Apellido = (string)datos.Lector["Apellido"];
+                    empleado.Dni = (string)datos.Lector["Dni"];
+                    empleado.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    empleado.Nacionalidad = (string)datos.Lector["Nacionalidad"];
+                    empleado.DatosContacto = new DatosContacto();
+                    empleado.DatosContacto.IdDatosContacto = (int)datos.Lector["Id_Datos_Contacto"];
+                    empleado.DatosContacto.Email = (string)datos.Lector["Email"];
+                    empleado.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    empleado.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    empleado.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    empleado.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    empleado.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    empleado.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    empleado.Permiso = new Permiso();
+                    empleado.Permiso.Id = (int)datos.Lector["Id_Permiso"];
+             
+                    return empleado;
+                }
+                empleado = null;
+                return empleado;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
