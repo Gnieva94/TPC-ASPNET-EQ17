@@ -7,14 +7,16 @@
     
         <div class="row">
             <h2>Alta turno</h2>
-            <div class="col-3">
-                <div>
+            <div class="col-3 d-flex flex-column">
+                <div class="">
                     <asp:UpdatePanel runat="server" >
                     <ContentTemplate>
                     <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
                     <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"  ></asp:DropDownList>
                     <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
                     <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged" ></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlHoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras_SelectedIndexChanged" ></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlOpciones" class="btn btn-secondary dropdown-toggle" OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" ></asp:DropDownList>
                     </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>

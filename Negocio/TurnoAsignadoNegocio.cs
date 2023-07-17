@@ -36,7 +36,7 @@ namespace Negocio
             }
         }
 
-        public List<TurnoAsignado> turnoAsignados(int dia, int especialidad, int profesional)
+        public List<TurnoAsignado> turnosAsignados(int dia, int especialidad, int profesional)
         {
             List<TurnoAsignado> lista = new List<TurnoAsignado>();
             AccesoDatos datos = new AccesoDatos();
@@ -68,7 +68,39 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
-            }   
+            }
+
+
         }   
+
+        public int verificarDisponibilidad(DateTime horaSeleccionada)
+        {
+           
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("EXEC SP_VERIFICAR_DISPONIBILIDAD_TURNO @horaSeleccionada");
+                datos.setearParametro("@horaSeleccionada", horaSeleccionada);
+                datos.ejecutarLectura();
+                int aux = 0;
+
+                while (datos.Lector.Read())
+                {   
+                    aux = (int)datos.Lector["DisponibilidadTurno"];
+                    return aux;
+                }
+
+                return aux;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

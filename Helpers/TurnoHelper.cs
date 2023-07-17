@@ -9,14 +9,25 @@ namespace Helpers
 {
     public class TurnoHelper
     {
-        public static List<int> ObtenerHorariosDisponibles( int horarioInicio, int horarioFin)
+        public static List<MostrarHorario> ObtenerHorariosDisponibles( List<Horario> lista)
         {
-            List<int> horariosDisponibles = new List<int>();
-            for (int i = horarioInicio; i < horarioFin; i++)
+            List<MostrarHorario> listaHorarios = new List<MostrarHorario>();
+
+            foreach (var item in lista)
             {
-                    horariosDisponibles.Add(i);
+
+                int horas = item.HorarioFin - item.HorarioInicio;
+
+                for (int i = 0; i < horas; i++)
+                {
+                    string descripcion = (item.HorarioInicio + i) + " hs";
+                    int aux = item.HorarioInicio + i;
+                    MostrarHorario mostrarHorario = new MostrarHorario(aux, descripcion);
+                    listaHorarios.Add(mostrarHorario);
+                }
             }
-            return horariosDisponibles;
+
+            return listaHorarios;
         }
 
         public static List<Profesional> obtenerProfesionales(List<Horario> listaHorarios, List<Profesional> profesional)
@@ -50,7 +61,7 @@ namespace Helpers
 
         public static DateTime obtenerFecha( int hora, int dia)
         {
-            DateTime hoy = DateTime.Today;
+            DateTime hoy = DateTime.Now;
 
             int diaHoy = (int)hoy.DayOfWeek;
 
@@ -86,5 +97,15 @@ namespace Helpers
 
             return aux;
         }
+
+        //public static List<MostrarOpciones> cargarOpciones(List<Horario> horarios, int horaAtencion, int idDia)
+        //{
+        //    DateTime HoraAGuardar = obtenerFecha(horaAtencion, idDia);
+            
+        //    List<TurnoAsignado> asignados 
+            
+
+        //    return opciones;
+        //}   
     }
 }
