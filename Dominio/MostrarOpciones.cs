@@ -8,9 +8,9 @@ namespace Dominio
 {
     public class MostrarOpciones
     {
-        int id { get; set; }
-        string descripcion { get; set; }
-        DateTime fecha { get; set; }
+        public int id { get; set; }
+        public string descripcion { get; set; }
+        public DateTime fecha { get; set; }
         
         public MostrarOpciones(int id, string descripcion, DateTime fecha)
         {

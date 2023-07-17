@@ -26,7 +26,8 @@
                 
                 </div>
                 <div class="col-3 d-flex flex-column">
-
+                    <label>Observaciones</label>
+                    <textarea id="txaObservaciones" rows="4" cols="50"></textarea>
 
                 </div>
 

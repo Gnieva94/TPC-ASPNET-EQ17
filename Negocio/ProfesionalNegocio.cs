@@ -25,35 +25,34 @@ namespace Negocio
                 {
                     Profesional aux = new Profesional();
 
-                    aux.IdProfesional = (int)datos.Lector["Id"];
+                    aux.IdProfesional = (int)datos.Lector["Id_Profesional"];
                     aux.Id = (int)datos.Lector["Id_Persona"];
                     aux.FechaAlta = (DateTime)datos.Lector["Fecha_Alta"];
                     if (!(datos.Lector["Fecha_Baja"] is DBNull))
                         aux.FechaBaja = (DateTime)datos.Lector["Fecha_Baja"];
                     aux.Matricula = (string)datos.Lector["Matricula"];
-                   
-                    //aux.Nombre = (string)datos.Lector["Nombre"];
-                    //aux.Apellido = (string)datos.Lector["Apellido"];
-                    //aux.Dni = (string)datos.Lector["Dni"];
-                    //aux.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
-                    //aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
-                    //aux.DatosContacto = new DatosContacto();
-                    //aux.DatosContacto.Email = (string)datos.Lector["Email"];
-                    //if (!(datos.Lector["Celular"] is DBNull))
-                    //    aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
-                    //if (!(datos.Lector["Telefono"] is DBNull))
-                    //    aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
-                    //if (!(datos.Lector["Direccion"] is DBNull))
-                    //    aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    //if (!(datos.Lector["Localidad"] is DBNull))
-                    //    aux.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
-                    //if (!(datos.Lector["Provincia"] is DBNull))
-                    //    aux.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
-                    //if (!(datos.Lector["Codigo_Postal"] is DBNull))
-                    //    aux.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
-                    //aux.Credencial = new Credencial();
-                    //aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
-                    //aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Dni = (string)datos.Lector["Dni"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["Fecha_Nacimiento"];
+                    aux.Nacionalidad = (string)datos.Lector["Nacionalidad"];
+                    aux.DatosContacto = new DatosContacto();
+                    aux.DatosContacto.Email = (string)datos.Lector["Email"];
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        aux.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        aux.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    if (!(datos.Lector["Direccion"] is DBNull))
+                        aux.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        aux.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        aux.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    if (!(datos.Lector["Codigo_Postal"] is DBNull))
+                        aux.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                   aux.Credencial = new Credencial();
+                    aux.Credencial.NombreUsuario = (string)datos.Lector["Nombre_Usuario"];
+                    aux.Credencial.Password = (string)datos.Lector["Contrasenia"];
 
 
                     profesionales.Add(aux);
@@ -186,8 +185,8 @@ namespace Negocio
             }
 
         }
-    }
-}
+    
+
 
             public Profesional buscarUnProfesional(int idProfesional)
             {

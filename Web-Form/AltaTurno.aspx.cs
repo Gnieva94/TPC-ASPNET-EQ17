@@ -149,7 +149,7 @@ namespace Web_Form
             }
             else
             {
-                ddlOpciones.Items.Clear();
+                //ddlOpciones.Items.Clear();
             }
         }
 

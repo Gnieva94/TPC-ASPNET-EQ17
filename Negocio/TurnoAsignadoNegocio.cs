@@ -42,7 +42,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearSP("EXEC SP_LISTAR_TURNO_ASIGNADO @Dia, @Especialidad, @Profesional");
+                datos.setearConsulta("EXEC SP_LISTAR_TURNO_ASIGNADO @Dia, @Especialidad, @Profesional");
                 datos.setearParametro("@dia", dia);
                 datos.setearParametro("@especialidad", especialidad);
                 datos.setearParametro("@profesional", profesional);
@@ -79,7 +79,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("EXEC SP_VERIFICAR_DISPONIBILIDAD_TURNO @horaSeleccionada");
+                datos.setearSP("SP_VERIFICAR_DISPONIBILIDAD_TURNO");
                 datos.setearParametro("@horaSeleccionada", horaSeleccionada);
                 datos.ejecutarLectura();
                 int aux = 0;

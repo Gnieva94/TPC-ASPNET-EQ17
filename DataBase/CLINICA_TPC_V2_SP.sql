@@ -64,6 +64,17 @@ BEGIN
     INNER JOIN Dias_Semana DS ON DS.Id = HP.Id_Dia
 END
 GO
+CREATE PROCEDURE SP_LISTAR_TURNOS_ASIGNADOS
+@Id_Turno INT,
+@Id_Paciente INT,
+@Id_Profesional INT,
+@Id_Especialidad INT,
+@Fecha DATETIME,
+@Id_Estado_Turno INT,
+@Observaciones VARCHAR(200),
+@Diagnostico VARCHAR(200),
+
+GO
 --ALTAS
 CREATE PROCEDURE SP_ALTA_DATOS_CONTACTO(
     @Email VARCHAR(100),
@@ -360,4 +371,44 @@ BEGIN
     INNER JOIN Obras_Sociales OS ON OS.Id = PA.Id_Obra_Social 
     WHERE PA.Id = @Id_Paciente;
 END
+GO
+CREATE PROCEDURE SP_VERIFICAR_DISPONIBILIDAD_TURNO
+    @horaSeleccionada DATETIME
+AS
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM Turnos_Asignados t
+        WHERE t.Fecha = CONVERT(DATE, @horaSeleccionada) 
+            AND DATEPART(HOUR, t.Fecha) = DATEPART(HOUR, @horaSeleccionada) 
+    )
+    BEGIN
+        
+        SELECT 1 AS DisponibilidadTurno;
+	END
+	ELSE
+	BEGIN
+		SELECT 0 AS DisponibilidadTurno
+
+    END
+END
+go
+CREATE PROCEDURE SP_LISTAR_ESPACIALIDADES_PROFESIONAL_HORARIO_2
+AS
+BEGIN
+SELECT * FROM Horarios_Profesional
+END
+go
+create PROCEDURE SP_LISTAR_DIAS_SEMANA
+AS
+BEGIN
+ select Id, Dia from Dias_Semana
+END
+GO
+create procedure SP_BUSCAR_PROFESIONAL
+ (@IdProfesional int)
+as
+begin
+	select * from Profesionales p where p.id = @IdProfesional
+end
 GO
