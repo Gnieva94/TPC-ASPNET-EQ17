@@ -17,6 +17,17 @@ namespace Web_Form
             //    if (!(Seguridad.SesionActiva(Session["Persona"])))
             //        Response.Redirect("Login.aspx", false);
             //}
+            if(Page is Login || Page is Error)
+            {
+                btnIngresar.Visible = false;
+                btnCrearCuenta.Visible = false;
+                btnPanel.Visible = false;
+            }
+            if(Page is AltaUsuario)
+            {
+                btnCrearCuenta.Visible = false;
+                btnPanel.Visible = false;
+            }
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)

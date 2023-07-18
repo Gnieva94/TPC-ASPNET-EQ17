@@ -11,8 +11,8 @@ namespace Web_Form
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             lblError.Text = Session["Error"] != null? Session["Error"].ToString():"Puede que no exista error alguno.";
+            Response.AppendHeader("Refresh", "5;url=default.aspx");
         }
     }
 }

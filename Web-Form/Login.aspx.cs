@@ -14,7 +14,7 @@ namespace Web_Form
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace Web_Form
                 }
                 else
                 {
-                    if (!(personaNegocio.Login(persona)))
+                    if (!personaNegocio.Login(persona))
                     {
                         Session.Add("Error", "Usuario o contraseña invalido.");
                         Response.Redirect("Error.aspx", false);
@@ -42,23 +42,24 @@ namespace Web_Form
                     else
                     {
                         Session.Add("Persona", persona);
-                        switch (persona.Permiso.Id)
-                        {
-                            case 1:
-                                Response.Redirect("PanelAdmin.aspx", false);
-                                break;
-                            case 2:
-                                Response.Redirect("PanelRecepcionista.aspx", false);
-                                break;
-                            case 3:
-                                Response.Redirect("PanelProfesional.aspx", false);
-                                break;
-                            case 4:
-                                Response.Redirect("PanelPaciente.aspx", false);
-                                break;
-                            default:
-                                break;
-                        }
+                        //switch (persona.Permiso.Id)
+                        //{
+                        //    case 1:
+                        //        Response.Redirect("PanelAdmin.aspx", false);
+                        //        break;
+                        //    case 2:
+                        //        Response.Redirect("PanelRecepcionista.aspx", false);
+                        //        break;
+                        //    case 3:
+                        //        Response.Redirect("PanelProfesional.aspx", false);
+                        //        break;
+                        //    case 4:
+                        //        Response.Redirect("PanelPaciente.aspx", false);
+                        //        break;
+                        //    default:
+                        //        break;
+                        //}
+                        Response.Redirect(Helpers.Seguridad.DirigirPanel(persona),false);
                     }
                 }
             }
