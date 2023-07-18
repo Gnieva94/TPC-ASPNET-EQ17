@@ -233,5 +233,35 @@ namespace Web_Form
                 Session.Add("Error", ex.ToString());
             }
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TipoUser == 4)
+                {
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    negocio.BajaPaciente (int.Parse(Request.QueryString["id"].ToString()));
+                    Response.Redirect("PanelAdmin.aspx", false);
+                }
+                if (TipoUser == 3)
+                {
+                    ProfesionalNegocio pro = new ProfesionalNegocio();
+                    pro.BajaProfesional(int.Parse(Request.QueryString["id"].ToString()));
+                    Response.Redirect("PanelAdmin.aspx", false);
+                }
+                if (TipoUser == 1 || TipoUser == 2)
+                {
+                    EmpleadoNegocio emp = new EmpleadoNegocio();
+                    emp.BajaEmpleado(int.Parse(Request.QueryString["id"].ToString()));
+                    Response.Redirect("PanelAdmin.aspx", false);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+            }
+        }
     }
 }

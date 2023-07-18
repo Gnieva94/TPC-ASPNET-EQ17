@@ -26,7 +26,6 @@ Nombre varchar(20) not null,
 );
 
 drop table if exists Estados_Turno; 
---falta clase asociada
 create table Estados_Turno(
 Id int primary key not null IDENTITY(1,1),
 Nombre varchar(50) not null,

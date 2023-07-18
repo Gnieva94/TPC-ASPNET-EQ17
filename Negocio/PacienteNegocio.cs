@@ -143,8 +143,23 @@ namespace Negocio
             }
 
         }
-        public void EliminarPaciente(int Id)
+        public void BajaPaciente(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_BAJA_PACIENTE");
+                datos.setearParametro("@Id_Paciente", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 

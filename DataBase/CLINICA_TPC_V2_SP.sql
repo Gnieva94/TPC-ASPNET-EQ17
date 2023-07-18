@@ -412,3 +412,32 @@ begin
 	select * from Profesionales p where p.id = @IdProfesional
 end
 GO
+--BAJAS
+CREATE PROCEDURE SP_BAJA_PACIENTE
+    @Id_Paciente INT
+AS
+BEGIN
+    UPDATE Pacientes
+    SET Estado = 0
+    WHERE Id = @Id_Paciente;
+END
+GO
+CREATE PROCEDURE SP_BAJA_PROFESIONAL
+    @Id_Profesional INT
+AS
+BEGIN
+    UPDATE Profesionales
+    SET Estado = 0
+    WHERE Id = @Id_Profesional;
+END
+GO
+CREATE PROCEDURE SP_BAJA_EMPLEADO
+    @Id_Empleado INT
+AS
+BEGIN
+    UPDATE Empleados
+    SET Estado = 0
+    WHERE Id = @Id_Empleado;
+END
+
+

@@ -139,13 +139,13 @@
                 <div class="col-2">
                     <h4>Empleados</h4>
                 </div>
-                <div class="col-8 d-flex align-items-center ">
+                <div class="col-6 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroEmp" runat="server" Text="Filtrar: "></asp:Label>
                     <asp:TextBox ID="txtFiltroRapidoEmpleados" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoEmpleados_TextChanged"></asp:TextBox>
                 </div>
-                <div class=" col-2" >
-                    <a href="AltaUsuario.aspx?Per=2" class="btn btn-dark ">Nuevo Empleado</a>
-                    <a href="AltaUsuario.aspx?Per=1" class="btn btn-dark mt-2">Nuevo Admin</a>
+                <div class="col-4" >
+                    <a href="AltaUsuario.aspx?Per=2" class="btn btn-dark">Nuevo Empleado</a>
+                    <a href="AltaUsuario.aspx?Per=1" class="btn btn-dark">Nuevo Admin</a>
                 </div>
 
             </div>
