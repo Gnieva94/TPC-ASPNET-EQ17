@@ -14,121 +14,135 @@ namespace Web_Form
         public int TipoUser { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["id"] != null && Request.QueryString["per"] != null)
+                TipoUser = int.Parse(Request.QueryString["per"]);
             if (!IsPostBack)
             {
-                if (Request.QueryString["id"] != null) { 
-                        if (TipoUser == 4)
-                        {
-                        ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
-                        ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
-                        ddlObraSocial.DataTextField = "Nombre";
-                        ddlObraSocial.DataValueField = "IdObraSocial";
-                        ddlObraSocial.DataBind();
-              
-                        Paciente paciente;
-                        PacienteNegocio negocio = new PacienteNegocio();
-                        paciente = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
-                        Session.Add("ModificarPaciente", paciente);
+                if (TipoUser == 4)
+                {
+                    ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
+                    ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
+                    ddlObraSocial.DataTextField = "Nombre";
+                    ddlObraSocial.DataValueField = "IdObraSocial";
+                    ddlObraSocial.DataBind();
 
-                        if (paciente != null)
-                        {
-                            txbNombre.Text = paciente.Nombre;
-                            txbApellido.Text = paciente.Apellido;
-                            txbDNI.Text = paciente.Dni;
-                            txbFechaNacimiento.Text = paciente.FechaNacimiento.ToString();
-                            ddlNacionalidad.SelectedValue = paciente.Nacionalidad;
-                            txbCelu.Text = paciente.DatosContacto.Celular;
-                            txbDireccion.Text = paciente.DatosContacto.Direccion;
-                            txbLocalidad.Text = paciente.DatosContacto.Localidad;
-                            txbProvincia.Text = paciente.DatosContacto.Provincia;
-                            txbCodigoPostal.Text = paciente.DatosContacto.CodigoPostal;
-                            ddlObraSocial.SelectedValue = paciente.ObraSocial.IdObraSocial.ToString();
-                            txbNumeroAfiliado.Text = paciente.NumeroAfiliado.ToString();
+                    Paciente paciente;
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    paciente = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
+                    Session.Add("ModificarPaciente", paciente);
 
-                        }
-                        else
-                        {
-                            Session.Add("Error", "No se encontro el paciente");
-                            Response.Redirect("Error.aspx", false);
-                        }
-
-                    }
-                    if (TipoUser == 3)
+                    if (paciente != null)
                     {
-                        Profesional profesional;
-                        ProfesionalNegocio negocio = new ProfesionalNegocio();
-                        profesional = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
-                        Session.Add("ModificarProfesional", profesional);
-
-                        if(profesional != null)
-                        {
-                            txbNombre.Text = profesional.Nombre;
-                            txbApellido.Text = profesional.Apellido;
-                            txbDNI.Text = profesional.Dni;
-                            txbFechaNacimiento.Text = profesional.FechaNacimiento.ToString();
-                            ddlNacionalidad.SelectedValue = profesional.Nacionalidad;
-                            txbCelu.Text = profesional.DatosContacto.Celular;
-                            txbDireccion.Text = profesional.DatosContacto.Direccion;
-                            txbLocalidad.Text = profesional.DatosContacto.Localidad;
-                            txbProvincia.Text = profesional.DatosContacto.Provincia;
-                            txbCodigoPostal.Text = profesional.DatosContacto.CodigoPostal;
-                            txbMatricula.Text = profesional.Matricula.ToString();
-
-                        }
-                        else
-                        {
-                            Session.Add("Error", "No se encontro el profesional");
-                            Response.Redirect("Error.aspx", false);
-                        }
+                        //txbNombre.Text = paciente.Nombre;
+                        //txbApellido.Text = paciente.Apellido;
+                        //txbDNI.Text = paciente.Dni;
+                        //txbFechaNacimiento.Text = paciente.FechaNacimiento.ToString();
+                        //ddlNacionalidad.SelectedValue = paciente.Nacionalidad;
+                        //txbCelu.Text = paciente.DatosContacto.Celular;
+                        //txbDireccion.Text = paciente.DatosContacto.Direccion;
+                        //txbLocalidad.Text = paciente.DatosContacto.Localidad;
+                        //txbProvincia.Text = paciente.DatosContacto.Provincia;
+                        //txbCodigoPostal.Text = paciente.DatosContacto.CodigoPostal;
+                        cargarCampos(paciente);
+                        ddlObraSocial.SelectedValue = paciente.ObraSocial.IdObraSocial.ToString();
+                        txbNumeroAfiliado.Text = paciente.NumeroAfiliado.ToString();
                     }
-                    if (TipoUser == 2 || TipoUser == 1)
+                    else
                     {
-                        Empleado empleado;
-                        EmpleadoNegocio negocio = new EmpleadoNegocio();
-                        empleado = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
-                        Session.Add("ModificarEmpleado", empleado);
-
-                        if (empleado != null)
-                        {
-                            txbNombre.Text = empleado.Nombre;
-                            txbApellido.Text = empleado.Apellido;
-                            txbDNI.Text = empleado.Dni;
-                            txbFechaNacimiento.Text = empleado.FechaNacimiento.ToString();
-                            ddlNacionalidad.SelectedValue = empleado.Nacionalidad;
-                            txbCelu.Text = empleado.DatosContacto.Celular;
-                            txbDireccion.Text = empleado.DatosContacto.Direccion;
-                            txbLocalidad.Text = empleado.DatosContacto.Localidad;
-                            txbProvincia.Text = empleado.DatosContacto.Provincia;
-                            txbCodigoPostal.Text = empleado.DatosContacto.CodigoPostal;
-                            txtPermiso.Text = empleado.Permiso.ToString();
-
-                        }
-                        else
-                        {
-                            Session.Add("Error", "No se encontro el empleado");
-                            Response.Redirect("Error.aspx", false);
-                        }
-
+                        Session.Add("Error", "No se encontro el paciente");
+                        Response.Redirect("Error.aspx", false);
                     }
 
                 }
-            }
+                if (TipoUser == 3)
+                {
+                    Profesional profesional;
+                    ProfesionalNegocio negocio = new ProfesionalNegocio();
+                    profesional = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
+                    Session.Add("ModificarProfesional", profesional);
 
+                    if (profesional != null)
+                    {
+                        //txbNombre.Text = profesional.Nombre;
+                        //txbApellido.Text = profesional.Apellido;
+                        //txbDNI.Text = profesional.Dni;
+                        //txbFechaNacimiento.Text = profesional.FechaNacimiento.ToString();
+                        //ddlNacionalidad.SelectedValue = profesional.Nacionalidad;
+                        //txbCelu.Text = profesional.DatosContacto.Celular;
+                        //txbDireccion.Text = profesional.DatosContacto.Direccion;
+                        //txbLocalidad.Text = profesional.DatosContacto.Localidad;
+                        //txbProvincia.Text = profesional.DatosContacto.Provincia;
+                        //txbCodigoPostal.Text = profesional.DatosContacto.CodigoPostal;
+                        cargarCampos(profesional);
+                        txbMatricula.Text = profesional.Matricula.ToString();
+                    }
+                    else
+                    {
+                        Session.Add("Error", "No se encontro el profesional");
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+                if (TipoUser == 2 || TipoUser == 1)
+                {
+                    Empleado empleado;
+                    EmpleadoNegocio negocio = new EmpleadoNegocio();
+                    empleado = negocio.traerRegistroPorId(int.Parse(Request.QueryString["id"].ToString()));
+                    Session.Add("ModificarEmpleado", empleado);
+
+                    if (empleado != null)
+                    {
+                        //txbNombre.Text = empleado.Nombre;
+                        //txbApellido.Text = empleado.Apellido;
+                        //txbDNI.Text = empleado.Dni;
+                        //txbFechaNacimiento.Text = empleado.FechaNacimiento.ToString();
+                        //ddlNacionalidad.SelectedValue = empleado.Nacionalidad;
+                        //txbCelu.Text = empleado.DatosContacto.Celular;
+                        //txbDireccion.Text = empleado.DatosContacto.Direccion;
+                        //txbLocalidad.Text = empleado.DatosContacto.Localidad;
+                        //txbProvincia.Text = empleado.DatosContacto.Provincia;
+                        //txbCodigoPostal.Text = empleado.DatosContacto.CodigoPostal;
+                        cargarCampos(empleado);
+                        txtPermiso.Text = empleado.Permiso.ToString();
+                    }
+                    else
+                    {
+                        Session.Add("Error", "No se encontro el empleado");
+                        Response.Redirect("Error.aspx", false);
+                    }
+                }
+            }
+        }
+
+        private void cargarCampos(Persona persona)
+        {
+            try
+            {
+                txbNombre.Text = persona.Nombre;
+                txbApellido.Text = persona.Apellido;
+                txbDNI.Text = persona.Dni;
+                txbFechaNacimiento.Text = persona.FechaNacimiento.ToString("yyyy-MM-dd");
+                ddlNacionalidad.SelectedValue = persona.Nacionalidad;
+                txbCelu.Text = persona.DatosContacto.Celular;
+                txbDireccion.Text = persona.DatosContacto.Direccion;
+                txbLocalidad.Text = persona.DatosContacto.Localidad;
+                txbProvincia.Text = persona.DatosContacto.Provincia;
+                txbCodigoPostal.Text = persona.DatosContacto.CodigoPostal;
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", "Error al cargar campos.");
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            Paciente paciente = (Paciente)Session["ModificarPaciente"];
-            PacienteNegocio negocio = new PacienteNegocio();
-            Profesional profesional = (Profesional)Session["ModificarProfesional"];
-            ProfesionalNegocio pro = new ProfesionalNegocio();
-            Empleado empleado = (Empleado)Session["ModificarEmpleado"];
-            EmpleadoNegocio emp = new EmpleadoNegocio();
-
             try
             {
                 if(TipoUser == 4)
-                { 
+                {
+                    Paciente paciente = (Paciente)Session["ModificarPaciente"];
+                    PacienteNegocio negocio = new PacienteNegocio();
                     paciente.IdPaciente = int.Parse(Request.QueryString["id"].ToString());
                     paciente.Nombre = txbNombre.Text;
                     paciente.Apellido = txbApellido.Text;
@@ -146,6 +160,8 @@ namespace Web_Form
                 }
                 if(TipoUser == 3)
                 {
+                    Profesional profesional = (Profesional)Session["ModificarProfesional"];
+                    ProfesionalNegocio pro = new ProfesionalNegocio();
                     profesional.IdProfesional = int.Parse(Request.QueryString["id"].ToString());
                     profesional.Nombre = txbNombre.Text;
                     profesional.Apellido = txbApellido.Text;
@@ -163,6 +179,8 @@ namespace Web_Form
                 }
                 if(TipoUser ==1 || TipoUser == 2)
                 {
+                    Empleado empleado = (Empleado)Session["ModificarEmpleado"];
+                    EmpleadoNegocio emp = new EmpleadoNegocio();
                     empleado.IdEmpleado = int.Parse(Request.QueryString["id"].ToString());
                     empleado.Nombre = txbNombre.Text;
                     empleado.Apellido = txbApellido.Text;
@@ -178,15 +196,12 @@ namespace Web_Form
                     emp.ModificarEmpleado(empleado);
                     Response.Redirect("PanelAdmin.aspx", false);
                 }
-
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx", false);
             }
-
-
         }
 
         protected void ddlObraSocial_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,6 +217,21 @@ namespace Web_Form
                 lblNroAfiliado.Visible = true;
             }
 
+        }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Request.QueryString["Per"] != null)
+                    Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                else
+                    Response.Redirect("Default.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+            }
         }
     }
 }

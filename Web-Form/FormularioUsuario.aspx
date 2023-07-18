@@ -35,6 +35,7 @@
             </div>
             <div>
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" class="btn btn-primary" OnClick="btnModificar_Click" />
+                <asp:Button Text="Regresar" cssclass="btn btn-danger" ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" TabIndex="21" />
             </div>
         </div>
         <div class="col-3">
@@ -61,7 +62,7 @@
         </div>
         <div class="col-6">
       
-                    <%if (Session["Persona"] == null || TipoUser == 4)
+                    <%if (TipoUser == 4)
                         {
                     %>
                     <div class="col-3 d-flex flex-column">
@@ -81,7 +82,7 @@
                     <div class="d-flex">
                         <div class="col-3 d-flex flex-column me-4">
                             <label for="" class="form-label">Matricula:</label>
-                            <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXXX"/>
+                            <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXX"/>
                         </div>
                     </div>
                     <%} %>

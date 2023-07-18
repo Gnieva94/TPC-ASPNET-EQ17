@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:ScriptManager runat="server" />
     <div class="row">
         <h2>Crear cuenta de usuario</h2>
         <div class="col-3">
@@ -69,7 +69,10 @@
             </div>
             <div class="mb-3 d-flex flex-column">
                 <asp:Label Text="" ID="lblPassValidacion" CssClass="form-label" runat="server" />
-                <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" OnClick="btnCrear_Click" TabIndex="20"/>
+                <div>
+                    <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" OnClick="btnCrear_Click" TabIndex="20"/>
+                    <asp:Button Text="Regresar" cssclass="btn btn-danger" ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" TabIndex="21" />
+                </div>  
             </div>
         </div>
         <div class="col-6">
