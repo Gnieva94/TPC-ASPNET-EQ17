@@ -235,5 +235,20 @@ namespace Web_Form
                 btnCrear.Width = 75;
             }
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Request.QueryString["Per"] != null)
+                    Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                else
+                    Response.Redirect("Default.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+            }
+        }
     }
 }

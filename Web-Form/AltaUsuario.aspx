@@ -3,9 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server" />
+    <div class="row justify-content-center mb-4 mt-4">
+        <div class="col-9">
+            <h2>Crear cuenta de usuario</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
 
-    <div class="row">
-        <h2>Crear cuenta de usuario</h2>
         <div class="col-3">
             <div class="mb-3">
                 <label for="txbNombre" class="form-label">Nombre:</label>
@@ -27,11 +32,11 @@
             </div>
             <div class="mb-3">
                 <label for="txbDireccion" class="form-label">Direccion:</label>
-                <asp:TextBox runat="server" ID="txbDireccion" class="form-control" placeholder="Av. Falsa 123" TabIndex="7"/>
+                <asp:TextBox runat="server" ID="txbDireccion" class="form-control" placeholder="Av. Falsa 123" TabIndex="7" />
             </div>
             <div class="mb-3">
                 <label for="txbProvincia" class="form-label">Provincia:</label>
-                <asp:TextBox runat="server" ID="txbProvincia" class="form-control" placeholder="Burzaco" TabIndex="9"/>
+                <asp:TextBox runat="server" ID="txbProvincia" class="form-control" placeholder="Burzaco" TabIndex="9" />
             </div>
             <div class="mb-3">
                 <label for="txbMail" class="form-label">Email:</label>
@@ -57,11 +62,11 @@
             </div>
             <div class="mb-3">
                 <label for="txbLocalidad" class="form-label">Localidad:</label>
-                <asp:TextBox runat="server" ID="txbLocalidad" class="form-control" placeholder="SpringField" TabIndex="8"/>
+                <asp:TextBox runat="server" ID="txbLocalidad" class="form-control" placeholder="SpringField" TabIndex="8" />
             </div>
             <div class="mb-3">
                 <label for="txbCodigoPostal" class="form-label">Codigo Postal:</label>
-                <asp:TextBox runat="server" ID="txbCodigoPostal" class="form-control" placeholder="B2055" TabIndex="10"/>
+                <asp:TextBox runat="server" ID="txbCodigoPostal" class="form-control" placeholder="B2055" TabIndex="10" />
             </div>
             <div class="mb-3">
                 <label for="txbPass" class="form-label">Contraseña</label>
@@ -69,16 +74,19 @@
             </div>
             <div class="mb-3 d-flex flex-column">
                 <asp:Label Text="" ID="lblPassValidacion" CssClass="form-label" runat="server" />
-                <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" OnClick="btnCrear_Click" TabIndex="20"/>
+                <div>
+                    <asp:Button ID="btnCrear" runat="server" Text="Crear" class="btn btn-primary" OnClick="btnCrear_Click" TabIndex="20" />
+                    <asp:Button Text="Regresar" CssClass="btn btn-light" ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" TabIndex="21" />
+                </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-3">
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <%if (Session["Persona"] == null || TipoUser == 4)
                         {
                     %>
-                    <div class="col-3 d-flex flex-column">
+                    <div class="d-flex flex-column">
                         <div>
                             <label for="ddlObraSocial" class="form-label">Obra Social:</label>
                         </div>
@@ -86,16 +94,16 @@
                         </asp:DropDownList>
                         <div class="mt-3">
                             <asp:Label ID="lblNroAfiliado" Text="Numero de Afiliado:" CssClass="form-label mt-3" runat="server" />
-                            <asp:TextBox runat="server" ID="txbNumeroAfiliado" TextMode="Number" class="form-control mt-2" placeholder="Nº XXXXXXX" TabIndex="15"/>
+                            <asp:TextBox runat="server" ID="txbNumeroAfiliado" TextMode="Number" class="form-control mt-2" placeholder="Nº XXXXXXX" TabIndex="15" />
                         </div>
                     </div>
                     <%} %>
                     <%if (TipoUser == 3)
                         {  %>
                     <div class="d-flex">
-                        <div class="col-3 d-flex flex-column me-4">
+                        <div class="d-flex flex-column me-4">
                             <label for="" class="form-label">Matricula:</label>
-                            <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXXX" TabIndex="14"/>
+                            <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXXX" TabIndex="14" />
                             <label for="ddlEspecialidad" class="form-label">Especialidad:</label>
                             <asp:DropDownList runat="server" ID="ddlEspecialidad" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" TabIndex="15">
                             </asp:DropDownList>
@@ -165,10 +173,10 @@
                             </asp:DropDownList>
                             <br />
                             <div>
-                                <asp:Button Text="Seleccionar" runat="server" ID="btnMasProfesional" class="btn btn-primary" OnClick="btnSeleccionarProfesional_Click" TabIndex="19"/>
+                                <asp:Button Text="Seleccionar" runat="server" ID="btnMasProfesional" class="btn btn-primary" OnClick="btnSeleccionarProfesional_Click" TabIndex="19" />
                             </div>
                         </div>
-                        <div class="col-8 d-flex flex-column">
+                        <div class="d-flex flex-column">
                             <asp:GridView runat="server" ID="dgvListaHorarios" DataKeyNames="Id" CssClass="table table-striped table-hover table-sm" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvListaHorarios_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />

@@ -180,5 +180,25 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void BajaEmpleado(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_BAJA_EMPLEADO");
+                datos.setearParametro("@Id_Empleado", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

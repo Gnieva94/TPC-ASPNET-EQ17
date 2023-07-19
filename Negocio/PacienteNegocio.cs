@@ -143,8 +143,23 @@ namespace Negocio
             }
 
         }
-        public void EliminarPaciente(int Id)
+        public void BajaPaciente(int id)
         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_BAJA_PACIENTE");
+                datos.setearParametro("@Id_Paciente", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 
@@ -170,15 +185,29 @@ namespace Negocio
                     paciente.DatosContacto = new DatosContacto();
                     paciente.DatosContacto.IdDatosContacto = (int)datos.Lector["Id_Datos_Contacto"];
                     paciente.DatosContacto.Email = (string)datos.Lector["Email"];
-                    paciente.DatosContacto.Celular = (string)datos.Lector["Celular"];
-                    paciente.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
-                    paciente.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    paciente.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
-                    paciente.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
-                    paciente.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    //paciente.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    //paciente.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    //paciente.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    //paciente.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    //paciente.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    //paciente.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        paciente.DatosContacto.Celular = (string)datos.Lector["Celular"];
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        paciente.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
+                    if (!(datos.Lector["Direccion"] is DBNull))
+                        paciente.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        paciente.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        paciente.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
+                    if (!(datos.Lector["Codigo_Postal"] is DBNull))
+                        paciente.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
                     paciente.ObraSocial = new ObraSocial();
                     paciente.ObraSocial.IdObraSocial = (int)datos.Lector["Id_Obra_Social"];
-                    paciente.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
+                    //paciente.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
+                    if (!(datos.Lector["Nro_Afiliado"] is DBNull))
+                        paciente.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
 
                     return paciente;
                 }

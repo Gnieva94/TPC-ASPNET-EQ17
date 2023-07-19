@@ -337,19 +337,19 @@ namespace Web_Form
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdPaciente = dgvPacientes.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente);
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente + "&&per=4");
         }
 
         protected void dgvProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdProfesional = dgvProfesionales.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdProfesional);
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdProfesional + "&&per=3");
         }
 
         protected void dgvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdEmpleado = dgvEmpleados.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdEmpleado);
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdEmpleado + "&&per=2");
         }
     }
 }
