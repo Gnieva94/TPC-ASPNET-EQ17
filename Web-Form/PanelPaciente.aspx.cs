@@ -24,9 +24,11 @@ namespace Web_Form
                     //{
                     //listar turnos del paciente
                     TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
-                    List<TurnoAsignado> lista = negocio.ListaTurnoAsignado();
-                    Session.Add("Turnos", lista);
-                    dgvTurnos.DataSource = lista;
+                    Session.Add("Turnos", negocio.ListaTurnoAsignado(1));
+                    dgvTurnos.DataSource = Session["Turnos"];
+                    dgvTurnos.DataBind();
+              
+                 
                    
                     //}
 

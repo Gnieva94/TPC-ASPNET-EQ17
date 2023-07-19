@@ -69,11 +69,13 @@
                     DataKeyNames="Id" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID Horario" />
-                        <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="IdProfesional" HeaderText="ID Profesional" />
+                            
+                         <%--<asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Profesional.Apellido" HeaderText="Apellido" />
-                        <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
-                        <asp:BoundField DataField="Dia" HeaderText="Dia" />
-                        <asp:BoundField DataField="Horario" HeaderText="Hora" />
+                        <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />--%>
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                        <asp:BoundField DataField="IdEstado" HeaderText="Estado" />
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Cancelar" />
 
                     </Columns>

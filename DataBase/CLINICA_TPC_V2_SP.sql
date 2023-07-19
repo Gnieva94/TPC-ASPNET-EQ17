@@ -431,20 +431,21 @@ END
 
 
 GO
-create procedure SP_INSERTAR_TURNO (
+ALTER procedure SP_INSERTAR_TURNO (
 @FECHA datetime,
 @id_profesional int,
 @id_paciente int,
 @observacion varchar,
 @diagnostico varchar,
-@idEstado int
+@idEstado int,
+@idEspecialidad int
 )
 as
 begin
 	begin try
 	
-	insert into Turnos_Asignados (Fecha, Id_Profesional, Id_Paciente, Observacion, Diagnostico, Id_Estado)
-	values(@FECHA, @id_profesional, @id_paciente, @observacion, @diagnostico, @idEstado);
+	insert into Turnos_Asignados (Fecha, Id_Profesional, Id_Paciente, Observacion, Diagnostico, Id_Estado, Id_Especialidad)
+	values(@FECHA, @id_profesional, @id_paciente, @observacion, @diagnostico, @idEstado, @idEspecialidad);
 	end try
 	begin catch
 	
@@ -457,11 +458,17 @@ ALTER PROCEDURE SP_LISTAR_TURNOS_PACIENTE
     @Id_Paciente INT
 AS
 BEGIN
-    SELECT *
+    SELECT TA.Id_Paciente, TA.Id_Profesional, P.Nombre, P.Apellido, Pr.Matricula,
+    TA.Fecha, TA.Diagnostico, TA.Observacion, ET.Nombre as Estado, E.Nombre as Especialidad
     FROM Turnos_Asignados TA
     INNER JOIN Estados_Turno ET ON TA.Id_Estado = ET.Id
     INNER JOIN Pacientes PA ON PA.Id = TA.Id_Paciente
     INNER JOIN Profesionales PR ON PR.Id = TA.Id_Profesional
+    INNER JOIN Personas P ON P.Id = PR.Id_Persona
+    INNER JOIN Especialidades E ON E.Id = TA.Id_Especialidad
     WHERE TA.Id_Paciente = @Id_Paciente
 END
 GO
+select * from Horarios_Profesional
+select * from Especialidades_Profesional
+SELECT * From Turnos_Asignados

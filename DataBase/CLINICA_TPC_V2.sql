@@ -118,6 +118,14 @@ Diagnostico varchar null,
 Id_Estado int not null FOREIGN KEY REFERENCES Estados_Turno(id)
 );
 
+DELETE FROM Turnos_Asignados;
+ALTER TABLE Turnos_Asignados
+ADD Id_Especialidad INT not null;
+ALTER TABLE Turnos_Asignados
+ADD CONSTRAINT FK_Turnos_Asignados_Especialidades
+FOREIGN KEY (Id_Especialidad) REFERENCES Especialidades(Id);
+
+
 drop table if exists Especialidades_Profesional;
 
 CREATE TABLE Especialidades_Profesional(

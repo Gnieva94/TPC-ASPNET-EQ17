@@ -176,7 +176,6 @@ namespace Negocio
                 {
                     paciente = new Paciente();
                     paciente.Id = (int)datos.Lector["Id_Persona"];
-                    //paciente.IdPaciente = (int)datos.Lector["Id_Paciente"];
                     paciente.Nombre = (string)datos.Lector["Nombre"];
                     paciente.Apellido = (string)datos.Lector["Apellido"];
                     paciente.Dni = (string)datos.Lector["Dni"];
@@ -185,12 +184,6 @@ namespace Negocio
                     paciente.DatosContacto = new DatosContacto();
                     paciente.DatosContacto.IdDatosContacto = (int)datos.Lector["Id_Datos_Contacto"];
                     paciente.DatosContacto.Email = (string)datos.Lector["Email"];
-                    //paciente.DatosContacto.Celular = (string)datos.Lector["Celular"];
-                    //paciente.DatosContacto.Telefono = (string)datos.Lector["Telefono"];
-                    //paciente.DatosContacto.Direccion = (string)datos.Lector["Direccion"];
-                    //paciente.DatosContacto.Localidad = (string)datos.Lector["Localidad"];
-                    //paciente.DatosContacto.Provincia = (string)datos.Lector["Provincia"];
-                    //paciente.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
                     if (!(datos.Lector["Celular"] is DBNull))
                         paciente.DatosContacto.Celular = (string)datos.Lector["Celular"];
                     if (!(datos.Lector["Telefono"] is DBNull))
@@ -205,7 +198,6 @@ namespace Negocio
                         paciente.DatosContacto.CodigoPostal = (string)datos.Lector["Codigo_Postal"];
                     paciente.ObraSocial = new ObraSocial();
                     paciente.ObraSocial.IdObraSocial = (int)datos.Lector["Id_Obra_Social"];
-                    //paciente.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
                     if (!(datos.Lector["Nro_Afiliado"] is DBNull))
                         paciente.NumeroAfiliado = (int)datos.Lector["Nro_Afiliado"];
 

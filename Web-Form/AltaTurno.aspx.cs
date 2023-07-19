@@ -240,11 +240,12 @@ namespace Web_Form
 
                 TurnoAsignado aux = new TurnoAsignado();
                 aux.Fecha = fecha[idOpcion -1].fecha;
-                aux.IdProfesional = idProfesional;
-                aux.IdPaciente = 1;
+                aux.Profesional.IdProfesional = idProfesional;
+                aux.Paciente.IdPaciente = 1;
                 aux.Observacion = observaciones;
                 aux.Diagnostico = "";
-                aux.IdEstado = 1;
+                aux.EstadoTurno.Id = 1;
+                aux.Especialidad.Id = idEspecialidad;
 
                 data.AltaTurno(aux);
 

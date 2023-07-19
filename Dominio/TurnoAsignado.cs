@@ -10,11 +10,20 @@ namespace Dominio
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
-        public int IdProfesional { get; set; }
-        public int IdPaciente { get; set; }
+        public Profesional Profesional { get; set; }
+        public Especialidad Especialidad { get; set; }
+        public Paciente Paciente { get; set; }
         public string Observacion { get; set; }
         public string Diagnostico { get; set; }
-        public int IdEstado { get; set; }
+        public EstadoTurno EstadoTurno { get; set; }
+
+        public TurnoAsignado()
+        {
+            Profesional = new Profesional();
+            Paciente = new Paciente();
+            EstadoTurno = new EstadoTurno();
+            Especialidad = new Especialidad();
+        }
        
     }
 }
