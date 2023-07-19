@@ -45,8 +45,8 @@
             </div>
         </div>
         <div class="col-10">
-            <%if (chkTurnos.Checked)
-                { %>
+             <%--<%if (chkTurnos.Checked)
+                { %>--%>
             <div class="row mb-4 mt-4">
                 <%--Seccion Buscador y filtro--%>
                 <div class="col-2">
@@ -54,7 +54,8 @@
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroHorarios" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoTurnos" CssClass="form-control mx-3" runat="server" AutoPostBack="true"></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoTurnos" CssClass="form-control mx-3" runat="server" AutoPostBack="true" 
+                        OnTextChanged="txtFiltroRapidoTurnos_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
                     <a href="AltaTurno.aspx" class="btn btn-dark ">Nuevo Turno</a>
@@ -64,7 +65,8 @@
 
             <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
-                <asp:GridView ID="dgvTurnos" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvTurnos" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" 
+                    DataKeyNames="Id" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID Horario" />
                         <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
@@ -78,7 +80,7 @@
                 </asp:GridView>
 
             </div>
-            <%} %>
+            <%--<%} %>--%>
         </div>
     </div>
 </asp:Content>

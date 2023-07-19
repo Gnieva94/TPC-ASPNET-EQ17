@@ -64,17 +64,6 @@ BEGIN
     INNER JOIN Dias_Semana DS ON DS.Id = HP.Id_Dia
 END
 GO
-CREATE PROCEDURE SP_LISTAR_TURNOS_ASIGNADOS
-@Id_Turno INT,
-@Id_Paciente INT,
-@Id_Profesional INT,
-@Id_Especialidad INT,
-@Fecha DATETIME,
-@Id_Estado_Turno INT,
-@Observaciones VARCHAR(200),
-@Diagnostico VARCHAR(200),
-
-GO
 --ALTAS
 CREATE PROCEDURE SP_ALTA_DATOS_CONTACTO(
     @Email VARCHAR(100),
@@ -463,4 +452,16 @@ begin
 	end catch
 
 end
+GO
+ALTER PROCEDURE SP_LISTAR_TURNOS_PACIENTE
+    @Id_Paciente INT
+AS
+BEGIN
+    SELECT *
+    FROM Turnos_Asignados TA
+    INNER JOIN Estados_Turno ET ON TA.Id_Estado = ET.Id
+    INNER JOIN Pacientes PA ON PA.Id = TA.Id_Paciente
+    INNER JOIN Profesionales PR ON PR.Id = TA.Id_Profesional
+    WHERE TA.Id_Paciente = @Id_Paciente
+END
 GO

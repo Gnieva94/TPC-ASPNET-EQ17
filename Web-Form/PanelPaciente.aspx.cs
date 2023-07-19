@@ -22,13 +22,18 @@ namespace Web_Form
                     chkTurnos.Visible = false;
                     //if (Seguridad.SesionActiva(Session["Persona."]))
                     //{
+                    //listar turnos del paciente
+                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
+                    List<TurnoAsignado> lista = negocio.ListaTurnoAsignado();
+                    Session.Add("Turnos", lista);
+                    dgvTurnos.DataSource = lista;
                    
                     //}
 
                   
 
 
-                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
+                    //lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
 
 
 
@@ -50,12 +55,22 @@ namespace Web_Form
 
         protected void chkTurnos_CheckedChanged(object sender, EventArgs e)
         {
-            //List<TurnoAsignado> lista = (List<TurnoAsignado>)Session["Turnos"];
-            //List<TurnoAsignado> listaFiltrada = lista.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) ||
-            //x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()));
+            List<TurnoAsignado> lista = (List<TurnoAsignado>)Session["Turnos"];
+           // List<TurnoAsignado> listaFiltrada = lista.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) ||
+           // x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()));
 
             //dgvTurnos.DataSource = listaFiltrada;
             //dgvTurnos.DataBind();
+
+        }
+
+        protected void txtFiltroRapidoTurnos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

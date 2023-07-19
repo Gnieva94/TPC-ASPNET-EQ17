@@ -12,7 +12,7 @@ namespace Negocio
     {
         public void AltaTurno(TurnoAsignado turno)
         {
-            //el turno esta disponible?
+  
             AccesoDatos datos = new AccesoDatos();
         
             try
@@ -91,6 +91,41 @@ namespace Negocio
                 }
 
                 return aux;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<TurnoAsignado> ListaTurnoAsignado()
+        {
+            List<TurnoAsignado> lista = new List<TurnoAsignado>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearSP("SP_LISTAR_TURNOS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    TurnoAsignado aux = new TurnoAsignado();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.IdProfesional = (int)datos.Lector["Id_Profesional"];
+                    aux.IdPaciente = (int)datos.Lector["Id_Paciente"];
+                    aux.Observacion = (string)datos.Lector["Observacion"];
+                    aux.Diagnostico = (string)datos.Lector["Diagnostico"];
+
+                    lista.Add(aux);
+                }
+                return lista;
 
             }
             catch (Exception ex)

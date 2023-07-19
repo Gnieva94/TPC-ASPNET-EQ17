@@ -72,7 +72,8 @@
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroPas" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" 
+                        OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
                     <a href="AltaUsuario.aspx?Per=4" class="btn btn-dark ">Nuevo Paciente</a>
@@ -80,7 +81,8 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" 
+                    DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
                     >
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
