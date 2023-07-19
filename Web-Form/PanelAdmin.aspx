@@ -122,11 +122,11 @@
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                         <asp:BoundField DataField="Dni" HeaderText="DNI" />
                         <asp:BoundField DataField="Matricula" HeaderText="Matrícula" />
-                        <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:d}" />
                         <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Ver Horarios" />
                     </Columns>
                 </asp:GridView>
             </div>
