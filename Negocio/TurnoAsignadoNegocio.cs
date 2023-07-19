@@ -20,8 +20,8 @@ namespace Negocio
             {
                 datos.setearSP("SP_INSERTAR_TURNO");
                 datos.setearParametro("@FECHA", turno.Fecha);
-                datos.setearParametro("@id_profesional", turno.Profesional.Id);
-                datos.setearParametro("@id_paciente", turno.Paciente.Id);
+                datos.setearParametro("@id_profesional", turno.Profesional.IdProfesional);
+                datos.setearParametro("@id_paciente", turno.Paciente.IdPaciente);
                 datos.setearParametro("@observacion", (object)turno.Observacion ?? DBNull.Value);
                 datos.setearParametro("@diagnostico", (object)turno.Diagnostico ?? DBNull.Value);
                 datos.setearParametro("@idEstado", turno.EstadoTurno.Id);

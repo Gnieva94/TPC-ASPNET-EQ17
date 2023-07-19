@@ -442,16 +442,8 @@ ALTER procedure SP_INSERTAR_TURNO (
 )
 as
 begin
-	begin try
-	
 	insert into Turnos_Asignados (Fecha, Id_Profesional, Id_Paciente, Observacion, Diagnostico, Id_Estado, Id_Especialidad)
 	values(@FECHA, @id_profesional, @id_paciente, @observacion, @diagnostico, @idEstado, @idEspecialidad);
-	end try
-	begin catch
-	
-		PRINT 'Error al insertar el turno: ' + ERROR_MESSAGE()
-	end catch
-
 end
 GO
 ALTER PROCEDURE SP_LISTAR_TURNOS_PACIENTE
@@ -469,6 +461,3 @@ BEGIN
     WHERE TA.Id_Paciente = @Id_Paciente
 END
 GO
-select * from Horarios_Profesional
-select * from Especialidades_Profesional
-SELECT * From Turnos_Asignados
