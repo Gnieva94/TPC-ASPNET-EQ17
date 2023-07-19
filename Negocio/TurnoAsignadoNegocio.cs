@@ -17,14 +17,14 @@ namespace Negocio
         
             try
             {
-                datos.setearConsulta("EXEC SP_insertar_turno @FECHA, @ID_PROFESIONAL, @Id_Paciente, @OBSERVACION, @DIAGNOSTICO");
+                datos.setearSP("SP_INSERTAR_TURNO");
                 datos.setearParametro("@FECHA", turno.Fecha);
                 datos.setearParametro("@id_profesional", turno.IdProfesional);
                 datos.setearParametro("@id_paciente", turno.IdPaciente);
-                datos.setearParametro("@observacion", turno.Observacion);
-                datos.setearParametro("@diagnostico", turno.Diagnostico);
+                datos.setearParametro("@observacion", (object)turno.Observacion ?? DBNull.Value);
+                datos.setearParametro("@diagnostico", (object)turno.Diagnostico ?? DBNull.Value);
+                datos.setearParametro("@idEstado", turno.IdEstado);
                 datos.ejecutarAccion();
-                datos.cerrarConexion();
             }
             catch (Exception ex)
             {

@@ -72,7 +72,10 @@ namespace Helpers
             }
             else
             {
-                int diferencia = 7 - ((dia - diaHoy) * -1);
+                int diferencia = dia - diaHoy;
+
+                if (diferencia < 0) diferencia = diferencia + 7;
+
                 hoy = hoy.AddDays(diferencia);
             }
 

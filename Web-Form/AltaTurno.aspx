@@ -11,12 +11,35 @@
                 <div class="">
                     <asp:UpdatePanel runat="server" >
                     <ContentTemplate>
-                    <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
-                    <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"  ></asp:DropDownList>
-                    <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
-                    <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged" ></asp:DropDownList>
-                    <asp:DropDownList runat="server" ID="ddlHoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras_SelectedIndexChanged" ></asp:DropDownList>
-                    <asp:DropDownList runat="server" ID="ddlOpciones" class="btn btn-secondary dropdown-toggle" OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" ></asp:DropDownList>
+                        </div>
+                            <div class="col-6 flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
+                                <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"  ></asp:DropDownList>
+                            </div>
+                            <div class="flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>                       
+                                <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" ></asp:DropDownList>
+                            </div>
+                            <div class="flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
+                                <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged" ></asp:DropDownList>
+                            </div>
+                            <div class="flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
+                                <asp:DropDownList runat="server" ID="ddlHoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras_SelectedIndexChanged" ></asp:DropDownList>
+                            </div>
+                            <div class="flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
+                                <asp:DropDownList runat="server" ID="ddlOpciones" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged" ></asp:DropDownList>
+                            </div>
+                            <div class="flex-column">
+                                <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
+                                <asp:TextBox runat="server" ID="txbObservaciones" class="form-control" Text="Observaciones: " ></asp:TextBox>
+                                <asp:Button runat="server" ID="btnGuardar" class="btn btn-primary" Text="Guardar" OnClick="btnGuardar_Click" /> 
+                            </div>
+                        <div>
+
+
                     </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>

@@ -51,7 +51,7 @@ BEGIN
     FROM Especialidades;
 END
 GO
-ALTER PROCEDURE SP_LISTAR_ESPACIALIDADES_PROFESIONAL_HORARIO
+CREATE PROCEDURE SP_LISTAR_ESPACIALIDADES_PROFESIONAL_HORARIO
 AS
 BEGIN
     SELECT HP.Id as Id_Horario, P.Nombre, P.Apellido, PR.Id as Id_Profesional, PR.Matricula, 
@@ -357,7 +357,7 @@ BEGIN
     WHERE E.Id = @Id_Empleado;
 END
 GO
-ALTER PROCEDURE SP_BUSCAR_PACIENTE_POR_ID
+CREATE PROCEDURE SP_BUSCAR_PACIENTE_POR_ID
     @Id_Paciente INT
 
 AS
@@ -410,5 +410,27 @@ create procedure SP_BUSCAR_PROFESIONAL
 as
 begin
 	select * from Profesionales p where p.id = @IdProfesional
+end
+GO
+create procedure SP_INSERTAR_TURNO (
+@FECHA datetime,
+@id_profesional int,
+@id_paciente int,
+@observacion varchar,
+@diagnostico varchar,
+@idEstado int
+)
+as
+begin
+	begin try
+	
+	insert into Turnos_Asignados (Fecha, Id_Profesional, Id_Paciente, Observacion, Diagnostico, Id_Estado)
+	values(@FECHA, @id_profesional, @id_paciente, @observacion, @diagnostico, @idEstado);
+	end try
+	begin catch
+	
+		PRINT 'Error al insertar el turno: ' + ERROR_MESSAGE()
+	end catch
+
 end
 GO

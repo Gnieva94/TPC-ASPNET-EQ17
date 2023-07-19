@@ -17,6 +17,8 @@ namespace Web_Form
             if (!IsPostBack)
             {
                 cargarEspecialidades();
+
+                btnGuardar.Visible = false;
             }
         }
 
@@ -58,12 +60,9 @@ namespace Web_Form
         }
         protected void ddlOpciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idOpcion = Convert.ToInt32(ddlOpciones.SelectedValue);
-            int idDia = Convert.ToInt32(ddlDias.SelectedValue);
-            int idProfesional = Convert.ToInt32(ddlProfesional.SelectedValue);
-            int idEspecialidad = Convert.ToInt32(ddlEsp.SelectedValue);
 
-            
+            //Session["Fecha"] = opciones[idOpcion - 1];
+            btnGuardar.Visible = true;
         }
 
         protected void cargarEspecialidades()
@@ -85,6 +84,8 @@ namespace Web_Form
             {
                 ddlProfesional.Items.Clear();
                 ddlDias.Items.Clear();
+                ddlOpciones.Items.Clear();
+                ddlHoras.Items.Clear();
             }
         }
 
@@ -108,16 +109,7 @@ namespace Web_Form
 
         protected void cargarDias(int idProfesional, int idEspecialidad)
         {
-            HorarioNegocio horarioNegocio = new HorarioNegocio();
-            DiaSemanaNegocio diaSemanaNegocio = new DiaSemanaNegocio();
-
-            List<Horario> horarios = horarioNegocio.ListaHorarios().FindAll(x => x.Profesional.IdProfesional == idProfesional && x.Especialidad.Id == idEspecialidad);
-            List<DiasSemana> dias = diaSemanaNegocio.Listar();
-
-            //List<Horario> diasDisponibles = TurnoHelper.obtenerDiasDisponibles(horarios, idProfesional);
-            List<DiasSemana> listaFiltrada = TurnoHelper.devolverDiasDeAtencion(dias, horarios);
-
-            ddlDias.DataSource = listaFiltrada;
+            ddlDias.DataSource = buscarDiasACargar(idProfesional, idEspecialidad);
             ddlDias.DataTextField = "Dia";
             ddlDias.DataValueField = "Id";
             ddlDias.DataBind();
@@ -135,51 +127,39 @@ namespace Web_Form
 
         protected void cargarHoras(int idDia, int idProfesional, int idEspecialidad)
         {
-
-            ddlHoras.DataSource = listarHorasAMostrar(idDia, idProfesional, idEspecialidad);
+            List<MostrarHorario> list = listarHorasAMostrar(idDia, idProfesional, idEspecialidad);
+            ddlHoras.DataSource = list;
             ddlHoras.DataTextField = "descripcion";
             ddlHoras.DataValueField = "idSeleccionado";
             ddlHoras.DataBind();
 
-            if(ddlHoras.SelectedIndex != 0)
+            if (ddlHoras.SelectedIndex != 0)
             {
                 int horaSeleccionada = Convert.ToInt32(ddlHoras.SelectedValue);
-
                 cargarOpciones(horaSeleccionada, idDia, idProfesional, idEspecialidad);
             }
             else
             {
-                //ddlOpciones.Items.Clear();
+      
             }
         }
 
         protected void cargarOpciones(int horaSeleccionada, int idDia, int idProfesional, int idEspecialidad)
         {
-            int cantidadDeTurnos = 3;
-            int horaAux = horaSeleccionada;
-            TurnoAsignadoNegocio turnoAsignadoNegocio = new TurnoAsignadoNegocio();
             List<MostrarOpciones> opciones = new List<MostrarOpciones>();
+            opciones = buscarOpcionesAMostrar(idDia, horaSeleccionada);
+            Session.Add("Opciones", opciones);
 
-
-            for (int i = 0; i < cantidadDeTurnos; i++)
-            {
-                int respuesta = turnoAsignadoNegocio.verificarDisponibilidad(TurnoHelper.obtenerFecha(horaAux, idDia));
-
-                if (respuesta == 1)
-                {   DateTime fecha = TurnoHelper.obtenerFecha(horaAux, idDia);
-                    opciones.Add(new MostrarOpciones(i + 1, "Turno disponible para el " + fecha.ToString("dd/MM HH:mm"), fecha));
-                                        
-                }
-            }
-
-            ddlOpciones.DataSource = opciones;
+            ddlOpciones.DataSource = opciones; 
             ddlOpciones.DataTextField = "descripcion";
             ddlOpciones.DataValueField = "id";
             ddlOpciones.DataBind();
+            
 
             if (ddlOpciones.SelectedIndex != 0)
             {
-                int idOpcion = Convert.ToInt32(ddlOpciones.SelectedValue);
+
+                btnGuardar.Visible = true;
             }
             else
             {
@@ -211,6 +191,73 @@ namespace Web_Form
             return lista;
         }
 
+        protected List<DiasSemana> buscarDiasACargar(int idProfesional, int idEspecialidad)
+        {
+            HorarioNegocio horarioNegocio = new HorarioNegocio();
+            DiaSemanaNegocio diaSemanaNegocio = new DiaSemanaNegocio();
+
+            List<Horario> horarios = horarioNegocio.ListaHorarios().FindAll(x => x.Profesional.IdProfesional == idProfesional && x.Especialidad.Id == idEspecialidad);
+            List<DiasSemana> dias = diaSemanaNegocio.Listar();
+
+            List<DiasSemana> listaFiltrada = TurnoHelper.devolverDiasDeAtencion(dias, horarios);
+
+            return listaFiltrada;
+        }
+
+        protected List<MostrarOpciones> buscarOpcionesAMostrar(int idDia, int horaSeleccionada)
+        {
+            int cantidadDeTurnos = 3;
+            int horaAux = horaSeleccionada;
+            TurnoAsignadoNegocio turnoAsignadoNegocio = new TurnoAsignadoNegocio();
+            List<MostrarOpciones> opciones = new List<MostrarOpciones>();
+            DateTime fecha = TurnoHelper.obtenerFecha(horaAux, idDia);
+
+
+            for (int i = 0; i < cantidadDeTurnos; i++)
+            {
+                int respuesta = turnoAsignadoNegocio.verificarDisponibilidad(fecha);
+
+                if (respuesta == 1)
+                {
+                    opciones.Add(new MostrarOpciones(i + 1, "Turno disponible para el " + fecha.DayOfWeek + " " + fecha.ToString("dd/MM HH:mm"), fecha));
+                    fecha = fecha.AddDays(7);
+                }
+            }
+
+            return opciones;
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TurnoAsignadoNegocio data = new TurnoAsignadoNegocio();
+                int idOpcion = Convert.ToInt32(ddlOpciones.SelectedValue);
+                int idEspecialidad = Convert.ToInt32(ddlEsp.SelectedValue);
+                int idProfesional = Convert.ToInt32(ddlProfesional.SelectedValue);
+                string observaciones = txbObservaciones.Text;
+                List<MostrarOpciones> fecha = (List<MostrarOpciones>)Session["Opciones"];
+
+                TurnoAsignado aux = new TurnoAsignado();
+                aux.Fecha = fecha[idOpcion -1].fecha;
+                aux.IdProfesional = idProfesional;
+                aux.IdPaciente = 1;
+                aux.Observacion = observaciones;
+                aux.Diagnostico = "";
+                aux.IdEstado = 1;
+
+                data.AltaTurno(aux);
+
+                Response.Redirect("Default.aspx");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
     }
 }
 
