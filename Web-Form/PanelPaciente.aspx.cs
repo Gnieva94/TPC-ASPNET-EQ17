@@ -51,7 +51,6 @@ namespace Web_Form
         protected void btnTurnos_Click(object sender, EventArgs e)
         {
             btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg active";
-
             chkTurnos.Checked = false;
         }
 
@@ -73,6 +72,15 @@ namespace Web_Form
 
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnNuevoTurno_Click(object sender, EventArgs e)
+        {
+
+            Persona persona = (Persona)Session["Persona"];
+            Response.Redirect("AltaTurno.aspx");
+         
 
         }
     }

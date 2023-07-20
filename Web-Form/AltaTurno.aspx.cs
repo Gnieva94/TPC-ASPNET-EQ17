@@ -249,7 +249,7 @@ namespace Web_Form
 
                 data.AltaTurno(aux);
 
-                //Response.Redirect("Default.aspx");
+                Response.Redirect("Default.aspx");
 
             }
             catch (Exception ex)

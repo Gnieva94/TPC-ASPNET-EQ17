@@ -58,7 +58,8 @@
                         OnTextChanged="txtFiltroRapidoTurnos_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
-                    <a href="AltaTurno.aspx" class="btn btn-dark ">Nuevo Turno</a>
+                    <a href="AltaTurno.aspx" class="btn btn-dark " >Nuevo Turno</a>
+                    <asp:Button ID="btnNuevoTurno" runat="server" Text="Salir" CssClass="btn btb-dark" type="button" OnClick="btnNuevoTurno_Click"  />
                 </div>
 
             </div>
