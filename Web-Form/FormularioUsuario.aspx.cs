@@ -102,7 +102,7 @@ namespace Web_Form
                         //txbProvincia.Text = empleado.DatosContacto.Provincia;
                         //txbCodigoPostal.Text = empleado.DatosContacto.CodigoPostal;
                         cargarCampos(empleado);
-                        txtPermiso.Text = empleado.Permiso.ToString();
+                        txtPermiso.Text = empleado.Permiso.Id.ToString();
                     }
                     else
                     {

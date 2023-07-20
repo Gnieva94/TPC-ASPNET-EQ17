@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PanelAdmin.aspx.cs" Inherits="Web_Form.PanelAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
+    <style>
         .btn-radio {
             position: relative;
         }
@@ -20,7 +20,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="row h-100">
         <div class="col-2 h-100">
             <div class="h-100">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroPas" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" 
+                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true"
                         OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
@@ -81,9 +81,8 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" 
-                    DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged"
-                    >
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false"
+                    DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -118,7 +117,7 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de profesionales--%>
-                <asp:GridView ID="dgvProfesionales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdProfesional" OnSelectedIndexChanged="dgvProfesionales_SelectedIndexChanged">
+                <asp:GridView ID="dgvProfesionales" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="IdProfesional" OnRowCommand="dgvProfesionales_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -127,8 +126,18 @@
                         <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Ver Horarios" />
+                        <%--<asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:CommandField ShowInsertButton="true" SelectText="X" HeaderText="Ver Horarios" />--%>
+                        <asp:TemplateField HeaderText="Modificar">
+                            <ItemTemplate>
+                                <asp:Button runat="server" Text="X" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Ver Horarios">
+                            <ItemTemplate>
+                                <asp:Button runat="server" Text="X" CommandName="verHorarios" CommandArgument='<%#Eval("IdProfesional") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -145,7 +154,7 @@
                     <asp:Label ID="lblFiltroEmp" runat="server" Text="Filtrar: "></asp:Label>
                     <asp:TextBox ID="txtFiltroRapidoEmpleados" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoEmpleados_TextChanged"></asp:TextBox>
                 </div>
-                <div class="col-4" >
+                <div class="col-4">
                     <a href="AltaUsuario.aspx?Per=2" class="btn btn-dark">Nuevo Empleado</a>
                     <a href="AltaUsuario.aspx?Per=1" class="btn btn-dark">Nuevo Admin</a>
                 </div>
@@ -205,14 +214,14 @@
 
             <%if (chkObrasSociales.Checked)
                 { %>
-           <div class="row mb-4 mt-4">
+            <div class="row mb-4 mt-4">
                 <%--Seccion Buscador y filtro--%>
                 <div class="col-2">
                     <h4>Obras Sociales</h4>
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroOS" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoObrasSociales" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoObrasSociales_TextChanged"  ></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoObrasSociales" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoObrasSociales_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
                     <a href="AltaObraSocial.aspx" class="btn btn-dark ">Nueva Obra Social</a>
@@ -236,21 +245,21 @@
 
             <%if (chkHorarios.Checked)
                 { %>
-                      <div class="row mb-4 mt-4">
+            <div class="row mb-4 mt-4">
                 <%--Seccion Buscador y filtro--%>
                 <div class="col-2">
                     <h4>Horarios</h4>
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroHorarios" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged" ></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
                     <a href="#" class="btn btn-dark ">Nuevo Horario</a>
                 </div>
 
             </div>
-    
+
             <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
                 <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">

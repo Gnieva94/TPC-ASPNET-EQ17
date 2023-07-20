@@ -318,6 +318,26 @@ BEGIN
     WHERE Id = @Id_Persona
 END
 GO
+CREATE PROCEDURE SP_MODIFICAR_HORARIO_X_PROFESIONAL(
+	@Id_Horario BIGINT,
+	@Id_Profesional BIGINT,
+	@Id_Dia SMALLINT,
+	@Horario_Inicio SMALLINT,
+	@Horario_Fin SMALLINT,
+	@Id_Especialidad INT
+)
+AS
+BEGIN
+	UPDATE Horarios_Profesional 
+	SET 
+		Id_Profesional = @Id_Profesional,
+		Id_Dia = @Id_Dia,
+		Horario_Inicio = @Horario_Inicio,
+		Horario_Fin = @Horario_Fin,
+		Id_Especialidad = @Id_Especialidad
+	WHERE Id = @Id_Horario
+END
+GO
 --BUSCAR
 CREATE PROCEDURE SP_BUSCAR_PROFESIONAL_POR_ID
     @Id_Profesional INT
@@ -359,6 +379,21 @@ BEGIN
     INNER JOIN Pacientes PA ON PE.Id = PA.Id_Persona
     INNER JOIN Obras_Sociales OS ON OS.Id = PA.Id_Obra_Social 
     WHERE PA.Id = @Id_Paciente;
+END
+GO
+CREATE PROCEDURE SP_BUSCAR_HORARIO_X_PROFESIONAL
+	@Id_Profesional BIGINT
+AS
+BEGIN
+	SELECT HP.Id as Id_Horario, PR.Id as Id_Profesional, 
+    E.Id as Id_Especialidad, E.Nombre AS Especialidad_Nombre,DS.Id as Id_Dia, 
+    DS.Dia as Dia_Nombre, HP.Horario_Inicio as Horario_Inicio, HP.Horario_Fin as Horario_Fin
+    FROM Horarios_Profesional HP
+    INNER JOIN Profesionales PR ON PR.Id = HP.Id_Profesional
+    INNER JOIN Especialidades E ON E.Id = HP.Id_Especialidad
+    INNER JOIN Personas P ON P.Id = PR.Id_Persona
+    INNER JOIN Dias_Semana DS ON DS.Id = HP.Id_Dia
+	WHERE PR.Id = @Id_Profesional
 END
 GO
 CREATE PROCEDURE SP_VERIFICAR_DISPONIBILIDAD_TURNO

@@ -337,19 +337,27 @@ namespace Web_Form
         protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdPaciente = dgvPacientes.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente + "&&per=4");
-        }
-
-        protected void dgvProfesionales_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string IdProfesional = dgvProfesionales.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdProfesional + "&&per=3");
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente + "&&per=4", false);
         }
 
         protected void dgvEmpleados_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IdEmpleado = dgvEmpleados.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioUsuario.aspx?id=" + IdEmpleado + "&&per=2");
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdEmpleado + "&&per=2", false);
+        }
+
+        protected void dgvProfesionales_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if(e.CommandName == "modificar")
+            {
+                Response.Redirect("FormularioUsuario.aspx?id=" + e.CommandArgument.ToString() + "&&per=3",false);
+            }
+            else if(e.CommandName == "verHorarios")
+            {
+                Response.Redirect("HorarioProfesional.aspx?id=" + e.CommandArgument.ToString(), false);
+            }
+
         }
     }
 }
