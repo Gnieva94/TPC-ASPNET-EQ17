@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Helpers;
 
 namespace Web_Form
 {
@@ -49,8 +50,16 @@ namespace Web_Form
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PanelAdmin.aspx", false);
+            Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
 
+        }
+
+        protected void txtFiltroRapidoHorarios_TextChanged(object sender, EventArgs e)
+        {
+            List<Horario> listaHorarios = (List<Horario>)Session["ListaHorarioProfesional"];
+            List<Horario> listaFiltrada = listaHorarios.FindAll(x => x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()));
+            dgvHorarios.DataSource = listaFiltrada;
+            dgvHorarios.DataBind();
         }
     }
 }

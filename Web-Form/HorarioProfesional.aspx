@@ -10,7 +10,7 @@
             </div>
             <div class="col-8 d-flex align-items-center ">
                 <asp:Label ID="lblFiltroHorarios" runat="server" Text="Filtrar: "></asp:Label>
-                <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true"></asp:TextBox>
+                <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged"></asp:TextBox>
             </div>
             <div class="d-flex col-2">
                 <asp:Button Text="Nuevo Horario" CssClass="btn btn-dark" ID="btnNuevoHorario" runat="server" OnClick="btnNuevoHorario_Click" />

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Helpers;
 using Negocio;
 
 namespace Web_Form
@@ -27,32 +28,35 @@ namespace Web_Form
                     chkProfesionales.Visible = false;
                     chkEspecialidades.Visible = false;
                     chkObrasSociales.Visible = false;
+                    if (Seguridad.SesionActiva(Session["Persona"]) && Seguridad.EsEmpleado(Session["Persona"]))
+                    {
+                        PacienteNegocio negocioPas = new PacienteNegocio();
+                        Session.Add("Pacientes", negocioPas.ListaPacientes());
+                        dgvPacientes.DataSource = Session["Pacientes"];
+                        dgvPacientes.DataBind();
 
-                    //if (Seguridad.SesionActiva(Session["Persona"]))
-                    //{
-                    PacienteNegocio negocioPas = new PacienteNegocio();
-                    Session.Add("Pacientes", negocioPas.ListaPacientes());
-                    dgvPacientes.DataSource = Session["Pacientes"];
-                    dgvPacientes.DataBind();
-                    //}
+                        ProfesionalNegocio negocioProf = new ProfesionalNegocio();
+                        Session.Add("Profesionales", negocioProf.ListaProfesionales());
+                        dgvProfesionales.DataSource = Session["Profesionales"];
+                        dgvProfesionales.DataBind();
 
-                    ProfesionalNegocio negocioProf = new ProfesionalNegocio();
-                    Session.Add("Profesionales", negocioProf.ListaProfesionales());
-                    dgvProfesionales.DataSource = Session["Profesionales"];
-                    dgvProfesionales.DataBind();
+                        EspecialidadNegocio negocioEsp = new EspecialidadNegocio();
+                        Session.Add("Especialidades", negocioEsp.ListaEspecialidades());
+                        dgvEspecialidades.DataSource = Session["Especialidades"];
+                        dgvEspecialidades.DataBind();
 
-                    EspecialidadNegocio negocioEsp = new EspecialidadNegocio();
-                    Session.Add("Especialidades", negocioEsp.ListaEspecialidades());
-                    dgvEspecialidades.DataSource = Session["Especialidades"];
-                    dgvEspecialidades.DataBind();
+                        ObraSocialNegocio negocioObra = new ObraSocialNegocio();
+                        Session.Add("ObrasSociales", negocioObra.ListaObrasSociales());
+                        dgvObrasSociales.DataSource = Session["ObrasSociales"];
+                        dgvObrasSociales.DataBind();
 
-                    ObraSocialNegocio negocioObra = new ObraSocialNegocio();
-                    Session.Add("ObrasSociales", negocioObra.ListaObrasSociales());
-                    dgvObrasSociales.DataSource = Session["ObrasSociales"];
-                    dgvObrasSociales.DataBind();
-
-                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
-
+                        lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
+                    }
+                    else
+                    {
+                        Session.Add("Error", "No puedes ingresar.");
+                        Response.Redirect("Error.aspx", false);
+                    }
                 }
             }
             catch (Exception ex)
@@ -60,7 +64,6 @@ namespace Web_Form
                 Session.Add("Error", ex.ToString());
             }
         }
-
 
         protected void chkPacientes_CheckedChanged(object sender, EventArgs e)
         {
@@ -173,6 +176,30 @@ namespace Web_Form
             List<ObraSocial> listaFiltrada = listaObrasSociales.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltroRapidoObrasSociales.Text.ToUpper()));
             dgvObrasSociales.DataSource = listaFiltrada;
             dgvObrasSociales.DataBind();
+        }
+
+        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IdPaciente = dgvPacientes.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioUsuario.aspx?id=" + IdPaciente + "&&per=4", false);
+        }
+
+        protected void dgvProfesionales_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "modificar")
+            {
+                Response.Redirect("FormularioUsuario.aspx?id=" + e.CommandArgument.ToString() + "&&per=3", false);
+            }
+            else if (e.CommandName == "verHorarios")
+            {
+                Response.Redirect("HorarioProfesional.aspx?id=" + e.CommandArgument.ToString(), false);
+            }
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx", false);
         }
     }
 }

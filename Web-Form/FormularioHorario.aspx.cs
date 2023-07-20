@@ -28,8 +28,18 @@ namespace Web_Form
                     Session.Add("HorarioProfesionalModificar", horario);
                     ddlEspecialidad.SelectedValue = horario.Especialidad.Id.ToString();
                     ddlDia.SelectedValue = horario.IdDia.ToString();
-                    ddlHorarioInicio.SelectedValue = horario.HorarioInicio.ToString();
-                    ddlHorarioFin.SelectedValue = horario.HorarioFin.ToString();
+                    if(horario.HorarioInicio < 10)
+                    {
+                        ddlHorarioInicio.SelectedValue = "0"+horario.HorarioInicio.ToString();
+                    }
+                    else
+                        ddlHorarioInicio.SelectedValue = horario.HorarioInicio.ToString();
+                    if(horario.HorarioFin < 10)
+                    {
+                        ddlHorarioFin.SelectedValue = "0"+horario.HorarioFin.ToString();
+                    }
+                    else
+                        ddlHorarioFin.SelectedValue = horario.HorarioFin.ToString();
                     btnHorario.Text = "Modificar";
                 }
                 else
@@ -42,9 +52,6 @@ namespace Web_Form
         {
             HorarioNegocio horarioNegocio = new HorarioNegocio();
             Horario horario;
-
-
-
             if (Request.QueryString["id"] != null)
             {
                 horario = (Horario)Session["HorarioProfesionalModificar"];
