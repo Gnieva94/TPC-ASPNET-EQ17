@@ -13,7 +13,6 @@ namespace Web_Form
     {
         public bool checkPacientes { get; set; }
         public bool checkHorarios { get; set; }
-        public bool checkTurnos { get; set; }
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,46 +23,43 @@ namespace Web_Form
                 if (!IsPostBack)
                 {
                     chkPacientes.Visible = false;
-   
                     chkHorarios.Visible = false;
-                    chkTurnos.Visible = false;
+
                     //if (Seguridad.SesionActiva(Session["Persona."]))
                     //{
+                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
+
                     PacienteNegocio negocioPas = new PacienteNegocio();
                     Session.Add("Pacientes", negocioPas.ListaPacientes());
                     dgvPacientes.DataSource = Session["Pacientes"];
                     dgvPacientes.DataBind();
                     //}
-              
-                    HorarioNegocio negocioHor = new HorarioNegocio();
-                    Session.Add("Horarios", negocioHor.ListaHorarios());
-                    dgvHorarios.DataSource = Session["Horarios"];
-                    dgvHorarios.DataBind();
+                    //if (Request.QueryString["id"] != null)
+                    //{
+                        int IdProfesional = 1;//int.Parse(Request.QueryString["id"].ToString());
+                        Session.Add("idHorarioProfesionalUrl", IdProfesional);
+                        ProfesionalNegocio profesionalNegocio = new ProfesionalNegocio();
+                        Profesional profesional = profesionalNegocio.traerRegistroPorId(IdProfesional);
+                        profesional.IdProfesional = IdProfesional;
+                        HorarioNegocio negocioHor = new HorarioNegocio();
+                        List<Horario> horarios = negocioHor.BuscarHorarioPorProfesional(profesional.IdProfesional);
+                        dgvHorarios.DataSource = horarios;
+                        dgvHorarios.DataBind();
+                        Session.Add("ListaHorarioProfesional", horarios);
+                   // }
 
-
-                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
-
-
-
-                }
+                    }
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
             }
-
         }
-
-
 
         protected void chkPacientes_CheckedChanged(object sender, EventArgs e)
         {
 
-            //checkPacientes = chkPacientes.Checked;
-
         }
-
-
 
         protected void txtFiltroRapidoPacientes_TextChanged(object sender, EventArgs e)
         {
@@ -75,18 +71,15 @@ namespace Web_Form
             checkPacientes = chkPacientes.Checked;
             dgvPacientes.DataSource = listaFiltrada;
             dgvPacientes.DataBind();
-
         }
 
         protected void btnPacientes_Click(object sender, EventArgs e)
         {
             btnPacientes.CssClass = "btn btn-dark btn-radio btn-lg active";
             btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkPacientes.Checked = !chkPacientes.Checked;
             chkHorarios.Checked = false;
-            chkTurnos.Checked = false;
         }
 
 
@@ -94,33 +87,12 @@ namespace Web_Form
         {
             btnPacientes.CssClass = "btn btn-dark btn-radio btn-lg";
             btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg active";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkHorarios.Checked = !chkHorarios.Checked;
             chkPacientes.Checked = false;
-            chkTurnos.Checked = false;
-
         }
 
         protected void chkHorarios_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnTurnos_Click(object sender, EventArgs e)
-        {
-            btnPacientes.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg active";
-
-            chkTurnos.Checked = !chkTurnos.Checked;
-            chkPacientes.Checked = false;
-            chkHorarios.Checked = false;
-
-
-        }
-
-        protected void chkTurnos_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -129,10 +101,21 @@ namespace Web_Form
         {
             List<Horario> listaHorarios = (List<Horario>)Session["Horarios"];
             List<Horario> listaFiltrada = listaHorarios.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()) ||
-            x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()));
+            x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()) || 
+            x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()));
 
             dgvHorarios.DataSource = listaFiltrada;
             dgvHorarios.DataBind();
+        }
+
+        protected void dgvHorarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioHorario.aspx?id=" + dgvHorarios.SelectedDataKey.Value.ToString(), false);
+        }
+
+        protected void dgvPacientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaTurno.aspx?id=" + dgvPacientes.SelectedDataKey.Value.ToString(), false); 
         }
     }
 }

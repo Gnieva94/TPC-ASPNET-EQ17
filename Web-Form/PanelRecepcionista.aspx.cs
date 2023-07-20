@@ -11,13 +11,10 @@ namespace Web_Form
 {
     public partial class PanelRecepcionista : System.Web.UI.Page
     {
-
         public bool checkPacientes { get; set; }
         public bool checkProfesionales { get; set; }
         public bool checkEspecialidades { get; set; }
         public bool checkObrasSociales { get; set; }
-        public bool checkHorarios { get; set; }
-        public bool checkTurnos { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +27,7 @@ namespace Web_Form
                     chkProfesionales.Visible = false;
                     chkEspecialidades.Visible = false;
                     chkObrasSociales.Visible = false;
-                    chkHorarios.Visible = false;
-                    chkTurnos.Visible = false;
+
                     //if (Seguridad.SesionActiva(Session["Persona"]))
                     //{
                     PacienteNegocio negocioPas = new PacienteNegocio();
@@ -55,15 +51,7 @@ namespace Web_Form
                     dgvObrasSociales.DataSource = Session["ObrasSociales"];
                     dgvObrasSociales.DataBind();
 
-                    HorarioNegocio negocioHor = new HorarioNegocio();
-                    Session.Add("Horarios", negocioHor.ListaHorarios());
-                    dgvHorarios.DataSource = Session["Horarios"];
-                    dgvHorarios.DataBind();
-
                     lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
-
-
-
 
                 }
             }
@@ -77,13 +65,11 @@ namespace Web_Form
         protected void chkPacientes_CheckedChanged(object sender, EventArgs e)
         {
 
-            //checkPacientes = chkPacientes.Checked;
-
         }
 
         protected void chkProfesionales_CheckedChanged(object sender, EventArgs e)
         {
-            //checkProfesionales = chkProfesionales.Checked;
+
         }
 
         protected void txtFiltroRapidoPacientes_TextChanged(object sender, EventArgs e)
@@ -96,7 +82,6 @@ namespace Web_Form
             checkPacientes = chkPacientes.Checked;
             dgvPacientes.DataSource = listaFiltrada;
             dgvPacientes.DataBind();
-
         }
 
         protected void txtFiltroRapidoProfesionales_TextChanged(object sender, EventArgs e)
@@ -109,7 +94,6 @@ namespace Web_Form
             checkProfesionales = chkProfesionales.Checked;
             dgvProfesionales.DataSource = listaFiltrada;
             dgvProfesionales.DataBind();
-
         }
 
         protected void btnPacientes_Click(object sender, EventArgs e)
@@ -118,15 +102,11 @@ namespace Web_Form
             btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg";
             btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg";
             btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkPacientes.Checked = !chkPacientes.Checked;
             chkProfesionales.Checked = false;
             chkEspecialidades.Checked = false;
             chkObrasSociales.Checked = false;
-            chkHorarios.Checked = false;
-            chkTurnos.Checked = false;
         }
 
         protected void btnProfesionales_Click(object sender, EventArgs e)
@@ -135,26 +115,20 @@ namespace Web_Form
             btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg active";
             btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg";
             btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkProfesionales.Checked = !chkProfesionales.Checked;
             chkPacientes.Checked = false;
             chkEspecialidades.Checked = false;
             chkObrasSociales.Checked = false;
-            chkHorarios.Checked = false;
-            chkTurnos.Checked = false;
         }
 
         protected void txtFiltroRapidoEspecialidades_TextChanged(object sender, EventArgs e)
         {
-
             List<Especialidad> listaEspecialidades = (List<Especialidad>)Session["Especialidades"];
             List<Especialidad> listaFiltrada = listaEspecialidades.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltroRapidoEspecialidades.Text.ToUpper()));
 
             dgvEspecialidades.DataSource = listaFiltrada;
             dgvEspecialidades.DataBind();
-
         }
 
         protected void btnEspecialidades_Click(object sender, EventArgs e)
@@ -163,21 +137,16 @@ namespace Web_Form
             btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg";
             btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg active";
             btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkEspecialidades.Checked = !chkEspecialidades.Checked;
             chkPacientes.Checked = false;
             chkProfesionales.Checked = false;
             chkObrasSociales.Checked = false;
-            chkHorarios.Checked = false;
-            chkTurnos.Checked = false;
-
         }
 
         protected void chkEspecialidades_CheckedChanged(object sender, EventArgs e)
         {
-            //checkEspecialidades = chkEspecialidades.Checked;
+
         }
 
         protected void btnObrasSociales_Click(object sender, EventArgs e)
@@ -186,68 +155,14 @@ namespace Web_Form
             btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg";
             btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg";
             btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg active";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
 
             chkObrasSociales.Checked = !chkObrasSociales.Checked;
             chkPacientes.Checked = false;
             chkProfesionales.Checked = false;
             chkEspecialidades.Checked = false;
-            chkHorarios.Checked = false;
-            chkTurnos.Checked = false;
-
-
-
         }
 
         protected void chkObrasSociales_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnHorarios_Click(object sender, EventArgs e)
-        {
-            btnPacientes.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg active";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg";
-
-            chkHorarios.Checked = !chkHorarios.Checked;
-            chkPacientes.Checked = false;
-            chkProfesionales.Checked = false;
-            chkEspecialidades.Checked = false;
-            chkObrasSociales.Checked = false;
-            chkTurnos.Checked = false;
-
-        }
-
-        protected void chkHorarios_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnTurnos_Click(object sender, EventArgs e)
-        {
-            btnPacientes.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnProfesionales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnEspecialidades.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnObrasSociales.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnHorarios.CssClass = "btn btn-dark btn-radio btn-lg";
-            btnTurnos.CssClass = "btn btn-dark btn-radio btn-lg active";
-
-            chkTurnos.Checked = !chkTurnos.Checked;
-            chkPacientes.Checked = false;
-            chkProfesionales.Checked = false;
-            chkEspecialidades.Checked = false;
-            chkObrasSociales.Checked = false;
-            chkHorarios.Checked = false;
-
-
-        }
-
-        protected void chkTurnos_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -258,16 +173,6 @@ namespace Web_Form
             List<ObraSocial> listaFiltrada = listaObrasSociales.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltroRapidoObrasSociales.Text.ToUpper()));
             dgvObrasSociales.DataSource = listaFiltrada;
             dgvObrasSociales.DataBind();
-        }
-
-        protected void txtFiltroRapidoHorarios_TextChanged(object sender, EventArgs e)
-        {
-            List<Horario> listaHorarios = (List<Horario>)Session["Horarios"];
-            List<Horario> listaFiltrada = listaHorarios.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()) ||
-            x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoHorarios.Text.ToUpper()));
-
-            dgvHorarios.DataSource = listaFiltrada;
-            dgvHorarios.DataBind();
         }
     }
 }

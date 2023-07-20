@@ -33,7 +33,8 @@
         </div>
 
         <div class="row mt-2">
-            <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
+            <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" 
+                AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
                     <asp:BoundField DataField="Dia" HeaderText="Dia" />
