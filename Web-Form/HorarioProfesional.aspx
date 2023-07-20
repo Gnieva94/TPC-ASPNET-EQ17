@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="row mb-4 mt-4">
-            <%--Seccion Buscador y filtro--%>
             <div class="col-2">
                 <h4>Horarios</h4>
             </div>
@@ -34,12 +33,8 @@
         </div>
 
         <div class="row mt-2">
-            <%--Seccion Grilla de horarios--%>
             <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
                 <Columns>
-                    <%--                    <asp:BoundField DataField="Id" HeaderText="ID Horario" />
-                    <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
-                    <asp:BoundField DataField="Profesional.Apellido" HeaderText="Apellido" />--%>
                     <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
                     <asp:BoundField DataField="Dia" HeaderText="Dia" />
                     <asp:BoundField DataField="HorarioInicio" HeaderText="Hora Desde" />

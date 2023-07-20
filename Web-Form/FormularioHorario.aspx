@@ -78,17 +78,5 @@
                 <asp:Button Text="Regresar" runat="server" CssClass="btn btn-danger" ID="btnRegresar" OnClick="btnRegresar_Click"/>
             </div>
         </div>
-<%--        <div class="d-flex flex-column">
-            <asp:GridView runat="server" ID="dgvListaHorarios" DataKeyNames="Id" CssClass="table table-striped table-hover table-sm" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvListaHorarios_SelectedIndexChanged">
-                <Columns>
-                    <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
-                    <asp:BoundField DataField="Dia" HeaderText="Dia" />
-                    <asp:BoundField DataField="HorarioInicio" HeaderText="Inicio" />
-                    <asp:BoundField DataField="HorarioFin" HeaderText="Fin" />
-                    <asp:CommandField ShowSelectButton="true" HeaderText="" SelectText="Eliminar" />
-
-                </Columns>
-            </asp:GridView>
-        </div>--%>
     </div>
 </asp:Content>

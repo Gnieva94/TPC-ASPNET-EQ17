@@ -69,6 +69,7 @@ namespace Web_Form
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("HorarioProfesional.aspx?id=" + Session["idHorarioProfesionalUrl"].ToString(),false);
+
         }
     }
 }

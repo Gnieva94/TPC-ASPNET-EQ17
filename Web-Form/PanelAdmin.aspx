@@ -126,8 +126,6 @@
                         <asp:BoundField DataField="DatosContacto.Email" HeaderText="Email" />
                         <asp:BoundField DataField="DatosContacto.Celular" HeaderText="Celular" />
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
-                        <%--<asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
-                        <asp:CommandField ShowInsertButton="true" SelectText="X" HeaderText="Ver Horarios" />--%>
                         <asp:TemplateField HeaderText="Modificar">
                             <ItemTemplate>
                                 <asp:Button runat="server" Text="X" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />

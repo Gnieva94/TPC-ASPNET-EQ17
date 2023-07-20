@@ -50,6 +50,7 @@ namespace Web_Form
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("PanelAdmin.aspx", false);
+
         }
     }
 }
