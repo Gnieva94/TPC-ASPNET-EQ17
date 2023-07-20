@@ -108,6 +108,7 @@ namespace Negocio
                 datos.setearSP("SP_MODIFICAR_EMPLEADO");
                 datos.setearParametro("@Id_Empleado", modificar.IdEmpleado);
                 datos.setearParametro("@Id_Persona", modificar.Id);
+                datos.setearParametro("@Id_Datos_Contacto", modificar.DatosContacto.IdDatosContacto);
                 datos.setearParametro("@Nombre", modificar.Nombre);
                 datos.setearParametro("@Apellido", modificar.Apellido);
                 datos.setearParametro("@Dni", modificar.Dni);
@@ -121,7 +122,7 @@ namespace Negocio
                 datos.setearParametro("@Provincia", (object)modificar.DatosContacto.Provincia ?? DBNull.Value);
                 datos.setearParametro("@Codigo_Postal", (object)modificar.DatosContacto.CodigoPostal ?? DBNull.Value);
                 datos.setearParametro("@Id_Permiso", modificar.Permiso.Id);
-
+                datos.ejecutarLectura();
             }
             catch (Exception ex)
             {

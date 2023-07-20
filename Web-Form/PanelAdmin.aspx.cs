@@ -250,5 +250,11 @@ namespace Web_Form
                 Response.Redirect("HorarioProfesional.aspx?id=" + e.CommandArgument.ToString(), false);
             }
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }

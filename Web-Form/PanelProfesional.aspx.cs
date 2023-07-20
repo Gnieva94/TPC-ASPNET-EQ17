@@ -117,5 +117,11 @@ namespace Web_Form
         {
             Response.Redirect("AltaTurno.aspx?id=" + dgvPacientes.SelectedDataKey.Value.ToString(), false); 
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }

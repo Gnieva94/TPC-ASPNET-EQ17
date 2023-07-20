@@ -49,7 +49,7 @@
                     </div>
                     <hr>
                     <div class="d-grid mt-3">
-                        <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-outline-light" type="button" aria-expanded="false" />
+                        <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-outline-light" type="button" aria-expanded="false" OnClick="btnLogout_Click" />
                     </div>
                 </div>
             </div>

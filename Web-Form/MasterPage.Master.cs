@@ -40,11 +40,11 @@ namespace Web_Form
             Response.Redirect("Login.aspx");
         }
 
-        protected void btnSalirCuenta_Click(object sender, EventArgs e)
-        {
-            Session.Clear();
-            Response.Redirect("Default.aspx", false);
-        }
+        //protected void btnSalirCuenta_Click(object sender, EventArgs e)
+        //{
+        //    Session.Clear();
+        //    Response.Redirect("Default.aspx", false);
+        //}
 
         protected void btnPanel_Click(object sender, EventArgs e)
         {
