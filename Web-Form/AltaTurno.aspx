@@ -19,23 +19,24 @@
                             </div>
                             <div class="mb-3">
                                 <label for="txbEspecialidad" class="form-label">Elegir especialidad:</label>
-                                <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlEsp" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlEsp_SelectedIndexChanged1"  > <asp:ListItem Enabled="true" Selected="True" Text="Seleccione una opcioón:"> </asp:ListItem></asp:DropDownList>
                             </div>
                             <div class="mb-3">
                                 <label for="ddlProfesional" class="form-label">Elegir profesional:</label>
-                                <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlProfesional" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlProfesional_SelectedIndexChanged" DataValueField="mjinuhbygvftcdrx"><asp:ListItem Text="Seleccione una opción" Value="" Disabled="true" Selected="true"></asp:ListItem></asp:DropDownList>
                             </div>
                             <div class="mb-3">
                                 <label for="ddlDias" class="form-label">Elegir día:</label>
-                                <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlDias" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlDias_SelectedIndexChanged"><asp:ListItem Text="Seleccione una opción" Value="" Disabled="true" Selected="true"></asp:ListItem></asp:DropDownList>
                             </div>
                             <div class="mb-3">
                                 <label for="ddlHoras" class="form-label">Elegir hora:</label>
-                                <asp:DropDownList runat="server" ID="ddlHoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlHoras" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlHoras_SelectedIndexChanged"><asp:ListItem Text="Seleccione una opción" Value="" Disabled="true" Selected="true"></asp:ListItem></asp:DropDownList>
                             </div>
                             <div class="mb-3">
-                                <label for="ddlOpciones" class="form-label">Elegir turno:</label>
-                                <asp:DropDownList runat="server" ID="ddlOpciones" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlOpciones" class="btn btn-secondary dropdown-toggle" AutoPostBack="true" OnSelectedIndexChanged="ddlOpciones_SelectedIndexChanged">
+
+                                </asp:DropDownList>
                             </div>
                             <div class="mb-3">
                                 <label for="txbObservaciones" class="form-label">Elegir especialidad:</label>

@@ -461,3 +461,31 @@ BEGIN
     WHERE TA.Id_Paciente = @Id_Paciente
 END
 GO
+
+create PROCEDURE SP_VERIFICAR_DISPONIBILIDAD_TURNO_2
+    @Anio INT,
+    @Mes INT,
+    @Dia INT,
+    @Hora INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Combinar los parámetros para formar la fecha completa
+    DECLARE @FechaCompleta DATETIME = CAST(@Anio AS NVARCHAR(4)) + '-' +
+                                       RIGHT('0' + CAST(@Mes AS NVARCHAR(2)), 2) + '-' +
+                                       RIGHT('0' + CAST(@Dia AS NVARCHAR(2)), 2) + ' ' +
+                                       RIGHT('0' + CAST(@Hora AS NVARCHAR(2)), 2) + ':00:00';
+
+    -- Realizar la búsqueda de la fecha en la tabla o realizar la acción deseada
+     IF NOT EXISTS (SELECT 1 FROM Turnos_Asignados WHERE Fecha = @FechaCompleta)
+	 BEGIN
+        
+        SELECT 1 AS DisponibilidadTurno;
+	END
+	ELSE
+	BEGIN
+		SELECT 0 AS DisponibilidadTurno
+	end
+END
+GO

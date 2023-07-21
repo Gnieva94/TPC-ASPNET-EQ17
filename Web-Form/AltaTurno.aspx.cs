@@ -70,6 +70,7 @@ namespace Web_Form
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
             List<Especialidad> especialidades = especialidadNegocio.ListaEspecialidades();
 
+            
             ddlEsp.DataSource = especialidades;
             ddlEsp.DataTextField = "Nombre";
             ddlEsp.DataValueField = "Id";
@@ -150,7 +151,7 @@ namespace Web_Form
             opciones = buscarOpcionesAMostrar(idDia, horaSeleccionada);
             Session.Add("Opciones", opciones);
 
-            ddlOpciones.DataSource = opciones; 
+            ddlOpciones.DataSource = opciones;
             ddlOpciones.DataTextField = "descripcion";
             ddlOpciones.DataValueField = "id";
             ddlOpciones.DataBind();
@@ -158,12 +159,7 @@ namespace Web_Form
 
             if (ddlOpciones.SelectedIndex != 0)
             {
-
                 btnGuardar.Visible = true;
-            }
-            else
-            {
-              
             }
         }
 
@@ -206,22 +202,30 @@ namespace Web_Form
 
         protected List<MostrarOpciones> buscarOpcionesAMostrar(int idDia, int horaSeleccionada)
         {
+            int i = 0;
             int cantidadDeTurnos = 3;
-            int horaAux = horaSeleccionada;
             TurnoAsignadoNegocio turnoAsignadoNegocio = new TurnoAsignadoNegocio();
             List<MostrarOpciones> opciones = new List<MostrarOpciones>();
-            DateTime fecha = TurnoHelper.obtenerFecha(horaAux, idDia);
+            DateTime fecha = TurnoHelper.obtenerFecha(horaSeleccionada, idDia);
 
 
-            for (int i = 0; i < cantidadDeTurnos; i++)
+
+            while(cantidadDeTurnos != 0)
             {
-                int respuesta = turnoAsignadoNegocio.verificarDisponibilidad(fecha);
+                int respuesta = turnoAsignadoNegocio.verificarDisponibilidad(fecha.Year, fecha.Month, fecha.Day, horaSeleccionada);
 
                 if (respuesta == 1)
                 {
                     opciones.Add(new MostrarOpciones(i + 1, "Turno disponible para el " + fecha.DayOfWeek + " " + fecha.ToString("dd/MM HH:mm"), fecha));
                     fecha = fecha.AddDays(7);
+                    cantidadDeTurnos--;
+                    i++;
                 }
+                else
+                {
+                    fecha = fecha.AddDays(7);
+                }
+
             }
 
             return opciones;

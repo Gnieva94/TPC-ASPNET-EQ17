@@ -76,14 +76,17 @@ namespace Negocio
 
         }   
 
-        public int verificarDisponibilidad(DateTime horaSeleccionada)
+        public int verificarDisponibilidad(int anio, int mes, int dia, int hora)
         {
            
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearSP("SP_VERIFICAR_DISPONIBILIDAD_TURNO");
-                datos.setearParametro("@horaSeleccionada", horaSeleccionada);
+                datos.setearSP("SP_VERIFICAR_DISPONIBILIDAD_TURNO_2");
+                datos.setearParametro("@anio", anio);
+                datos.setearParametro("@mes", mes);
+                datos.setearParametro("@dia", dia);
+                datos.setearParametro("@hora", hora);
                 datos.ejecutarLectura();
                 int aux = 0;
 

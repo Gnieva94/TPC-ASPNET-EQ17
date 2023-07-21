@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,7 @@ namespace Helpers
         public static DateTime obtenerFecha( int hora, int dia)
         {
             DateTime hoy = DateTime.Now;
+
 
             int diaHoy = (int)hoy.DayOfWeek;
 
