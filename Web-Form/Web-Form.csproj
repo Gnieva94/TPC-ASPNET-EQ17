@@ -74,8 +74,10 @@
     <Content Include="Contacto.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="FormularioHorario.aspx" />
     <Content Include="FormularioUsuario.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HorarioProfesional.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PanelAdmin.aspx" />
     <Content Include="PanelPaciente.aspx" />
@@ -134,6 +136,13 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormularioHorario.aspx.cs">
+      <DependentUpon>FormularioHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioHorario.aspx.designer.cs">
+      <DependentUpon>FormularioHorario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioUsuario.aspx.cs">
       <DependentUpon>FormularioUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -143,6 +152,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioProfesional.aspx.cs">
+      <DependentUpon>HorarioProfesional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HorarioProfesional.aspx.designer.cs">
+      <DependentUpon>HorarioProfesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

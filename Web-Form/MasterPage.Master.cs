@@ -21,12 +21,12 @@ namespace Web_Form
             {
                 btnIngresar.Visible = false;
                 btnCrearCuenta.Visible = false;
-                btnPanel.Visible = false;
+                //btnPanel.Visible = false;
             }
             if(Page is AltaUsuario)
             {
                 btnCrearCuenta.Visible = false;
-                btnPanel.Visible = false;
+                //btnPanel.Visible = false;
             }
         }
 
@@ -40,11 +40,11 @@ namespace Web_Form
             Response.Redirect("Login.aspx");
         }
 
-        protected void btnSalirCuenta_Click(object sender, EventArgs e)
-        {
-            Session.Clear();
-            Response.Redirect("Default.aspx", false);
-        }
+        //protected void btnSalirCuenta_Click(object sender, EventArgs e)
+        //{
+        //    Session.Clear();
+        //    Response.Redirect("Default.aspx", false);
+        //}
 
         protected void btnPanel_Click(object sender, EventArgs e)
         {

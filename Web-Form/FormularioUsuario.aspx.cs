@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Helpers;
 using Negocio;
 
 namespace Web_Form
@@ -33,16 +34,6 @@ namespace Web_Form
 
                     if (paciente != null)
                     {
-                        //txbNombre.Text = paciente.Nombre;
-                        //txbApellido.Text = paciente.Apellido;
-                        //txbDNI.Text = paciente.Dni;
-                        //txbFechaNacimiento.Text = paciente.FechaNacimiento.ToString();
-                        //ddlNacionalidad.SelectedValue = paciente.Nacionalidad;
-                        //txbCelu.Text = paciente.DatosContacto.Celular;
-                        //txbDireccion.Text = paciente.DatosContacto.Direccion;
-                        //txbLocalidad.Text = paciente.DatosContacto.Localidad;
-                        //txbProvincia.Text = paciente.DatosContacto.Provincia;
-                        //txbCodigoPostal.Text = paciente.DatosContacto.CodigoPostal;
                         cargarCampos(paciente);
                         ddlObraSocial.SelectedValue = paciente.ObraSocial.IdObraSocial.ToString();
                         txbNumeroAfiliado.Text = paciente.NumeroAfiliado.ToString();
@@ -52,7 +43,6 @@ namespace Web_Form
                         Session.Add("Error", "No se encontro el paciente");
                         Response.Redirect("Error.aspx", false);
                     }
-
                 }
                 if (TipoUser == 3)
                 {
@@ -63,16 +53,6 @@ namespace Web_Form
 
                     if (profesional != null)
                     {
-                        //txbNombre.Text = profesional.Nombre;
-                        //txbApellido.Text = profesional.Apellido;
-                        //txbDNI.Text = profesional.Dni;
-                        //txbFechaNacimiento.Text = profesional.FechaNacimiento.ToString();
-                        //ddlNacionalidad.SelectedValue = profesional.Nacionalidad;
-                        //txbCelu.Text = profesional.DatosContacto.Celular;
-                        //txbDireccion.Text = profesional.DatosContacto.Direccion;
-                        //txbLocalidad.Text = profesional.DatosContacto.Localidad;
-                        //txbProvincia.Text = profesional.DatosContacto.Provincia;
-                        //txbCodigoPostal.Text = profesional.DatosContacto.CodigoPostal;
                         cargarCampos(profesional);
                         txbMatricula.Text = profesional.Matricula.ToString();
                     }
@@ -91,18 +71,8 @@ namespace Web_Form
 
                     if (empleado != null)
                     {
-                        //txbNombre.Text = empleado.Nombre;
-                        //txbApellido.Text = empleado.Apellido;
-                        //txbDNI.Text = empleado.Dni;
-                        //txbFechaNacimiento.Text = empleado.FechaNacimiento.ToString();
-                        //ddlNacionalidad.SelectedValue = empleado.Nacionalidad;
-                        //txbCelu.Text = empleado.DatosContacto.Celular;
-                        //txbDireccion.Text = empleado.DatosContacto.Direccion;
-                        //txbLocalidad.Text = empleado.DatosContacto.Localidad;
-                        //txbProvincia.Text = empleado.DatosContacto.Provincia;
-                        //txbCodigoPostal.Text = empleado.DatosContacto.CodigoPostal;
                         cargarCampos(empleado);
-                        txtPermiso.Text = empleado.Permiso.ToString();
+                        txtPermiso.Text = empleado.Permiso.Id.ToString();
                     }
                     else
                     {
@@ -130,6 +100,7 @@ namespace Web_Form
             }
             catch (Exception ex)
             {
+                ex.ToString();
                 Session.Add("Error", "Error al cargar campos.");
                 Response.Redirect("Error.aspx", false);
             }
@@ -156,7 +127,7 @@ namespace Web_Form
                     paciente.DatosContacto.CodigoPostal = txbCodigoPostal.Text;
                     paciente.ObraSocial.IdObraSocial = int.Parse(ddlObraSocial.SelectedValue);
                     negocio.ModificarPaciente(paciente);
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
                 if(TipoUser == 3)
                 {
@@ -175,7 +146,7 @@ namespace Web_Form
                     profesional.DatosContacto.CodigoPostal = txbCodigoPostal.Text;
                     profesional.Matricula = txbMatricula.Text;
                     pro.ModificarProfesional(profesional);
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
                 if(TipoUser ==1 || TipoUser == 2)
                 {
@@ -194,7 +165,7 @@ namespace Web_Form
                     empleado.DatosContacto.CodigoPostal = txbCodigoPostal.Text;
                     empleado.Permiso.Id = int.Parse(txtPermiso.Text);
                     emp.ModificarEmpleado(empleado);
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
             }
             catch (Exception ex)
@@ -216,7 +187,6 @@ namespace Web_Form
                 txbNumeroAfiliado.Visible = true;
                 lblNroAfiliado.Visible = true;
             }
-
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -224,7 +194,7 @@ namespace Web_Form
             try
             {
                 if (Request.QueryString["Per"] != null)
-                    Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 else
                     Response.Redirect("Default.aspx", false);
             }
@@ -242,21 +212,20 @@ namespace Web_Form
                 {
                     PacienteNegocio negocio = new PacienteNegocio();
                     negocio.BajaPaciente (int.Parse(Request.QueryString["id"].ToString()));
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
                 if (TipoUser == 3)
                 {
                     ProfesionalNegocio pro = new ProfesionalNegocio();
                     pro.BajaProfesional(int.Parse(Request.QueryString["id"].ToString()));
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
                 if (TipoUser == 1 || TipoUser == 2)
                 {
                     EmpleadoNegocio emp = new EmpleadoNegocio();
                     emp.BajaEmpleado(int.Parse(Request.QueryString["id"].ToString()));
-                    Response.Redirect("PanelAdmin.aspx", false);
+                    Response.Redirect(Seguridad.DirigirPanel(Session["Persona"]), false);
                 }
-
             }
             catch (Exception ex)
             {

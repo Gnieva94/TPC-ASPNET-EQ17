@@ -20,7 +20,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="row h-100">
         <div class="col-2 h-100">
             <div class="h-100">
@@ -32,20 +31,18 @@
                     <asp:Label Text="" ID="lblUsuarioLogueado" runat="server" />
 
                     <hr>
-                    <div class="d-grid gap-3">
-                        <asp:Button Text="Pacientes" runat="server" CssClass="btn btn-dark btn-radio btn-lg" ID="btnPacientes" OnClick="btnPacientes_Click" />
-                        <asp:CheckBox ID="chkPacientes" runat="server" AutoPostBack="true" OnCheckedChanged="chkPacientes_CheckedChanged" />
+                    <div class="h-50">
+                        <div class="d-grid gap-5 mb-5 mt-5">
+                            <asp:Button Text="Pacientes" runat="server" CssClass="btn btn-dark btn-radio btn-lg" ID="btnPacientes" OnClick="btnPacientes_Click" />
+                            <asp:CheckBox ID="chkPacientes" runat="server" AutoPostBack="true" OnCheckedChanged="chkPacientes_CheckedChanged" />
 
-                        <asp:Button Text="Horarios" runat="server" CssClass="btn btn-dark btn-radio btn-lg" ID="btnHorarios" OnClick="btnHorarios_Click" />
-                        <asp:CheckBox ID="chkHorarios" runat="server" Text="Horarios" AutoPostBack="true" OnCheckedChanged="chkHorarios_CheckedChanged" />
-
-                        <asp:Button Text="Turnos" runat="server" CssClass="btn btn-dark btn-radio btn-lg" ID="btnTurnos" OnClick="btnTurnos_Click" />
-                        <asp:CheckBox ID="chkTurnos" runat="server" Text="Turnos" AutoPostBack="true" OnCheckedChanged="chkTurnos_CheckedChanged" />
+                            <asp:Button Text="Horarios" runat="server" CssClass="btn btn-dark btn-radio btn-lg" ID="btnHorarios" OnClick="btnHorarios_Click" />
+                            <asp:CheckBox ID="chkHorarios" runat="server" Text="Horarios" AutoPostBack="true" OnCheckedChanged="chkHorarios_CheckedChanged" />
+                        </div>
                     </div>
-
                     <hr>
-                    <div class="d-grid">
-                        <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-outline-light" type="button" aria-expanded="false" />
+                    <div class="d-grid mt-3">
+                        <asp:Button ID="btnLogout" runat="server" Text="Salir" CssClass="btn btn-outline-light" type="button" aria-expanded="false" OnClick="btnLogout_Click" />
                     </div>
                 </div>
             </div>
@@ -60,15 +57,16 @@
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroPas" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoPaciente" CssClass="form-control mx-3" runat="server" AutoPostBack="true" 
+                        OnTextChanged="txtFiltroRapidoPacientes_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
-                    <a href="AltaUsuario.aspx" class="btn btn-dark ">Nuevo Paciente</a>
                 </div>
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false"  
+                    DataKeyNames="Id" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -79,7 +77,7 @@
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
                         <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Nuevo turno" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -90,25 +88,23 @@
             <div class="row mb-4 mt-4">
                 <%--Seccion Buscador y filtro--%>
                 <div class="col-2">
-                    <h4>Horarios</h4>
+                    <h4>Mis horarios</h4>
                 </div>
                 <div class="col-8 d-flex align-items-center ">
                     <asp:Label ID="lblFiltroHorarios" runat="server" Text="Filtrar: "></asp:Label>
-                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" OnTextChanged="txtFiltroRapidoHorarios_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="txtFiltroRapidoHorarios" CssClass="form-control mx-3" runat="server" AutoPostBack="true" 
+                        OnTextChanged="txtFiltroRapidoHorarios_TextChanged"></asp:TextBox>
                 </div>
                 <div class=" col-2">
-                    <a href="#" class="btn btn-dark ">Nuevo Horario</a>
+                    <a href="HorarioProfesional.aspx" class="btn btn-dark ">Nuevo Horario</a>
                 </div>
-
             </div>
 
             <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
-                <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false">
+                <asp:GridView ID="dgvHorarios" CssClass="table table-striped table-hover" runat="server"
+                    AutoGenerateColumns="false"  DataKeyNames="Id" OnSelectedIndexChanged="dgvHorarios_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField DataField="Id" HeaderText="ID Horario" />
-                        <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
-                        <asp:BoundField DataField="Profesional.Apellido" HeaderText="Apellido" />
                         <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
                         <asp:BoundField DataField="Dia" HeaderText="Dia" />
                         <asp:BoundField DataField="HorarioInicio" HeaderText="Hora Desde" />

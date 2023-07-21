@@ -80,7 +80,7 @@
                 <%if (TipoUser == 4)
                     {
                 %>
-                <div class="col-3 d-flex flex-column">
+                <div class=" d-flex flex-column">
                     <div>
                         <label for="ddlObraSocial" class="form-label">Obra Social:</label>
                     </div>
@@ -95,7 +95,7 @@
                 <%if (TipoUser == 3)
                     {  %>
                 <div class="d-flex">
-                    <div class="col-3 d-flex flex-column me-4">
+                    <div class="d-flex flex-column me-4">
                         <label for="" class="form-label">Matricula:</label>
                         <asp:TextBox runat="server" ID="txbMatricula" CssClass="form-control" placeholder="XX-XXXXXX" />
                     </div>
@@ -104,7 +104,7 @@
                 <%if (TipoUser == 1 || TipoUser == 2)
                     {  %>
                 <div class="d-flex">
-                    <div class="col-3 d-flex flex-column me-4">
+                    <div class="d-flex flex-column me-4">
                         <label for="txtPermiso" class="form-label">ID Permiso:</label>
                         <asp:TextBox runat="server" ID="txtPermiso" CssClass="form-control" placeholder="XX-XXXXXXX" />
                     </div>

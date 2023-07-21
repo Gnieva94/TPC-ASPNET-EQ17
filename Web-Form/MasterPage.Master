@@ -28,14 +28,14 @@
                                 <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))
                                     {
                                 %>
-                                <asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />
+                                <%--<<asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />--%>
                                 <%}
 %>
                             </div>
                             <div class="navbar-nav">
                                 <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))
                                     {  %>
-                                <asp:Button ID="btnSalirCuenta" class="btn btn-sm btn-outline-info me-2" Text="Salir" runat="server" OnClick="btnSalirCuenta_Click" />
+                                <%--<asp:Button ID="btnSalirCuenta" class="btn btn-sm btn-outline-info me-2" Text="Salir" runat="server" OnClick="btnSalirCuenta_Click" />--%>
                                 <%}
                                     else
                                     {
