@@ -463,8 +463,15 @@ BEGIN
     SET Estado = 0
     WHERE Id = @Id_Empleado;
 END
-
-
+GO
+CREATE PROCEDURE SP_CANCELAR_TURNO
+    @Id_Turno INT
+AS
+BEGIN
+        UPDATE Turnos_Asignados
+        SET Id_Estado = 3
+        WHERE Id = @Id_Turno;   
+END
 GO
 ALTER procedure SP_INSERTAR_TURNO (
 @FECHA datetime,

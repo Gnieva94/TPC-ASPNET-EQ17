@@ -148,5 +148,26 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void CancelarTurno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearSP("SP_CANCELAR_TURNO");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
 }

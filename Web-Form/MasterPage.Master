@@ -28,7 +28,7 @@
                                 <%if (Helpers.Seguridad.SesionActiva(Session["Persona"]))
                                     {
                                 %>
-                                <asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />
+                                <%--<<asp:Button Text="Panel" runat="server" ID="btnPanel" CssClass="nav-link" OnClick="btnPanel_Click" />--%>
                                 <%}
 %>
                             </div>

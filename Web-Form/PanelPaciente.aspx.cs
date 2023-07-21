@@ -72,6 +72,9 @@ namespace Web_Form
 
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
+           // negocio.CancelarTurno(int.Parse(dgvTurnos.SelectedIndex == Id));
+
 
         }
 

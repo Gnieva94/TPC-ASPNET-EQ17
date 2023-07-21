@@ -21,12 +21,12 @@ namespace Web_Form
             {
                 btnIngresar.Visible = false;
                 btnCrearCuenta.Visible = false;
-                btnPanel.Visible = false;
+                //btnPanel.Visible = false;
             }
             if(Page is AltaUsuario)
             {
                 btnCrearCuenta.Visible = false;
-                btnPanel.Visible = false;
+                //btnPanel.Visible = false;
             }
         }
 
