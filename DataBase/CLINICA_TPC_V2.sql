@@ -124,7 +124,8 @@ ADD Id_Especialidad INT not null;
 ALTER TABLE Turnos_Asignados
 ADD CONSTRAINT FK_Turnos_Asignados_Especialidades
 FOREIGN KEY (Id_Especialidad) REFERENCES Especialidades(Id);
-
+ALTER TABLE Turnos_Asignados
+ALTER COLUMN Diagnostico VARCHAR(200);
 
 drop table if exists Especialidades_Profesional;
 

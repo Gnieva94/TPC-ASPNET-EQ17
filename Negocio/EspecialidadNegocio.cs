@@ -47,7 +47,7 @@ namespace Negocio
 
             try
             {
-                datos.setearSP("SP_AGREGAR_ESPECIALIDAD");
+                datos.setearSP("SP_ALTA_ESPECIALIDAD");
                 datos.setearParametro("@Nombre", especialidad.Nombre);
                 datos.ejecutarAccion();
                 return true;

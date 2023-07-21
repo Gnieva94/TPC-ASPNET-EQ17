@@ -74,7 +74,7 @@
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
                 <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false"
-                    DataKeyNames="IdPaciente" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
+                    DataKeyNames="IdPaciente" OnRowCommand="dgvPacientes_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -84,7 +84,16 @@
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
                         <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                         <asp:TemplateField HeaderText="Modificar">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnModificar" Text="Modificar" CssClass="btn btn-danger" CommandName="Modificar" CommandArgument='<%# Eval("IdPaciente") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                          <asp:TemplateField HeaderText="Turno">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnTurno" Text="Turno" CssClass="btn btn-danger" CommandName="Turno" CommandArgument='<%# Eval("IdPaciente") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>

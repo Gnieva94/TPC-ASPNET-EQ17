@@ -256,5 +256,18 @@ namespace Web_Form
             Session.Clear();
             Response.Redirect("Default.aspx", false);
         }
+
+        protected void dgvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Modificar")
+            {
+                Response.Redirect("FormularioUsuario.aspx?id=" + e.CommandArgument.ToString() + "&&per=4", false);
+            }
+            else if (e.CommandName == "Turno")
+            {
+                Response.Redirect("AltaTurno.aspx?id=" + e.CommandArgument.ToString(), false);
+            }
+
+        }
     }
 }

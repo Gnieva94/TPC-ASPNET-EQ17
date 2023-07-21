@@ -65,13 +65,18 @@
             <div class="row mt-5">
                 <%--Seccion Grilla de horarios--%>
                 <asp:GridView ID="dgvTurnos" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false"
-                    DataKeyNames="Id" OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
+                    DataKeyNames="Id"  OnSelectedIndexChanged="dgvTurnos_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Profesional.Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Profesional.Apellido" HeaderText="Apellido" />
                         <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha y hora" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Cancelar" />
+                       <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Cancelar" />
+                        <%-- <asp:TemplateField HeaderText="Cancelar turno">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="btn btn-danger" CommandName="CancelarTurno" CommandArgument='<%# Eval("Id") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>--%>
                     </Columns>
                 </asp:GridView>
             </div>

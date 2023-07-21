@@ -73,7 +73,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearSP("SP_AGREGAR_OBRA_SOCIAL");
+                datos.setearSP("SP_ALTA_OBRA_SOCIAL");
                 datos.setearParametro("@Nombre", obraSocial.Nombre);
                 datos.ejecutarAccion();
                 return true;

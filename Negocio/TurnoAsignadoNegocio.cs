@@ -123,7 +123,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     TurnoAsignado aux = new TurnoAsignado();
-                    //aux.Id = (int)datos.Lector["Id"];
+                    aux.Id = (int)datos.Lector["Id"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
                     aux.Profesional.Id = (int)datos.Lector["Id_Profesional"];
                     aux.Profesional.Nombre = (string)datos.Lector["Nombre"];
@@ -158,7 +158,7 @@ namespace Negocio
             try
             {
                 datos.setearSP("SP_CANCELAR_TURNO");
-                datos.setearParametro("@Id", id);
+                datos.setearParametro("@Id_Turno", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

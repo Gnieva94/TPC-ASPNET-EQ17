@@ -114,7 +114,7 @@ BEGIN
     VALUES(@Id_Persona,@Fecha_Alta,@Id_Obra_Social,@Nro_Afiliado)
 END
 GO
-CREATE PROCEDURE SP_ALTA_TODO_PACIENTE
+ALTER PROCEDURE SP_ALTA_TODO_PACIENTE
     @Nombre VARCHAR(50),
     @Apellido VARCHAR(50),
     @Dni VARCHAR(50),
@@ -133,57 +133,158 @@ CREATE PROCEDURE SP_ALTA_TODO_PACIENTE
     @Contrasenia VARCHAR(50)
 AS
 BEGIN
-  
-    DECLARE @Datos_Contacto_Id INT;
-    INSERT INTO Datos_Contacto (Email, Celular, Telefono, Direccion, Localidad, Provincia, Codigo_Postal)
-    VALUES (@Email, @Celular, @Telefono, @Direccion, @Localidad, @Provincia, @Codigo_Postal);
-    SET @Datos_Contacto_Id = SCOPE_IDENTITY();
+	BEGIN TRY
+		BEGIN TRANSACTION
+			DECLARE @Datos_Contacto_Id INT;
+			INSERT INTO Datos_Contacto (Email, Celular, Telefono, Direccion, Localidad, Provincia, Codigo_Postal)
+			VALUES (@Email, @Celular, @Telefono, @Direccion, @Localidad, @Provincia, @Codigo_Postal);
+			SET @Datos_Contacto_Id = SCOPE_IDENTITY();
 
-    DECLARE @Credenciales_Id INT;
-    INSERT INTO Credenciales (Nombre_Usuario, Contrasenia)
-    VALUES (@Nombre_Usuario, @Contrasenia);
-    SET @Credenciales_Id = SCOPE_IDENTITY();
+			DECLARE @Credenciales_Id INT;
+			INSERT INTO Credenciales (Nombre_Usuario, Contrasenia)
+			VALUES (@Nombre_Usuario, @Contrasenia);
+			SET @Credenciales_Id = SCOPE_IDENTITY();
 
-    DECLARE @Personas_Id INT;
-    INSERT INTO Personas (Nombre, Apellido, Dni, Fecha_Nacimiento, Nacionalidad, Id_Datos_Contacto, Id_Credencial, Id_Permiso)
-    VALUES (@Nombre, @Apellido, @Dni, @Fecha_Nacimiento, @Nacionalidad, @Datos_Contacto_Id, @Credenciales_Id, 4);
-    SET @Personas_Id = SCOPE_IDENTITY();
+			DECLARE @Personas_Id INT;
+			INSERT INTO Personas (Nombre, Apellido, Dni, Fecha_Nacimiento, Nacionalidad, Id_Datos_Contacto, Id_Credencial, Id_Permiso)
+			VALUES (@Nombre, @Apellido, @Dni, @Fecha_Nacimiento, @Nacionalidad, @Datos_Contacto_Id, @Credenciales_Id, 4);
+			SET @Personas_Id = SCOPE_IDENTITY();
 
-    INSERT INTO Pacientes (Id_Persona, Fecha_Alta, Id_Obra_Social, Nro_Afiliado, Estado)
-    VALUES (@Personas_Id, GETDATE(), @Id_Obra_Social, @Id_Obra_Social, @Nro_Afiliado, 1);
+			DECLARE @Paciente_Id INT;
+			INSERT INTO Pacientes (Id_Persona, Fecha_Alta, Id_Obra_Social, Nro_Afiliado, Estado)
+			VALUES (@Personas_Id, GETDATE(), @Id_Obra_Social, @Nro_Afiliado, 1);
+			SET @Paciente_Id = SCOPE_IDENTITY();
+
+			SELECT @Paciente_Id;
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR('Rollback',16,1)
+	END CATCH
 END
 GO
-CREATE PROCEDURE SP_ALTA_PROFESIONAL(
-    @Id_Persona INT,
-    @Fecha_Alta datetime,
-    @Fecha_Baja datetime,
+ALTER PROCEDURE SP_ALTA_PROFESIONAL(
+	@Nombre VARCHAR(50),
+    @Apellido VARCHAR(50),
+    @Dni VARCHAR(50),
+    @Fecha_Nacimiento DATETIME,
+    @Nacionalidad VARCHAR(40),
+    @Email VARCHAR(100),
+    @Celular VARCHAR(15),
+    @Telefono VARCHAR(15),
+    @Direccion VARCHAR(128),
+    @Localidad VARCHAR(100),
+    @Provincia VARCHAR(100),
+    @Codigo_Postal VARCHAR(10),
+	@Nombre_Usuario VARCHAR(100),
+    @Contrasenia VARCHAR(50),
     @Matricula varchar(50)
 ) AS
 BEGIN
-    INSERT INTO Profesionales(Id_Persona,Fecha_Alta,Fecha_Baja,Matricula)
-    VALUES(@Id_Persona,@Fecha_Alta,@Fecha_Baja,@Matricula)
+	BEGIN TRY
+		BEGIN TRANSACTION
+			DECLARE @Datos_Contacto_Id INT;
+			INSERT INTO Datos_Contacto (Email, Celular, Telefono, Direccion, Localidad, Provincia, Codigo_Postal)
+			VALUES (@Email, @Celular, @Telefono, @Direccion, @Localidad, @Provincia, @Codigo_Postal);
+			SET @Datos_Contacto_Id = SCOPE_IDENTITY();
+
+			DECLARE @Credenciales_Id INT;
+			INSERT INTO Credenciales (Nombre_Usuario, Contrasenia)
+			VALUES (@Nombre_Usuario, @Contrasenia);
+			SET @Credenciales_Id = SCOPE_IDENTITY();
+
+			DECLARE @Personas_Id INT;
+			INSERT INTO Personas (Nombre, Apellido, Dni, Fecha_Nacimiento, Nacionalidad, Id_Datos_Contacto, Id_Credencial, Id_Permiso)
+			VALUES (@Nombre, @Apellido, @Dni, @Fecha_Nacimiento, @Nacionalidad, @Datos_Contacto_Id, @Credenciales_Id, 3);
+			SET @Personas_Id = SCOPE_IDENTITY();
+
+			DECLARE @Profesional_Id INT;
+			INSERT INTO Profesionales(Id_Persona,Fecha_Alta,Fecha_Baja,Matricula,Estado)
+			VALUES(@Personas_Id,GETDATE(),null,@Matricula,1);
+			SET @Profesional_Id = SCOPE_IDENTITY();
+			SELECT @Profesional_Id
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR('Rollback',16,1)
+	END CATCH
 END
 GO
-CREATE PROCEDURE SP_ALTA_EMPLEADO(
-    @Id_Persona int,
-    @Fecha_Alta datetime,
-    @Fecha_Baja datetime
+ALTER PROCEDURE SP_ALTA_EMPLEADO(
+	@Nombre VARCHAR(50),
+    @Apellido VARCHAR(50),
+    @Dni VARCHAR(50),
+    @Fecha_Nacimiento DATETIME,
+    @Nacionalidad VARCHAR(40),
+    @Email VARCHAR(100),
+    @Celular VARCHAR(15),
+    @Telefono VARCHAR(15),
+    @Direccion VARCHAR(128),
+    @Localidad VARCHAR(100),
+    @Provincia VARCHAR(100),
+    @Codigo_Postal VARCHAR(10),
+    @Nombre_Usuario VARCHAR(100),
+    @Contrasenia VARCHAR(50)
 ) AS
 BEGIN
-    INSERT INTO Empleados(Id_Persona,Fecha_Alta,Fecha_Baja)
-    VALUES(@Id_Persona,@Fecha_Alta,@Fecha_Baja)
+	BEGIN TRY
+		BEGIN TRANSACTION
+
+			DECLARE @Datos_Contacto_Id INT;
+			INSERT INTO Datos_Contacto (Email, Celular, Telefono, Direccion, Localidad, Provincia, Codigo_Postal)
+			VALUES (@Email, @Celular, @Telefono, @Direccion, @Localidad, @Provincia, @Codigo_Postal);
+			SET @Datos_Contacto_Id = SCOPE_IDENTITY();
+
+			DECLARE @Credenciales_Id INT;
+			INSERT INTO Credenciales (Nombre_Usuario, Contrasenia)
+			VALUES (@Nombre_Usuario, @Contrasenia);
+			SET @Credenciales_Id = SCOPE_IDENTITY();
+
+			DECLARE @Personas_Id INT;
+			INSERT INTO Personas (Nombre, Apellido, Dni, Fecha_Nacimiento, Nacionalidad, Id_Datos_Contacto, Id_Credencial, Id_Permiso)
+			VALUES (@Nombre, @Apellido, @Dni, @Fecha_Nacimiento, @Nacionalidad, @Datos_Contacto_Id, @Credenciales_Id, 3);
+			SET @Personas_Id = SCOPE_IDENTITY();
+
+			DECLARE @Empleado_Id INT;
+			INSERT INTO Empleados(Id_Persona,Fecha_Alta,Fecha_Baja,Estado)
+			VALUES(@Personas_Id,GETDATE(),NULL,1)
+			SET @Empleado_Id = SCOPE_IDENTITY();
+
+			SELECT @Empleado_Id
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR('Rollback',16,1)
+	END CATCH
 END
 GO
-CREATE PROCEDURE SP_ALTA_TURNO(
+alter PROCEDURE SP_ALTA_TURNO(
 	@FECHA DATETIME,
 	@ID_PROFESIONAL INT,
 	@Id_Paciente INT,
-	@OBSERVACION VARCHAR,
-	@DIAGNOSTICO VARCHAR
+	@OBSERVACION VARCHAR(200),
+	@DIAGNOSTICO VARCHAR(200)
 ) AS
 BEGIN
 	INSERT INTO TURNOS_ASIGNADOS(FECHA, Id_Profesional, Id_Paciente, Observacion, Diagnostico, Id_Estado) 
     VALUES(@FECHA, @ID_PROFESIONAL, @Id_Paciente, @OBSERVACION, @DIAGNOSTICO, 1)
+END
+GO
+CREATE PROCEDURE SP_ALTA_OBRA_SOCIAL
+    @Nombre VARCHAR(20)
+AS
+BEGIN
+    INSERT INTO Obras_Sociales (Nombre) VALUES (@Nombre);
+END
+GO
+CREATE PROCEDURE SP_ALTA_ESPECIALIDAD
+    @Nombre VARCHAR(50)
+AS
+BEGIN
+    INSERT INTO Especialidades (Nombre) VALUES (@Nombre);
 END
 GO
 --MODIFICAR
@@ -492,7 +593,7 @@ ALTER PROCEDURE SP_LISTAR_TURNOS_PACIENTE
     @Id_Paciente INT
 AS
 BEGIN
-    SELECT TA.Id_Paciente, TA.Id_Profesional, P.Nombre, P.Apellido, Pr.Matricula,
+    SELECT TA.Id, TA.Id_Paciente, TA.Id_Profesional, P.Nombre, P.Apellido, Pr.Matricula,
     TA.Fecha, TA.Diagnostico, TA.Observacion, ET.Nombre as Estado, E.Nombre as Especialidad
     FROM Turnos_Asignados TA
     INNER JOIN Estados_Turno ET ON TA.Id_Estado = ET.Id
@@ -500,7 +601,7 @@ BEGIN
     INNER JOIN Profesionales PR ON PR.Id = TA.Id_Profesional
     INNER JOIN Personas P ON P.Id = PR.Id_Persona
     INNER JOIN Especialidades E ON E.Id = TA.Id_Especialidad
-    WHERE TA.Id_Paciente = @Id_Paciente
+    WHERE TA.Id_Paciente = @Id_Paciente and Ta.Id_Estado = 1
 END
 GO
 
@@ -513,13 +614,13 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Combinar los parámetros para formar la fecha completa
+    -- Combinar los parï¿½metros para formar la fecha completa
     DECLARE @FechaCompleta DATETIME = CAST(@Anio AS NVARCHAR(4)) + '-' +
                                        RIGHT('0' + CAST(@Mes AS NVARCHAR(2)), 2) + '-' +
                                        RIGHT('0' + CAST(@Dia AS NVARCHAR(2)), 2) + ' ' +
                                        RIGHT('0' + CAST(@Hora AS NVARCHAR(2)), 2) + ':00:00';
 
-    -- Realizar la búsqueda de la fecha en la tabla o realizar la acción deseada
+    -- Realizar la bï¿½squeda de la fecha en la tabla o realizar la acciï¿½n deseada
      IF NOT EXISTS (SELECT 1 FROM Turnos_Asignados WHERE Fecha = @FechaCompleta)
 	 BEGIN
         
@@ -531,3 +632,4 @@ BEGIN
 	end
 END
 GO
+select * from Pacientes

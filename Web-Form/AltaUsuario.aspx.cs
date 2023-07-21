@@ -67,11 +67,11 @@ namespace Web_Form
                 nuevoUsuario.DatosContacto.CodigoPostal = txbCodigoPostal.Text;
                 nuevoUsuario.Credencial.NombreUsuario = txbMail.Text;
                 nuevoUsuario.Credencial.Password = txbPass.Text;
-                
+
             }
             catch (Exception ex)
             {
-                Session.Add("Error",ex.ToString());
+                Session.Add("Error", ex.ToString());
             }
         }
 
@@ -114,7 +114,7 @@ namespace Web_Form
             }
             catch (Exception ex)
             {
-                Session.Add("Error",ex.ToString());
+                Session.Add("Error", ex.ToString());
             }
         }
 
@@ -129,8 +129,15 @@ namespace Web_Form
                     cargarPersona(nuevoUsuario);
                     nuevoUsuario.Permiso.Id = 4;
                     nuevoUsuario.ObraSocial.IdObraSocial = ddlObraSocial.SelectedIndex + 1;
-                    nuevoUsuario.NumeroAfiliado = int.Parse(txbNumeroAfiliado.Text);
+                    if (nuevoUsuario.ObraSocial.IdObraSocial != 1)
+                    {
+                        nuevoUsuario.NumeroAfiliado = int.Parse(txbNumeroAfiliado.Text);
+                    }
                     pacienteNegocio.AgregarPaciente(nuevoUsuario);
+                    if (Request.QueryString["Per"] != null)
+                        Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                    else
+                        Response.Redirect("Default.aspx", false);
                 }
                 if (TipoUser == 3)
                 {
@@ -146,6 +153,10 @@ namespace Web_Form
                     {
                         horarioNegocio.AgregarHorarios(h, nuevoUsuario.IdProfesional);
                     }
+                    if (Request.QueryString["Per"] != null)
+                        Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                    else
+                        Response.Redirect("Default.aspx", false);
                 }
                 if (TipoUser == 2 || TipoUser == 1)
                 {
@@ -154,34 +165,18 @@ namespace Web_Form
                     cargarPersona(nuevoUsuario);
                     nuevoUsuario.Permiso.Id = TipoUser;
                     empleadoNegocio.AgregarEmpleado(nuevoUsuario);
+                    if (Request.QueryString["Per"] != null)
+                        Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
+                    else
+                        Response.Redirect("Default.aspx", false);
                 }
+
             }
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
             }
         }
-
-        //protected void ddlTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (TipoUser == 4)
-        //    {
-        //        ObraSocialNegocio obraSocialNegocio = new ObraSocialNegocio();
-        //        ddlObraSocial.DataSource = obraSocialNegocio.ListaObrasSociales();
-        //        ddlObraSocial.DataTextField = "Nombre";
-        //        ddlObraSocial.DataValueField = "IdObraSocial";
-        //        ddlObraSocial.DataBind();
-        //    }
-        //    if (TipoUser == 3)
-        //    {
-        //        EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-        //        ddlEspecialidad.DataSource = especialidadNegocio.ListaEspecialidades();
-        //        ddlEspecialidad.DataTextField = "Nombre";
-        //        ddlEspecialidad.DataValueField = "Nombre";
-        //        ddlEspecialidad.DataBind();
-        //    }
-
-        //}
 
         protected void ddlObraSocial_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -240,7 +235,7 @@ namespace Web_Form
         {
             try
             {
-                if(Request.QueryString["Per"] != null)
+                if (Request.QueryString["Per"] != null)
                     Response.Redirect(Helpers.Seguridad.DirigirPanel(Session["Persona"]), false);
                 else
                     Response.Redirect("Default.aspx", false);

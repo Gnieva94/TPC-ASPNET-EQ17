@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using Helpers;
 
 namespace Web_Form
 {
@@ -20,22 +21,24 @@ namespace Web_Form
                 {
              
                     chkTurnos.Visible = false;
-                    //if (Seguridad.SesionActiva(Session["Persona."]))
-                    //{
-                    //listar turnos del paciente
-                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
-                    Session.Add("Turnos", negocio.ListaTurnoAsignado(1));
+                    if (Seguridad.SesionActiva(Session["Persona"]))
+                    {
+                        int paciente = Session["Persona"] != null ? ((Persona)Session["Persona"]).Id : 0;
+                        PacienteNegocio negocio = new PacienteNegocio();
+                        List<Paciente> lista = negocio.ListaPacientes().FindAll(x => x.Id == paciente);
+                        Session.Add("Pacientes", lista);
+
+                    TurnoAsignadoNegocio negocio2 = new TurnoAsignadoNegocio();
+                    Session.Add("Turnos", negocio2.ListaTurnoAsignado(lista[0].IdPaciente));
                     dgvTurnos.DataSource = Session["Turnos"];
                     dgvTurnos.DataBind();
-              
-                 
-                   
-                    //}
+                                
+                 }
 
                   
 
 
-                    //lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
+                    lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
 
 
 
@@ -56,24 +59,42 @@ namespace Web_Form
 
         protected void chkTurnos_CheckedChanged(object sender, EventArgs e)
         {
-            List<TurnoAsignado> lista = (List<TurnoAsignado>)Session["Turnos"];
-           // List<TurnoAsignado> listaFiltrada = lista.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) ||
-           // x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()));
-
-            //dgvTurnos.DataSource = listaFiltrada;
-            //dgvTurnos.DataBind();
 
         }
 
         protected void txtFiltroRapidoTurnos_TextChanged(object sender, EventArgs e)
         {
+            List<TurnoAsignado> lista = (List<TurnoAsignado>)Session["Turnos"];
+            List<TurnoAsignado> listaFiltrada = lista.FindAll(x => x.Profesional.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) ||
+            x.Profesional.Apellido.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()) || x.Especialidad.Nombre.ToUpper().Contains(txtFiltroRapidoTurnos.Text.ToUpper()));
 
+            dgvTurnos.DataSource = listaFiltrada;
+            dgvTurnos.DataBind();
         }
 
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
-           // negocio.CancelarTurno(int.Parse(dgvTurnos.SelectedIndex == Id));
+            
+            
+                int id = Convert.ToInt32(dgvTurnos.SelectedDataKey.Value);
+    
+                try
+                {
+                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
+                    negocio.CancelarTurno(id);
+                    TurnoAsignadoNegocio negocio2 = new TurnoAsignadoNegocio();
+                    Session.Add("Turnos", negocio2.ListaTurnoAsignado(1));
+                    dgvTurnos.DataSource = Session["Turnos"];
+                    dgvTurnos.DataBind();
+                //Response.Redirect("PanelPaciente.aspx", false);
+                    
+
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", ex.ToString());
+                }
+            
 
 
         }
@@ -91,6 +112,25 @@ namespace Web_Form
         {
             Session.Clear();
             Response.Redirect("Default.aspx", false);
+        }
+
+        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "CancelarTurno")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+
+                try
+                {
+                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
+                    negocio.CancelarTurno(id);
+                    dgvTurnos.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", ex.ToString());
+                }
+            }
         }
     }
 }

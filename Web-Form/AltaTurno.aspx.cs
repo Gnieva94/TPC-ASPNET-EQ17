@@ -245,7 +245,7 @@ namespace Web_Form
                 TurnoAsignado aux = new TurnoAsignado();
                 aux.Fecha = fecha[idOpcion -1].fecha;
                 aux.Profesional.IdProfesional = idProfesional;
-                aux.Paciente.IdPaciente = 1;
+                aux.Paciente.IdPaciente = int.Parse(Request.QueryString["id"].ToString());
                 aux.Observacion = observaciones;
                 aux.Diagnostico = "";
                 aux.EstadoTurno.Id = 1;
