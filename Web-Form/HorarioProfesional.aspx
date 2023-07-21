@@ -14,7 +14,7 @@
             </div>
             <div class="d-flex col-2">
                 <asp:Button Text="Nuevo Horario" CssClass="btn btn-dark" ID="btnNuevoHorario" runat="server" OnClick="btnNuevoHorario_Click" />
-                <asp:Button Text="Regresar" runat="server" CssClass="btn btn-danger ms-2" ID="btnRegresar" OnClick="btnRegresar_Click"/>
+                <asp:Button Text="Regresar" runat="server" CssClass="btn btn-light ms-2" ID="btnRegresar" OnClick="btnRegresar_Click"/>
             </div>
         </div>
         <div class="d-flex flex-column">

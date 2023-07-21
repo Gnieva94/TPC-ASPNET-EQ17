@@ -72,11 +72,6 @@
                         <asp:BoundField DataField="Especialidad.Nombre" HeaderText="Especialidad" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha y hora" />
                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Cancelar" />
-                        <%-- <asp:TemplateField HeaderText="Cancelar turno">
-                            <ItemTemplate>
-                                <asp:Button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="btn btn-danger" CommandName="CancelarTurno" CommandArgument='<%# Eval("Id") %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
                     </Columns>
                 </asp:GridView>
             </div>

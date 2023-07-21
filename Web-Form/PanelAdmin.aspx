@@ -86,12 +86,12 @@
                         <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
                          <asp:TemplateField HeaderText="Modificar">
                             <ItemTemplate>
-                                <asp:Button runat="server" ID="btnModificar" Text="Modificar" CssClass="btn btn-danger" CommandName="Modificar" CommandArgument='<%# Eval("IdPaciente") %>' />
+                                <asp:Button runat="server" ID="btnModificar" Text="Modificar"  CssClass="btn btn-secondary"  CommandName="Modificar" CommandArgument='<%# Eval("IdPaciente") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                           <asp:TemplateField HeaderText="Turno">
                             <ItemTemplate>
-                                <asp:Button runat="server" ID="btnTurno" Text="Turno" CssClass="btn btn-danger" CommandName="Turno" CommandArgument='<%# Eval("IdPaciente") %>' />
+                                <asp:Button runat="server" ID="btnTurno" Text="Turno"  CssClass="btn btn-secondary"  CommandName="Turno" CommandArgument='<%# Eval("IdPaciente") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -129,12 +129,12 @@
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:TemplateField HeaderText="Modificar">
                             <ItemTemplate>
-                                <asp:Button runat="server" Text="X" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />
+                                <asp:Button runat="server" Text="Modificar"  CssClass="btn btn-secondary" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ver Horarios">
                             <ItemTemplate>
-                                <asp:Button runat="server" Text="X" CommandName="verHorarios" CommandArgument='<%#Eval("IdProfesional") %>' />
+                                <asp:Button runat="server" Text="Horarios"  CssClass="btn btn-secondary" CommandName="verHorarios" CommandArgument='<%#Eval("IdProfesional") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

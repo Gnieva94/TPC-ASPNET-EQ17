@@ -16,7 +16,10 @@
             <div>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="Default.aspx">Medic</a>
+                        <a class="navbar-brand" href="Default.aspx">
+                            <img src="https://img.freepik.com/vector-gratis/cruz-medica-vector-diseno-logotipo-hospital_53876-136743.jpg?w=740&t=st=1689977999~exp=1689978599~hmac=6acb8e06df4826a895fb6ece5d6c89533fc2380ad13801696be8a81e4ce9d5dd" 
+                                alt="Logo" height="40">Medic
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>

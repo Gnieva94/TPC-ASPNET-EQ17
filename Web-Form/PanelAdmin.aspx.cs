@@ -59,6 +59,7 @@ namespace Web_Form
                         dgvObrasSociales.DataSource = Session["ObrasSociales"];
                         dgvObrasSociales.DataBind();
 
+                        lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
                     }
                     else
                     {

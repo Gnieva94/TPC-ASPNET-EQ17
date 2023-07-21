@@ -632,4 +632,3 @@ BEGIN
 	end
 END
 GO
-select * from Pacientes

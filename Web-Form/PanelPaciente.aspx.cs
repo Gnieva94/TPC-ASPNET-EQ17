@@ -19,7 +19,6 @@ namespace Web_Form
             {
                 if (!IsPostBack)
                 {
-             
                     chkTurnos.Visible = false;
                     if (Seguridad.SesionActiva(Session["Persona"]))
                     {
@@ -28,20 +27,13 @@ namespace Web_Form
                         List<Paciente> lista = negocio.ListaPacientes().FindAll(x => x.Id == paciente);
                         Session.Add("Pacientes", lista);
 
-                    TurnoAsignadoNegocio negocio2 = new TurnoAsignadoNegocio();
-                    Session.Add("Turnos", negocio2.ListaTurnoAsignado(lista[0].IdPaciente));
-                    dgvTurnos.DataSource = Session["Turnos"];
-                    dgvTurnos.DataBind();
-                                
-                 }
+                        TurnoAsignadoNegocio negocio2 = new TurnoAsignadoNegocio();
+                        Session.Add("Turnos", negocio2.ListaTurnoAsignado(lista[0].IdPaciente));
+                        dgvTurnos.DataSource = Session["Turnos"];
+                        dgvTurnos.DataBind();
 
-                  
-
-
+                    }
                     lblUsuarioLogueado.Text = Session["Persona"] != null ? ((Persona)Session["Persona"]).Credencial.NombreUsuario : " ";
-
-
-
                 }
             }
             catch (Exception ex)
@@ -74,38 +66,24 @@ namespace Web_Form
 
         protected void dgvTurnos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
-                int id = Convert.ToInt32(dgvTurnos.SelectedDataKey.Value);
-    
-                try
-                {
-                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
-                    negocio.CancelarTurno(id);
-                    TurnoAsignadoNegocio negocio2 = new TurnoAsignadoNegocio();
-                    Session.Add("Turnos", negocio2.ListaTurnoAsignado(1));
-                    dgvTurnos.DataSource = Session["Turnos"];
-                    dgvTurnos.DataBind();
-                //Response.Redirect("PanelPaciente.aspx", false);
-                    
+            int id = Convert.ToInt32(dgvTurnos.SelectedDataKey.Value);
 
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("Error", ex.ToString());
-                }
-            
-
-
+            try
+            {
+                TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
+                negocio.CancelarTurno(id);
+                Response.Redirect("PanelPaciente.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex.ToString());
+            }
         }
 
         protected void btnNuevoTurno_Click(object sender, EventArgs e)
         {
-
             Persona persona = (Persona)Session["Persona"];
             Response.Redirect("AltaTurno.aspx");
-         
-
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -114,23 +92,5 @@ namespace Web_Form
             Response.Redirect("Default.aspx", false);
         }
 
-        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "CancelarTurno")
-            {
-                int id = Convert.ToInt32(e.CommandArgument);
-
-                try
-                {
-                    TurnoAsignadoNegocio negocio = new TurnoAsignadoNegocio();
-                    negocio.CancelarTurno(id);
-                    dgvTurnos.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("Error", ex.ToString());
-                }
-            }
-        }
     }
 }

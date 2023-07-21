@@ -69,7 +69,8 @@
             </div>
             <div class="row mt-5">
                 <%--Seccion Grilla de pacientes--%>
-                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server" AutoGenerateColumns="false" OnSelectedIndexChanged="dgvPacientes_SelectedIndexChanged">
+                <asp:GridView ID="dgvPacientes" CssClass="table table-striped table-hover" runat="server"
+                    AutoGenerateColumns="false" DataKeyNames="IdPaciente" OnRowCommand="dgvPacientes_RowCommand">
                     <Columns>
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
@@ -79,7 +80,16 @@
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:BoundField DataField="ObraSocial.Nombre" HeaderText="Obra Social" />
                         <asp:BoundField DataField="NumeroAfiliado" HeaderText="Nro Afiliado" />
-                        <asp:CommandField ShowSelectButton="true" SelectText="X" HeaderText="Modificar" />
+                        <asp:TemplateField HeaderText="Modificar">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnModificar" Text="Modificar" CssClass="btn btn-secondary" CommandName="Modificar" CommandArgument='<%# Eval("IdPaciente") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Turno">
+                            <ItemTemplate>
+                                <asp:Button runat="server" ID="btnTurno" Text="Turno" CssClass="btn btn-secondary" CommandName="Turno" CommandArgument='<%# Eval("IdPaciente") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -113,12 +123,12 @@
                         <asp:BoundField DataField="DatosContacto.Direccion" HeaderText="Dirección" />
                         <asp:TemplateField HeaderText="Modificar">
                             <ItemTemplate>
-                                <asp:Button runat="server" Text="X" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />
+                                <asp:Button runat="server" Text="Modificar"  CssClass="btn btn-secondary" CommandName="modificar" CommandArgument='<%#Eval("IdProfesional") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ver Horarios">
                             <ItemTemplate>
-                                <asp:Button runat="server" Text="X" CommandName="verHorarios" CommandArgument='<%#Eval("IdProfesional") %>' />
+                                <asp:Button runat="server" Text="Horario"  CssClass="btn btn-secondary" CommandName="verHorarios" CommandArgument='<%#Eval("IdProfesional") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
